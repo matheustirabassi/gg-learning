@@ -1,0 +1,145 @@
+/* Config padrão */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', serif;
+}
+html, body{
+    height: 100%;
+}
+
+.container{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+
+.clear{
+    clear: both;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+/* Header */
+header{
+    padding: 30px 20%;
+}
+header.container{
+    padding: 30px 20%;
+}
+header .logo h2{
+    color: #304ac9;
+    cursor: pointer;
+    font-size: 30px;
+}
+header .logo h2:hover{
+    color: rgb(120, 120, 120);
+    cursor: pointer;
+    padding: 0 5px;
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(2,100,185,1);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(2,100,185,1);
+    box-shadow: 10px 10px 5px 0px rgba(2,100,185,1);
+    transform: scale(1.09, 1.09);
+    transition: 0.5s;
+    border-radius: 4px;
+}
+header .menu ul{
+list-style-type: none ;
+}
+header .menu ul li{
+    display: inline-block;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 4px;
+    border-radius: 4px;
+}
+header .menu ul li:not(.not){
+    display: inline-block;
+    cursor: pointer;
+    font-size: 13px;
+}
+header .menu ul li:not(.not):hover{
+    background-color: #3576b8ad;
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
+    box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
+}
+header .menu ul li:not(.not):hover a{ 
+    color: white;
+}
+header .menu ul li input[type=text]{
+    padding: 4px 2%;
+    width: 100px;
+    border-radius:8px;
+    border: 0.5px solid rgb(120, 120, 120);
+    margin-right: 2px;
+}
+header .menu ul li input[type=text]:focus{
+    outline: 0;
+    border: 0.5px solid #1a4a7a;
+}
+header .menu ul li i{
+    border: 0.5px solid rgb(120, 120, 120);
+    width:20px;
+    padding: 4px;
+    border-radius:8px;
+}
+header .menu ul li i:hover{
+    background-color: #3576b8ad;
+    color: white;
+    border: 0.5px solid #1a4a7a;
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
+    box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
+}
+
+header .menu ul li a{
+    text-decoration: none;
+    color: rgb(120,120,120);
+}
+
+/* Box captura */
+section.box-captura{
+    background-color: #1a4cb0;
+}
+section.box-captura .bar-top{
+    background-image: -webkit-background-image: linear-gradient(-45deg, rgba(255,255,255,.15)25%, transparent 25%, transparent 50%, rgba(255,255,255,.15)50%, rgba(255,255,255,.15)75%, transparent 75%, transparent);
+	background-image: -webkit-linear-gradient(-45deg, rgba(255,255,255,.15)25%, transparent 25%, transparent 50%, rgba(255,255,255,.15)50%, rgba(255,255,255,.15)75%, transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255,255,255,.15)25%, transparent 25%, transparent 50%, rgba(255,255,255,.15)50%, rgba(255,255,255,.15)75%, transparent 75%, transparent);
+	background-image: linear-gradient(-45deg, rgba(255,255,255,.15)25%, transparent 25%, transparent 50%, rgba(255,255,255,.15)50%, rgba(255,255,255,.15)75%, transparent 75%, transparent);
+	height: 17px;
+	background-size: 20px 20px;
+}
+/* Content */
+
+section.content{
+    padding: 0 12%;
+    height: 300px;
+    background-color: yellow;
+    
+}
+div.post{
+    height: 100%;
+    background-color: green;
+    width: 80%;
+}
+div.sidebar{
+    height: 100%;
+    background-color: purple;
+    width: 20%;
+}
+
+/* Footer */
+
+footer{
+    height: 180px;
+    background-color: gray;
+}
