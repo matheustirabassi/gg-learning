@@ -15,8 +15,11 @@
     <!--HEADER-->
     <header>
         <div class="container">
+
             <div class="logo left">
-                <h2>GG Learning</h2>
+                <a href="index.html">
+                    <img src="/img/logo.png" alt="" height="100px">
+                </a>
             </div>
             <div class="menu right">
                 <ul>
@@ -33,27 +36,132 @@
     <section class="box-captura">
         <div class="bar-top"></div>
         <div class="container">
-           
+
         </div>
     </section>
     <!-- CONTENT -->
     <section class="content">
         <div class="post left">
-
+            <section id="blog-container" class="wrapper">
+                <h2 class="title-center">Últimos artigos</h2>
+                <p class="p-center">Lista de artigos contendo informações para iniciantes.</p>
+                <div class="article-box">
+                    <img src="img/blog1.jpg">
+                    <h4><a href="#">Quais são os pré-requisitos para começar a programar?</a></h4>
+                    <p class="article-date">25 de Setembro de 2021 | 10 comentários</p>
+                    <p class="article-resume">Quer começar a programar e não sabe como, clique e aprenda!</p>
+                    <a href article-nav ="/pgs/requisitos-programacao.html" class="article-btn light-btn">Ler post</a>
+                </div>
+                <div class="article-box">
+                    <img src="img/blog2.jpg">
+                    <h4><a href="#">Article title</a></h4>
+                    <p class="article-date">05 de Fevereiro de 2019 | 10 comentários</p>
+                    <p class="article-resume">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <a href="#" class="article-btn light-btn">Ler post</a>
+                </div>
+                <div class="article-box">
+                    <img src="img/blog3.jpg">
+                    <h4><a href="#">Article title</a></h4>
+                    <p class="article-date">05 de Fevereiro de 2019 | 10 comentários</p>
+                    <p class="article-resume">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                        tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <a href="#" class="article-btn light-btn">Ler post</a>
+                </div>
+            </section>
+            <section id="conteudo"></section>
         </div>
 
         <div class="sidebar right">
 
         </div>
 
-        <div class="clear">
+        <div class="clear"></div>
 
         </div>
     </section>
     <!-- FOOTER -->
     <footer>
-
+        <div class="wrapper">
+            <div class="footer-box">
+                <div class="company-footer">
+                    <img src="img/logo.png" width="250px">
+                   
+                    <p>A maneira mais fácil de aprender a programar.</p>
+                </div>
+            </div>
+            <div class="footer-box">
+                <div class="articles-footer">
+                    <h2>Artigos rescentes</h2>
+                    <ul class="footer-list footer-article-list">
+                        <li>
+                            <a href="#">Como conseguir o primeiro emprego em tempos de crise?</a>
+                            <span class="article-date">05 de fevereiro de 2019</span>
+                        </li>
+                        <li>
+                            <a href="#">Como conseguir o primeiro emprego em tempos de crise?</a>
+                            <span class="article-date">05 de fevereiro de 2019</span>
+                        </li>
+                        <li>
+                            <a href="#">Como conseguir o primeiro emprego em tempos de crise?</a>
+                            <span class="article-date">05 de fevereiro de 2019</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-box">
+                <h2>Nos encontre nas redes sociais</h2>
+                <ul class="footer-list">
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-facebook-square"></i>
+                            <span>Facebook</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fab fa-linkedin"></i>
+                            <span>Linkedin</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="wrapper">
+                <h2>Autores</h2>
+                <ul>
+                    <li>
+                        <span>Matheus Henrique Tirabassi</span>
+                    </li>
+                    <li>
+                        <span>Erick Mayson Cardoso Ferreira</span>
+                    </li>
+                    <li>
+                        <span>Luis Henrique Dall Oglio dos Santos</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </footer>
+    <script>
+        document.querySelectorAll('[article-nav]').forEach(link => {
+            const conteudo = document.getElementById('conteudo')
+
+            link.onclick = function (e) {
+                e.preventDefault()
+                fetch(link.getAttribute('article-nav'))
+                    .then(resp => resp.text())
+                    .then(html => conteudo.innerHTML = html)
+            }
+        })
+    </script>
 </body>
 
 </html>
