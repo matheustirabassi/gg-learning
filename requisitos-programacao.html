@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/font/all.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/font/all.css">
 
     <title>GG Learning</title>
 </head>
@@ -43,41 +43,21 @@
     <section class="content">
         <div class="post left">
             <section id="blog-container" class="wrapper">
-                <h2 class="title-center">Últimos artigos</h2>
-                <p class="p-center">Lista de artigos contendo informações para iniciantes.</p>
-
-                <div class="article-box">
-                    <img src="img/blog1.jpg">
-                    <h4><a href="requisitos-programacao.html">Quais são os pré-requisitos para começar a programar?</a></h4>
-                    <p class="article-date">25 de Setembro de 2021 | 10 comentários</p>
-                    <p class="article-resume">Quer começar a programar e não sabe como, clique e aprenda!</p>
-                    <a href ="requisitos-programacao.html" class="article-btn light-btn">Ler post</a>
-                </div>
-
-                <div class="article-box">
-                    <img src="img/blog2.jpg">
-                    <h4><a href="/ide/ui/ide.html">Article title</a></h4>
-                    <p class="article-date">05 de Fevereiro de 2019 | 10 comentários</p>
-                    <p class="article-resume">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <a href="/ide/ui/ide.html" class="article-btn light-btn">Ler post</a>
-                </div>
-
-                <div class="article-box">
-                    <img src="img/blog3.jpg">
-                    <h4><a href="#">Article title</a></h4>
-                    <p class="article-date">05 de Fevereiro de 2019 | 10 comentários</p>
-                    <p class="article-resume">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                    <a href="#" class="article-btn light-btn">Ler post</a>
-                </div>
+                <h1>Aprender a programar pode ser o caminho para uma nova profissão na área de TI. Para isso, é possível
+                    recorrer a cursos online e grátis de programação. Com a ajuda de aulas na Internet, você pode virar
+                    um desenvolvedor de software, começando pelo aprendizado de algoritmos e lógica de programação e
+                    chegando a linguagens mais tradicionais, como Python e Java, ou novas tecnologias, como o Flutter
+                    para quem deseja criar apps de celular. A seguir, o TechTudo separou uma lista com sete cursos
+                    online de programação para aprender de graça na Internet. Em alguns casos, inclusive, é possível
+                    obter certificado. </h1>
+                     
 
             </section>
             <section id="conteudo"></section>
         </div>
 
         <div class="sidebar right">
-            
+            <h2>eae</h2>
         </div>
 
         <div class="clear"></div>
@@ -154,6 +134,18 @@
             </div>
         </div>
     </footer>
+    <script>
+        document.querySelectorAll('[article-nav]').forEach(link => {
+            const conteudo = document.getElementById('conteudo')
+
+            link.onclick = function (e) {
+                e.preventDefault()
+                fetch(link.getAttribute('article-nav'))
+                    .then(resp => resp.text())
+                    .then(html => conteudo.innerHTML = html)
+            }
+        })
+    </script>
 </body>
 
 </html>
