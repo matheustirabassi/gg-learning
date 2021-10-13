@@ -1,40 +1,39 @@
 /* Config padrão */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+body{
     font-family: 'Open Sans', serif;
-}
-html, body{
-    height: 100%;
-}
-
-.container{
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 2%;
+	display: flex;
+	flex-direction: column;
 }
 
-.clear{
-    clear: both;
-}
 
-.left{
-    float: left;
-}
 
-.right{
-    float: right;
-}
 
 /* Header */
-header{
-    padding: 30px 20%;
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-grow: 1;
+	margin: 15px;
 }
-header.container{
-    padding: 30px 20%;
+
+nav{
+	display: flex;
+	
 }
+nav ul{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	align-content: center;
+	list-style-type: none ;
+}
+
+
+
 header .logo img{
     color: #304ac9;
     cursor: pointer;
@@ -51,48 +50,32 @@ header .logo img:hover{
     transition: 0.5s;
     border-radius: 4px;
 }
-header .menu ul{
-list-style-type: none ;
-}
-header .menu ul li{
-    display: inline-block;
-    cursor: pointer;
-    font-size: 13px;
-    padding: 4px;
-    border-radius: 4px;
-}
-header .menu ul li:not(.not){
-    display: inline-block;
-    cursor: pointer;
-    font-size: 13px;
-}
-header .menu ul li:not(.not):hover{
-    background-color: #3576b8ad;
-    -webkit-box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
-    -moz-box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
-    box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
-}
-header .menu ul li:not(.not):hover a{ 
-    color: white;
-}
-header .menu ul li input[type=text]{
-    padding: 4px 2%;
-    width: 100px;
+
+
+header nav ul li input[type=text]{
+	width: 100px;
     border-radius:8px;
     border: 0.5px solid rgb(120, 120, 120);
     margin-right: 2px;
+	
 }
-header .menu ul li input[type=text]:focus{
+header nav ul li input[type=text]:focus{
     outline: 0;
     border: 0.5px solid #1a4a7a;
+	width: 150px;
 }
-header .menu ul li i{
-    border: 0.5px solid rgb(120, 120, 120);
-    width:20px;
-    padding: 4px;
-    border-radius:8px;
+header nav ul li:not(.not){
+    cursor: pointer;
+    font-size: 13px;
 }
-header .menu ul li i:hover{
+header nav ul li:not(.not):hover{
+    background-color: #3576b8ad;
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
+    box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
+}
+
+header nav ul li i:hover{
     background-color: #3576b8ad;
     color: white;
     border: 0.5px solid #1a4a7a;
@@ -101,14 +84,15 @@ header .menu ul li i:hover{
     box-shadow: 1px 1px 2px 0px rgba(0,3,60,1);
 }
 
-header .menu ul li a{
+header nav ul li a{
     text-decoration: none;
     color: rgb(120,120,120);
+	margin-right: 10px;
 }
-
 /* Box captura */
 section.box-captura{
     background-color: #1a4cb0;
+	flex-grow: 0;
 }
 section.box-captura .bar-top{
     background-image: -webkit-background-image: linear-gradient(-45deg, rgba(255,255,255,.15)25%, transparent 25%, transparent 50%, rgba(255,255,255,.15)50%, rgba(255,255,255,.15)75%, transparent 75%, transparent);
@@ -119,13 +103,22 @@ section.box-captura .bar-top{
 	background-size: 20px 20px;
 }
 /* Content */
-
-section.content{
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	align-content: center;
+	flex-wrap:wrap;
+	flex-grow: 4;
+	
+}
+.content{
     padding: 0 12%;
     margin-bottom: 50px;
     background-color: white;
     margin-top: 30px;
-    
+	flex-grow: 4;
 }
 div.post{
     height: 100%;
@@ -175,10 +168,9 @@ div.post{
 	background-color: #FFF;
 	color: #3381f3;
 }
-div.sidebar{
-    height: 100%;
+.sidebar{
     background-color: purple;
-    width: 20%;
+	flex-grow: 1;
 }
 .light-btn {
 	background-color: #FFF;
@@ -216,6 +208,7 @@ footer {
 	padding-bottom: 40px;
 	border-top: 5px solid #3381f3;
     font-size: 15px;
+	flex-grow: 2;
 }
 
 footer h2, footer p, footer a, footer span {
