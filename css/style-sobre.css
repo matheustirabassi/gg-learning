@@ -1,0 +1,16 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300;400;600;700&display=swap');
+
+.titulo{
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(233, 171, 56);
+    font-size: 60px;
+    font-weight: 800;
+    text-align: center;
+}
+.text{
+    font-family: 'Noto Sans Mono', monospace;
+    font-size: 20px;
+    text-align: justify;
+}

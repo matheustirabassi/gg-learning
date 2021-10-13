@@ -1,5 +1,6 @@
 /* Config padrão */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300;400;600;700&display=swap');
 
 body{
     font-family: 'Open Sans', serif;
@@ -104,22 +105,25 @@ section.box-captura .bar-top{
 	background-size: 20px 20px;
 }
 /* Content */
-.main{
-	display: flex;
-
+.main {
+	display: flex;	
+	
 }
 .content{
 	display: flex;
     padding: 0 12%;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
     background-color: white;
     margin-top: 30px;
+	text-align: center;
+	
 }
 div.post{
 	flex-grow: 6;
     height: 100%;
     background-color: white;
     width: 80%;
+	
 }
 #blog-container{
 	display: flex;
@@ -133,7 +137,6 @@ div.post{
 	display: inline-block;
 	width: 31%;
 	padding: 0 1%;
-	text-align: left;
 	margin-bottom: 20px;;
 }
 
@@ -141,7 +144,7 @@ div.post{
 	width: 100%;
 	border-radius: 5px;
 	margin-bottom: 10px;
-	margin-top: ;
+	
 }
 
 .article-box h4 {
@@ -160,14 +163,17 @@ div.post{
 }
 
 .article-resume {
-	font-size: 14px;
+	font-size: 16px;
 	margin-bottom: 20px;
+	text-align: justify;
+	font-size: 16px;
 }
 
 .article-btn {
 	background-color: #3381f3;
 	border-color: #3381f3;
 	color: #FFF;
+	font-size: 18px
 }
 
 .article-btn:hover {
