@@ -10,37 +10,6 @@ header {
     grid-area: cabecalho;
 }
 
-nav {
-    grid-area: navegacao;
-}
-
-main {
-    grid-area: conteudo;
-}
-
-footer {
-    grid-area: rodape;
-}
-
-body {
-    display: grid;
-    min-height: 100vh;
-    grid-template-columns: 1fr 150px;
-    grid-template-rows: 150px 1fr 100px;
-    grid-template-areas: 'cabecalho cabecalho' 'conteudo navegacao' 'rodape rodape';
-}
-
-@media(max-width: 700px) {
-    body {
-        grid-template-columns: 1fr;
-        grid-template-rows: 80px 1fr 100px;
-        grid-template-areas: 'navegacao' 'conteudo' 'rodape';
-    }
-    header {
-        display: none;
-    }
-}
-
 header {
     display: flex;
     flex-direction: row;
@@ -122,6 +91,14 @@ header nav ul li a {
     text-decoration: none;
     color: rgb(120, 120, 120);
     margin-right: 10px;
+}
+
+nav {
+    grid-area: navegacao;
+}
+
+main {
+    grid-area: conteudo;
 }
 
 main {
@@ -214,4 +191,128 @@ main {
 .light-btn:hover {
     background-color: transparent;
     color: #FFF;
+}
+
+footer {
+    grid-area: rodape;
+}
+
+footer {
+    background-color: #666;
+    padding: 5em 0;
+    padding-bottom: 40px;
+    border-top: 5px solid #3381f3;
+    font-size: 15px;
+}
+
+.wrapper {
+    margin-left: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 35% 45% 20%);
+}
+
+footer h2,
+footer p,
+footer a,
+footer span {
+    color: #D1D1D1;
+}
+
+footer h2 {
+    font-weight: 400;
+    text-align: center;
+}
+
+footer a {
+    text-decoration: none;
+}
+
+footer ul {
+    padding: 0;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: baseline;
+    align-content: center;
+}
+
+footer li {
+    list-style: none;
+}
+
+.company-footer {
+    width: 80%;
+}
+
+.company-footer h2 {
+    margin-top: 20px;
+}
+
+.company-footer h2,
+.company-footer p {
+    margin-bottom: 15px;
+}
+
+.footer-list li {
+    margin-bottom: 10px;
+}
+
+.footer-list a {
+    transition: 0.5s;
+}
+
+.footer-list a:hover {
+    color: #FFF;
+}
+
+.articles-footer {
+    width: 80%;
+}
+
+.footer-list.footer-article-list span {
+    display: block;
+    float: none;
+}
+
+.fab {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.footer-list li span {
+    height: 15px;
+    line-height: 30px;
+}
+
+.footer-bottom {
+    border-top: 1px solid #B2B2B2;
+    margin: 10px;
+    text-align: center;
+}
+
+.footer-bottom h2 {
+    font-weight: 600;
+    margin-top: 25px;
+}
+
+body {
+    display: grid;
+    min-height: 100vh;
+    grid-template-columns: 1fr 150px;
+    grid-template-rows: 150px 2fr 1fr;
+    grid-template-areas: 'cabecalho cabecalho' 'conteudo navegacao' 'rodape rodape';
+}
+
+@media(max-width: 700px) {
+    body {
+        grid-template-columns: 1fr;
+        grid-template-rows: 80px 2fr 1fr;
+        grid-template-areas: 'navegacao' 'conteudo' 'rodape';
+    }
+    header {
+        display: none;
+    }
+    .company-footer img {
+        width: 115%;
+    }
 }
