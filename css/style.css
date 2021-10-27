@@ -5,6 +5,11 @@
 
 header {
     grid-area: cabecalho;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: baseline;
+    align-content: center;
 }
 
 nav {
@@ -36,4 +41,17 @@ body {
     header {
         display: none;
     }
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: baseline;
+    align-content: flex-start;
+    list-style-type: none;
+}
+
+nav ul li {
+    margin-left: 15px;
 }
