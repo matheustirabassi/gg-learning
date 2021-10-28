@@ -113,6 +113,7 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 33%);
     gap: 20px;
+    text-align: center;
 }
 
 .article-box {
@@ -231,8 +232,8 @@ footer ul {
     padding: 0;
     display: flex;
     flex-flow: column;
-    align-items: center;
-    justify-content: baseline;
+    align-items: left;
+    justify-content: center;
     align-content: center;
 }
 
@@ -269,11 +270,6 @@ footer li {
     width: 80%;
 }
 
-.footer-list.footer-article-list span {
-    display: block;
-    float: none;
-}
-
 .fab {
     font-size: 30px;
     margin-right: 10px;
@@ -282,6 +278,11 @@ footer li {
 .footer-list li span {
     height: 15px;
     line-height: 30px;
+}
+
+.footer-list li a {
+    display: block;
+    clear: left;
 }
 
 .footer-bottom {
