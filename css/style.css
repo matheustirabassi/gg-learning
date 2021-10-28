@@ -33,6 +33,7 @@ nav ul {
 
 nav ul li {
     margin-left: 15px;
+    font-size: 30px;
 }
 
 header .logo img {
@@ -300,7 +301,7 @@ body {
     display: grid;
     min-height: 100vh;
     grid-template-columns: 1fr 150px;
-    grid-template-rows: 150px 2fr 1fr;
+    grid-template-rows: 150px 1fr 450px;
     grid-template-areas: 'cabecalho cabecalho' 'conteudo navegacao' 'rodape rodape';
 }
 

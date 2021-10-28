@@ -16,6 +16,171 @@
 
 <body>
 
+
+
+    <main>
+        <div class="content">
+            <div class="post">
+                <h2 class="autor">Matheus Henrique Tirabassi</h2>
+                <h2 class="data">14/10/2021</h2>
+                <h1 class="titulo">Quais tipos de linguagem de programação existem e quais são as suas diferenças?</h1>
+                <div class="imagem">
+                    <img src="/img/blog2.png" alt="Imagem de paradigmas de programação">
+                    <a href="https://slideplayer.com.br/slide/12395120/">
+                        Paradigmas de programação
+                    </a>
+                </div>
+                <div class="subtitulo">
+                    Introdução
+                </div>
+                <div class="paragrafo">
+                    Antes de existirem os paradigmas de programação, os códigos eram diretamente descritos em linguagem
+                    de máquina que é composta por zeros e uns, que era extremamente complexa de programação. Por isso
+                    foram criados os paradigmas de programação, para nos
+                    ajudar na semântica(significado) do código.
+                </div>
+                <div class="paragrafo">
+                    Existem diferentes paradigmas de programação e cada um desses diferem muito na forma de programar.
+                    Por isso é muito importante e interessante conhecer um pouco de cada um desses tipos.
+                </div>
+                <div class="subtitulo">
+                    Programação Imperativa
+                </div>
+                <div class="paragrafo">
+                    A linguagem de programação imperativa é baseada em estados, que são as variáveis no programa, e
+                    ações que manipulam o estado dessas variáveis, os procedimentos, que são ações que mudam as
+                    variáveis. O nome do paradigma, Imperativo, está ligado ao tempo
+                    verbal imperativo, onde o programador diz ao computador: faça isso, depois isso, depois aquilo...
+                    Este paradigma de programação se destaca pela simplicidade, uma vez que todo ser humano, ao se
+                    programar, o faz imperativamente, baseado
+                    na ideia de ações e estados, quase como um programa de computador.
+                </div>
+                <div class="exemplo">1 int x;</div>
+                <div>Nesta linha definimos a variável x, que tem um estado que não foi definido</div>
+                <div class="exemplo">2 x = 1;</div>
+                <div class="paragrafo">
+                    Agora no caso, definimos que o estado da variável x é 1, então este é um procedimento.
+                </div>
+                <div class="paragrafo">
+                    Isso tudo ocorre no processamento, que são as ações e estados que ocorrem no programa.
+                </div>
+                <div class="imagem">
+                    <img src="/img/fluxo-programa.png">
+                </div>
+                <div class="paragrafo">Por usar procedimentos também é definida como <b>Programação Procedural</b>.
+                </div>
+
+                <div class="subtitulo">Programação Estruturada</div>
+                <div class="paragrafo">
+                    A programação estruturada é uma disposição da programação que independente da linguagem e
+                    complexidade facilita a compreensão da solução, através de um número restrito de mecanismos.
+                </div>
+            </div>
+            <ul>
+                <div class="paragrafo">Os mecanismos são compostos por três estruturas:
+                    <li>Sequência: O algoritmo é executado de cima para baixo e da esquerda para direita;</li>
+                    <h4>Exemplo</h4>
+                    <div class="exemplo">1 float x = 2; float y = 3;
+3 float z = 4;</div>
+                    <div class="paragrafo">Na linha 1, x recebeu 2, depois y recebeu 3 e na linha 2 z recebeu 4, o que
+                        há em comum é que as atribuições sempre são de cima para baixo e da esquerda para direita.</div>
+                    <li>Decisão: A tarefa é executada após um teste lógico;</li>
+                    <li>Iteração: A partir do teste lógico, um trecho de código pode ser repetido quantas vezes você
+                        desejar ou necessitar.</li>
+            </ul>
+            <div class="subtitulo">
+                Estruturas de controle
+            </div>
+            <div class="paragrafo">
+                Condicional: As instruções do programa são executadas conforme o estado lógico de uma variável e podemos
+                testar isso com if, else, else if...etc.
+            </div>
+            <h4>Exemplo</h4>
+            <div class="exemplo">1 int x = 1;
+2 int y = 2;
+3 if(x < y){
+4   printf(“x é maior que y”);
+5   }</div>
+           <div class="paragrafo">
+                        Aqui no caso será exibido no console que x é maior que y, e isso é verdade pois a condição
+                        lógica é verdadeira.
+            </div>
+            <div class="paragrafo">
+                        Repetição: as instruções são executadas até que um determinado estado de uma variável seja
+                        satisfeito.
+             </div>
+            <h4>Exemplo</h4>
+            <p class="exemplo">1  while(x < 10){
+2   printf(“x ainda é maior que 10);
+3    x = x + 1;
+4  }</p>
+           <p class="paragrafo">
+            Aqui no caso, a estrutura de repetição while irá “iterar” até que x seja diferente ou maior que 10.
+           </p>
+           <p class="paragrafo">
+            Recusão: aqui entramos em um tópicos um pouco mais avançado, mas resumidamente, as instruções são feitas com auto-chamadas, ou seja, funções chamam elas mesmas  até que certas condições lógicas sejam satisfeitas.
+           </p>
+           <h4>Exemplo</h4>
+           <p class="exemplo">function fatorial(x){
+    if(x > 1){
+            return x*fatorial(x-1);
+                }
+}</p>
+           <p class="subtitulo">
+            Programação Modular
+           </p>
+           <p class="paragrafo">
+            Programação modular é uma forma de programação no qual o desenvolvimento das rotinas de programação é feito através de módulos, que são interligados entre si através de uma interface comum.
+           </p>
+           <h4>Exemplo</h4>
+           <p class="paragrafo">
+            Na linguagem Python cada arquivo .py é um módulo e eles podem ser importados para qualquer outro arquivo .py com o comando import.
+           </p>
+           <p class="paragrafo">
+            Supomos que nós criamos um arquivo modulo1.py e queremos usar as funções, métodos que criamos no modulo2.py, simplesmente podemos fazer no módulo2.py
+           </p>
+           <p class="exemplo">import modulo1</p>
+            <p class = "paragrafo">e pronto, nós temos todas as funções do modulo1.py</p>
+            <p class="paragrafo">Na linguagem C podemos criar arquivos .h e .c, os .h são os arquivos de cabeçalhos que não definem o que a função faz, mas sim a assinatura, eles especificam quais funções definimos no .c, os .c é o queremos que as funções façam, definimos neste arquivo como queremos que a função, por exemplo, imprimirHelloWorld faça.</p>
+            <p class="subtitulo">Programação Orientada a objetos</p>
+            <p class="paragrafo">É um paradigma de programação que definem objetos, esses objetos são entidades e podem ser literalmente qualquer coisa, como um carro, uma pessoa, um livro etc.</p>
+            <p class="paragrafo">Cada objeto tem três características principais:</p>
+            <ul>
+                <li>Estado: representa os dados do objeto.</li>
+                <li>Comportamento: É a funcionalidade de um objeto ou função do objeto.</li>
+                <li>Identidade: É a identidade do objeto, um atributo específico que é diferente dos demais</li>
+            </ul>
+            <h3>Exemplo 1: estado</h3>
+            <p class="paragrafo">Em uma entidade pessoa existe os <b>atributos</b> nome, CPF, idade,etc...</p>
+            </div>
+            <h3>Exemplo 2: comportamento</h3>
+            <p class="paragrafo">Uma pessoa pode correr, deitar-se, mudar de nome etc. Isso é o comportamento de um objeto pessoa.</p>
+            </div>
+            <h3>Exemplo 3: identidade</h3>
+            <p class="paragrafo">Uma pessoa tem CPF e cada uma das pessoas têm um CPF diferentes dos demais, sendo isso sua identidade.</p>
+            </div>
+            <p class="subtitulo">
+                Programação Linear
+            </p>
+            <p class="paragrafo">
+                A programação linear não é especificamente da área de tecnologia da informação em si mas sim da matemática, são problemas de otimização que possuem uma função objetivo que pode ser o lucro de um bolo e restrições como quantidade máxima de açúcar disponível do dia, horas-homem trabalhadas, etc...
+            </p>
+            <div class="referencias">
+                <h2 class = "subtitulo">Referências</h2>
+                <ul>
+                    <li>DAVY, R. O que é a programação estruturada? <b>Platzi</b>, 2019. Disponivel em: 
+                        <a href="https://platzi.com.br/blog/programacao-estruturada">https://platzi.com.br/blog/programacao-estruturada</a>. Acesso em: 14 Outubro 2021. </li>
+                    <li>MODULO1_PARTE1_P.PDF. <b>Prefeitura de Juiz de Fora</b>, 2015. Disponivel em: 
+                        <a href="https://www.pjf.mg.gov.br/secretarias/sarh/edital/interno/selecao2015/arquivos/apostilas/modulo1_parte1_p.pdf">https://www.pjf.mg.gov.br/secretarias/sarh/edital/interno/selecao2015/arquivos/apostilas/modulo1_parte1_p.pdf</a>. Acesso em: 14 Outubro 2021.
+                    <li>LINGUAGEM de programação. <b>Wikipedia</b>, 2020. Disponivel em: 
+                        <a href="https://pt.wikipedia.org/wiki/Linguagem_de_programa%C3%A7%C3%A3o#Conceitos">https://pt.wikipedia.org/wiki/Linguagem_de_programa%C3%A7%C3%A3o#Conceitos</a>. Acesso em: 14 Outubro 2021.</li>
+                    <li>
+                            MELLO, G.  Linguagem de programação estruturadas. <b>Universidade Federal o Rio Grande do Norte</b>. Disponivel em: 
+                            &lt<a href="http://www.ppgsc.ufrn.br/~rogerio/material_auxiliar/CLP20122_Linguagens_Imperativas.pdf">http://www.ppgsc.ufrn.br/~rogerio/material_auxiliar/CLP20122_Linguagens_Imperativas.pdf</a>&gt. Acesso em: 14 Outubro 2021.   
+                    </li>
+                </ul>
+            </div>
+    </main>
     <header>
         <div class="logo">
             <a href="../index.html">
@@ -32,15 +197,6 @@
             </ul>
         </nav>
     </header>
-
-    <main>
-        <div class="content">
-            <div class="post">
-
-            </div>
-        </div>
-    </main>
-
 
     <footer>
         <div class="wrapper">
@@ -61,7 +217,8 @@
                             <span class="article-date">14 de outubro de 2021</span>
                         </li>
                         <li>
-                            <a href="/pgs/tipos-de-linguagem-de-programacao.html">Quais tipos de linguagem de programação existem e quais são as suas diferenças?</a>
+                            <a href="/pgs/tipos-de-linguagem-de-programacao.html">Quais tipos de linguagem de
+                                programação existem e quais são as suas diferenças?</a>
                             <span class="article-date">14 de outubro de 2021</span>
                         </li>
                     </ul>
