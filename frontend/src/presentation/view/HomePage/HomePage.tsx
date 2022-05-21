@@ -1,4 +1,5 @@
-import { Container, TextField } from '@material-ui/core';
+import { Button, colors, Container, TextField } from '@material-ui/core';
+import GGButton from '../../components/Button/Button';
 import HeaderView from '../../components/Header/HeaderView';
 import JumbotronView from '../../components/Jumbotron/JumbotronView';
 import HomePageViewModel from './HomePageViewModel';
@@ -22,6 +23,7 @@ const HomePage = () => {
           <TextField id="outlined-basic" label="Outlined" variant="outlined" />
         </form>
       </Container>
+      <GGButton text={"sim"} />
     </div>
   )
 }
