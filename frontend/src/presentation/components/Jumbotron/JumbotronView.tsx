@@ -4,22 +4,31 @@ import Typography from '@material-ui/core/Typography/Typography';
 
 const useStyles = makeStyles({
     root: {
-      width: '100%',
-      margin: '50px 0',
       
+      margin: '20px 0',
+      backgroundColor: '#eb5e28',
+      padding: '15px 10px',
+      color: 'white',
+      borderRadius: 5,
     },
   });
 
-const JumbotronView = () => {
-    const classes = useStyles();
+type Props = {
+  title: string,
+  subtitle: string,
+  tipo:any,
+}
 
+const JumbotronView = ({title, subtitle, tipo}:Props) => {
+    const classes = useStyles();
+ 
   return (
     <div className={classes.root}>
-        <Typography variant="h4" gutterBottom>
-            GGLearning o melhor portal para..
+        <Typography variant={tipo} gutterBottom>
+           {title}
         </Typography>
         <Typography variant='subtitle1' gutterBottom>
-            Mais texto
+            {subtitle}
         </Typography>
     </div>
   )

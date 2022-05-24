@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexGrow: 1,
     },
     toolBar: {
-        backgroundColor: '#474973ff',
+        backgroundColor: '#eb5e28',
     },
   }),
 );
