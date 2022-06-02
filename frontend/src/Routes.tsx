@@ -1,9 +1,8 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import HomePage from "./presentation/view/HomePage/HomePage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";;
+
 export const ROUTES = {
   HOME: "/",
 }
-
 
 const HomeRoutes = () => {
   return (
