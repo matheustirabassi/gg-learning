@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function HomePageViewModel() {
+export default function HomeViewModel() {
     const [textButton, setTextButton] = useState("banana")
 
     function onChange(text: string) {
