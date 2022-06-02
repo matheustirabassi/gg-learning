@@ -30,4 +30,3 @@ yarn.lock
 package-lock.json
 package-lock
 *.lock
-yarn
