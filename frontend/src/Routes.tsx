@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Home from "./presentation/view/HomePage/Home";
+import HomeView from "./presentation/view/HomePage/HomeView";
 export const ROUTES = {
 	HOME: "/",
 };
@@ -8,7 +8,7 @@ const HomeRoutes = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route index element={<Home />} />
+				<Route index element={<HomeView />} />
 			</Routes>
 		</BrowserRouter>
 	);
