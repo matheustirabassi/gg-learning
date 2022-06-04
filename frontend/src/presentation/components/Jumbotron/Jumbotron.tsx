@@ -1,6 +1,4 @@
-import { css } from "@emotion/react";
 import MuiTypography from "@mui/material/Typography";
-import React from "react";
 
 export interface JumbotronProps {
 	title?: string;
@@ -9,10 +7,8 @@ export interface JumbotronProps {
 }
 
 export const Jumbotron = ({ title, subtitle, type }: JumbotronProps) => {
-	const basicClass = css(useStyles.basicClass);
-
 	return (
-		<div basicClassName={basicClass}>
+		<div>
 			<MuiTypography variant={type} gutterBottom>
 				{title}
 			</MuiTypography>
@@ -21,14 +17,4 @@ export const Jumbotron = ({ title, subtitle, type }: JumbotronProps) => {
 			</MuiTypography>
 		</div>
 	);
-};
-
-const useStyles = {
-	basicClass: {
-		margin: "20px 0",
-		backgroundColor: "#eb5e28",
-		padding: "15px 10px",
-		color: "white",
-		borderRadius: 5,
-	}
 };
