@@ -1,5 +1,4 @@
 import MuiButton from "@mui/material/Button";
-import * as React from "react";
 export interface ButtonProps {
 	color?: "primary";
 

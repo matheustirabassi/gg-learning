@@ -1,32 +1,13 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core';
-import './app.scss';
+import { ThemeProvider } from "@emotion/react";
 import HomeRoutes from "./Routes";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-      
-    },
-    title: {
-      flexGrow: 1,
-    },
-    toolBar: {
-        backgroundColor: '#474973ff',
-    },
-  }),
-);
+import theme from "./theme";
 
 function App() {
-  const classes = useStyles();
-  return (
-    <>
-      <HomeRoutes />
-    </>
-  );
+	return (
+		<ThemeProvider theme={theme}>
+			<HomeRoutes />
+		</ThemeProvider>
+	);
 }
 
 export default App;
