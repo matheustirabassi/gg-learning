@@ -1,7 +1,7 @@
 import { HomeContentView } from "./HomeContentView";
 import HomeHeaderView from "./HomeHeaderView";
 
-const Home = () => {
+const HomeView = () => {
 	return (
 		<div>
 			<HomeHeaderView />
@@ -10,4 +10,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default HomeView;
