@@ -1,34 +1,43 @@
-import { createTheme } from "@mui/material";
+import { createTheme } from "@mui/material"
+import "@fontsource/open-sans/300.css"
+import "@fontsource/open-sans/400.css"
+import "@fontsource/open-sans/500.css"
+import "@fontsource/open-sans/700.css"
 
-const theme = createTheme({
+const ggLearningTheme = createTheme({
 	palette: {
 		primary: {
-			main: "#1976d2",
+			main: "#FFB703",
 		},
 		secondary: {
-			main: "#f50057",
+			main: "#FFFFFF",
 		},
 		success: {
 			main: "#4caf50",
 		},
+		error: {
+			main: "#C73E1D",
+		},
+		background: {
+      default: "#023047"
+    }
 	},
 	typography: {
 		fontSize: 14,
-		h3: {
-			fontWeight: 700,
-			fontSize: "2.2rem",
-		},
+		fontFamily: ["Open Sans"].join(","),
 		h4: {
 			fontWeight: 700,
-			fontSize: "1.75rem",
+			fontSize: "32px",
+			lineHeight: "44px",
 		},
 		h5: {
-			fontWeight: 500,
+			fontWeight: 700,
+			fontSize: "1.75rem",
 		},
 		h6: {
 			fontWeight: 500,
 		},
 	},
-});
+})
 
-export default theme;
+export default ggLearningTheme

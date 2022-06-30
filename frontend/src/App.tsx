@@ -1,13 +1,16 @@
-import { ThemeProvider } from "@emotion/react";
-import HomeRoutes from "./Routes";
-import theme from "./theme";
+import CssBaseline from "@mui/material/CssBaseline"
+import { ThemeProvider } from "@mui/material/styles"
+import ggLearningTheme from "theme"
+import "./app.scss"
+import HomeRoutes from "./Routes"
 
 function App() {
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={ggLearningTheme}>
+			<CssBaseline />
 			<HomeRoutes />
 		</ThemeProvider>
-	);
+	)
 }
 
-export default App;
+export default App

@@ -1,5 +1,5 @@
-import { HomeContentView } from "./HomeContentView";
-import HomeHeaderView from "./HomeHeaderView";
+import { HomeContentView } from "./HomeContentView"
+import HomeHeaderView from "./HomeHeaderView"
 
 const HomeView = () => {
 	return (
@@ -7,7 +7,7 @@ const HomeView = () => {
 			<HomeHeaderView />
 			<HomeContentView />
 		</div>
-	);
-};
+	)
+}
 
-export default HomeView;
+export default HomeView

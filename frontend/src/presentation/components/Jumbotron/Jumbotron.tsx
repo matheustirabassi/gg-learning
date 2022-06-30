@@ -1,9 +1,9 @@
-import MuiTypography from "@mui/material/Typography";
+import MuiTypography from "@mui/material/Typography"
 
 export interface JumbotronProps {
-	title?: string;
-	subtitle?: string;
-	type: any;
+	title?: string
+	subtitle?: string
+	type: any
 }
 
 export const Jumbotron = ({ title, subtitle, type }: JumbotronProps) => {
@@ -16,5 +16,5 @@ export const Jumbotron = ({ title, subtitle, type }: JumbotronProps) => {
 				{subtitle}
 			</MuiTypography>
 		</div>
-	);
-};
+	)
+}
