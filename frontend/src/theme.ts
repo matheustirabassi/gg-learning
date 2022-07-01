@@ -1,8 +1,5 @@
 import { createTheme } from "@mui/material"
-import "@fontsource/open-sans/300.css"
-import "@fontsource/open-sans/400.css"
-import "@fontsource/open-sans/500.css"
-import "@fontsource/open-sans/700.css"
+import "@fontsource/open-sans"
 
 const ggLearningTheme = createTheme({
 	palette: {
@@ -19,23 +16,57 @@ const ggLearningTheme = createTheme({
 			main: "#C73E1D",
 		},
 		background: {
-      default: "#023047"
-    }
+			default: "#023047",
+		},
 	},
 	typography: {
 		fontSize: 14,
 		fontFamily: ["Open Sans"].join(","),
-		h4: {
+		h1: {
 			fontWeight: 700,
+			fontSize: "40px",
+			lineHeight: "54px",
+			textAlign: "center",
+		},
+		h2: {
+			fontWeight: 600,
 			fontSize: "32px",
 			lineHeight: "44px",
 		},
+		h3: {
+			fontWeight: 500,
+			fontSize: "26px",
+		},
+		h4: {
+			fontWeight: 400,
+			fontSize: "24px",
+		},
 		h5: {
-			fontWeight: 700,
-			fontSize: "1.75rem",
+			fontWeight: 400,
+			fontSize: "16px",
 		},
 		h6: {
-			fontWeight: 500,
+			fontWeight: 300,
+			fontSize: "12px",
+		},
+
+		fontWeightRegular: 400,
+	},
+	components: {
+		MuiMenu: {
+			styleOverrides: {
+				list: {
+					backgroundColor: "#FFB703",
+				},
+			},
+		},
+
+		MuiMenuItem: {
+			styleOverrides: {
+				root: {
+					backgroundColor: "#023047",
+				},
+			},
 		},
 	},
 })

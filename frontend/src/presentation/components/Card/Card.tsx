@@ -7,6 +7,9 @@ import MuiCardMedia from "@mui/material/CardMedia"
 import MuiTypography from "@mui/material/Typography"
 
 export interface CardProps {
+	/** a cor de fundo do cartão */
+	bgColor?: "secondary" | "primary"
+
 	/** O link da imagem */
 	linkImage?: string
 
@@ -18,22 +21,32 @@ export interface CardProps {
 	onClick?: () => void
 }
 
-export const Card = ({ linkImage, title, description }: CardProps) => {
+export const Card = ({ linkImage, title, description, bgColor }: CardProps) => {
 	return (
-		<MuiCard>
+		<MuiCard sx={{ bgcolor: `${bgColor}.main`, maxWidth: "350px",  }}>
 			<MuiCardActionArea>
-				<MuiCardMedia image={linkImage} title={title} />
+				<MuiCardMedia image={linkImage} title={title} component="img" sx={{p:"32px"}}
+				/>
 				<MuiCardContent>
-					<MuiTypography gutterBottom variant="h5" component="h2">
+					<MuiTypography
+						gutterBottom
+						variant="h3"
+						color="secondary"
+						fontWeight={"700"}
+					>
 						{title}
 					</MuiTypography>
-					<MuiTypography variant="body2" component="p">
+					<MuiTypography variant="h4" color="secondary">
 						{description}
 					</MuiTypography>
 				</MuiCardContent>
 			</MuiCardActionArea>
 			<MuiCardActions>
-				<MuiButton size="small">Leia Mais</MuiButton>
+				<MuiButton size="small">
+					<MuiTypography color="secondary" variant="h4" fontWeight={"700"}>
+						LEIA MAIS
+					</MuiTypography>
+				</MuiButton>
 			</MuiCardActions>
 		</MuiCard>
 	)
