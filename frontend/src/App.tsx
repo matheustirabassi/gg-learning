@@ -1,32 +1,16 @@
-import { makeStyles, Theme, createStyles } from '@material-ui/core';
-import './app.scss';
-import HomeRoutes from "./Routes";
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      flexGrow: 1,
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-      
-    },
-    title: {
-      flexGrow: 1,
-    },
-    toolBar: {
-        backgroundColor: '#474973ff',
-    },
-  }),
-);
+import CssBaseline from "@mui/material/CssBaseline"
+import { ThemeProvider } from "@mui/material/styles"
+import ggLearningTheme from "theme"
+import "./app.scss"
+import HomeRoutes from "./Routes"
 
 function App() {
-  const classes = useStyles();
-  return (
-    <>
-      <HomeRoutes />
-    </>
-  );
+	return (
+		<ThemeProvider theme={ggLearningTheme}>
+			<CssBaseline />
+			<HomeRoutes />
+		</ThemeProvider>
+	)
 }
 
-export default App;
+export default App
