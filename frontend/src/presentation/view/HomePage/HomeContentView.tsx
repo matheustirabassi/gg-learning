@@ -16,9 +16,10 @@ export const HomeContentView = () => {
 				variant={"h1"}
 				color="secondary"
 				my="16px"
-				padding="10px"
-				border={"8px solid"}
+				padding="20px"
+				border={"5px solid"}
 				borderColor="primary.main"
+				borderRadius="10px"
 			>
 				GGLearning a melhor ferramenta para começar a programar
 			</Typography>
@@ -34,9 +35,9 @@ export const HomeContentView = () => {
 					justifyContent="space-between"
 					alignItems="center"
 					spacing={{ xs: 2, md: 3 }}
-					columns={{ xs: 4, sm: 8, md: 12 }}
+					columns={{ xs: 3, sm: 6, md: 12 }}
 				>
-					<Grid item xs={4} sm={4} md={4}>
+					<Grid item xs={3} sm={3} md={3}>
 						<Card
 							bgColor="primary"
 							linkImage="imgs/python.svg"
@@ -45,7 +46,7 @@ export const HomeContentView = () => {
 						/>
 					</Grid>
 
-					<Grid item xs={4} sm={4} md={4}>
+					<Grid item xs={3} sm={3} md={3}>
 						<Card
 							bgColor="primary"
 							linkImage="imgs/python.svg"
@@ -54,7 +55,15 @@ export const HomeContentView = () => {
 						/>
 					</Grid>
 
-					<Grid item xs={4} sm={4} md={4}>
+					<Grid item xs={3} sm={3} md={3}>
+						<Card
+							bgColor="primary"
+							linkImage="imgs/python.svg"
+							title="Primeiros passos em Python"
+							description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
+						/>
+					</Grid>
+					<Grid item xs={3} sm={3} md={3}>
 						<Card
 							bgColor="primary"
 							linkImage="imgs/python.svg"

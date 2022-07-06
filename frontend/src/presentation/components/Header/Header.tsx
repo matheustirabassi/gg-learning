@@ -6,7 +6,7 @@ import { ReactComponent as UserIcn } from "assets/icons/user.svg"
 import { useState } from "react"
 
 /** A tela de cabeçalho do GGLearning */
-function HomeHeaderView() {
+function Header() {
 	/** Observa o elemento ancorado */
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
 
@@ -26,8 +26,8 @@ function HomeHeaderView() {
 	return (
 		<AppBar position="relative" color="transparent">
 			<Toolbar disableGutters>
-				<Grid container padding="20px" justifyContent="space-between">
-					<Grid xs={4} sx={{ display: { xs: "flex" } }} alignItems="center" item>
+				<Grid container padding="10px " justifyContent="space-between" width="100%">
+					<Grid xs={4} sx={{ display: { xs: "flex" } }} alignItems="center" item >
 						<IconButton
 							size="large"
 							aria-label="menu"
@@ -42,7 +42,6 @@ function HomeHeaderView() {
 							color="secondary"
 							variant="h4"
 							sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-							paddingLeft={"8px"}
 						>
 							GGLearning
 						</Typography>
@@ -68,20 +67,20 @@ function HomeHeaderView() {
 							</Typography>
 						</MenuItem>
 					</Menu>
-					<Grid xs={2} sx={{ display: { md: "flex", xs: "none" } }} alignItems="center">
+					<Grid xs={2} sx={{ display: { md: "flex", xs: "none" } }} alignItems="center" justifyItems="center" item>
 						<IconButton>
 							<ArticleIcn />
 						</IconButton>
 
-						<Typography color="secondary" variant="h4" paddingLeft={"8px"}>
+						<Typography color="secondary" variant="h4">
 							Artigos
 						</Typography>
 					</Grid>
-					<Grid xs={2} sx={{ display: { md: "flex", xs: "none" } }} alignItems="center">
+					<Grid xs={2} sx={{ display: { md: "flex", xs: "none" } }} alignItems="center" item>
 						<IconButton size="large" aria-label="artigos">
 							<CodeIcn />
 						</IconButton>
-						<Typography color="secondary" variant="h4" paddingLeft={"8px"}>
+						<Typography color="secondary" variant="h4">
 							Compilador
 						</Typography>
 					</Grid>
@@ -98,7 +97,6 @@ function HomeHeaderView() {
 							color="secondary"
 							variant="h4"
 							sx={{ display: { md: "flex", xs: "none" } }}
-							paddingLeft={"8px"}
 						>
 							Minha conta
 						</Typography>
@@ -109,4 +107,4 @@ function HomeHeaderView() {
 	)
 }
 
-export default HomeHeaderView
+export default Header
