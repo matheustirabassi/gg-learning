@@ -22,7 +22,7 @@ export interface CardProps {
 
 export const Card = ({ linkImage, title, description, bgColor }: CardProps) => {
 	return (
-		<MuiCard sx={{ bgcolor: `${bgColor}.main`, maxWidth: "350px" }}>
+		<MuiCard sx={{ bgcolor: `${bgColor}.main`, maxWidth: "350px", minHeight:"600px"}}>
 
 			<MuiCardMedia image={linkImage} title={title} component="img" sx={{ p: "15px" }}
 			/>
@@ -35,19 +35,19 @@ export const Card = ({ linkImage, title, description, bgColor }: CardProps) => {
 				>
 					{title}
 				</MuiTypography>
-				<MuiTypography variant="h5" color="secondary" >
+				<MuiTypography variant="h5" color="secondary">
 					{description}
 				</MuiTypography>
 			</MuiCardContent>
 
 			<MuiCardActions>
-				<MuiButton size="small">
-					<MuiTypography color="secondary" variant="h4" fontWeight="700"
+				<MuiButton size="large" sx={{position:"relative"}}>
+					<MuiTypography color="secondary" variant="h4" fontWeight="700" position="absolute" top="0" minWidth={"170px"} paddingLeft="40px"
 						sx={{
 							'&:hover': {
 								color: 'background.default',
 								fontWeight:"700",
-								transition: 'all 0.5s ease-in-out'
+								transition: 'all 0.5s ease-in-out',
 							}
 						}}
 

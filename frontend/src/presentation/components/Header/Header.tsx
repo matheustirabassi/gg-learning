@@ -1,108 +1,175 @@
-import { AppBar, Grid, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material"
-import { ReactComponent as ArticleIcn } from "assets/icons/article.svg"
-import { ReactComponent as CodeIcn } from "assets/icons/code.svg"
-import { ReactComponent as MenuIcn } from "assets/icons/logo.svg"
-import { ReactComponent as UserIcn } from "assets/icons/user.svg"
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+import { ReactComponent as LogoIcn } from "assets/icons/logo.svg";
 import { useState } from "react"
 
 /** A tela de cabeçalho do GGLearning */
 function Header() {
+
+	const pages = ['Artigos', 'Compilador'];
+	const settings = ['Minha Conta', 'Sair'];
+
+
 	/** Observa o elemento ancorado */
-	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+	const [anchorElMenu, setAnchorElMenu] = useState<null | HTMLElement>(null)
+	const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
 
 	/** Booleano que indica o status de exibição do menu */
-	const open = Boolean(anchorEl)
+	//const open = Boolean(anchorEl)
 
-	/** Ao clicar, deve exibe o menu  */
-	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-		setAnchorEl(event.currentTarget)
+	/** Ao clicar, deve exibir o menu  */
+	const handleClickMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
+		setAnchorElMenu(event.currentTarget)
+	}
+	const handleClickUser = (event: React.MouseEvent<HTMLButtonElement>) => {
+		setAnchorElUser(event.currentTarget)
 	}
 
 	/** Ao clicar, fecha o menu principal */
-	const handleClose = () => {
-		setAnchorEl(null)
+	const handleCloseUser = () => {
+		setAnchorElUser(null)
+	}
+	const handleCloseMenu = () => {
+		setAnchorElMenu(null)
 	}
 
 	return (
-		<AppBar position="relative" color="transparent">
-			<Toolbar disableGutters>
-				<Grid container padding="10px " justifyContent="space-between" width="100%">
-					<Grid xs={4} sx={{ display: { xs: "flex" } }} alignItems="center" item >
+		<AppBar position="static" color="transparent">
+			<Container maxWidth="xl">
+				<Toolbar disableGutters>
+					<Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
+						<LogoIcn />
+					</Box>
+					<Typography
+						variant="h4"
+						noWrap
+						component="a"
+						href="/"
+						sx={{
+							mr: 2,
+							display: { xs: 'none', md: 'flex' },
+							fontWeight: 700,
+							color: 'secondary.main',
+							textDecoration: 'none',
+						}}
+					>
+						GGLearning
+					</Typography>
+
+					<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 						<IconButton
 							size="large"
-							aria-label="menu"
-							aria-controls={open ? "basic-menu" : undefined}
+							aria-label="account of current user"
+							aria-controls="menu-appbar"
 							aria-haspopup="true"
-							aria-expanded={open ? "true" : undefined}
-							onClick={handleClick}
+							onClick={handleClickMenu}
+							color="inherit"
 						>
-							<MenuIcn />
+							<MenuIcon />
 						</IconButton>
-						<Typography
-							color="secondary"
-							variant="h4"
-							sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-						>
-							GGLearning
-						</Typography>
-					</Grid>
-					<Menu
-						id="basic-menu"
-						anchorEl={anchorEl}
-						open={open}
-						onClose={handleClose}
-						MenuListProps={{
-							"aria-labelledby": "basic-button",
-						}}
-						sx={{ display: { md: "none", xs: "flex" } }}
-					>
-						<MenuItem onClick={handleClose}>
-							<Typography variant="h4" color="secondary">
-								Artigos
-							</Typography>
-						</MenuItem>
-						<MenuItem onClick={handleClose}>
-							<Typography variant="h4" color="secondary">
-								Compilador
-							</Typography>
-						</MenuItem>
-					</Menu>
-					<Grid xs={2} sx={{ display: { md: "flex", xs: "none" } }} alignItems="center" justifyItems="center" item>
-						<IconButton>
-							<ArticleIcn />
-						</IconButton>
+						<Menu
+							color='white'
+							id="menu-appbar"
+							anchorEl={anchorElMenu}
+							anchorOrigin={{
+								vertical: 'bottom',
+								horizontal: 'left',
+							}}
+							keepMounted
+							transformOrigin={{
+								vertical: 'top',
+								horizontal: 'left',
+							}}
+							open={Boolean(anchorElMenu)}
+							onClose={handleCloseMenu}
+							sx={{
+								display: { xs: 'block', md: 'none' },
 
-						<Typography color="secondary" variant="h4">
-							Artigos
-						</Typography>
-					</Grid>
-					<Grid xs={2} sx={{ display: { md: "flex", xs: "none" } }} alignItems="center" item>
-						<IconButton size="large" aria-label="artigos">
-							<CodeIcn />
-						</IconButton>
-						<Typography color="secondary" variant="h4">
-							Compilador
-						</Typography>
-					</Grid>
-					<Grid
-						xs={4}
-						sx={{ display: { xs: "flex", flexGrow: "2" } }}
-						justifyContent="flex-end"
-						alignItems="center"
-					>
-						<IconButton size="large" aria-label="artigos">
-							<UserIcn />
-						</IconButton>
-						<Typography
-							color="secondary"
-							variant="h4"
-							sx={{ display: { md: "flex", xs: "none" } }}
+							}}
 						>
-							Minha conta
-						</Typography>
-					</Grid>
-				</Grid>
-			</Toolbar>
+							{pages.map((page) => (
+								<MenuItem key={page} onClick={handleCloseMenu}>
+									<Typography textAlign="center" variant='h5' color='white'>{page}</Typography>
+								</MenuItem>
+							))}
+						</Menu>
+					</Box>
+
+					<Box sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} >
+						<LogoIcn />
+					</Box>
+
+					<Typography
+						variant="h5"
+						noWrap
+						component="a"
+						href=""
+						sx={{
+							mr: 2,
+							display: { xs: 'flex', md: 'none' },
+							flexGrow: 1,
+							fontWeight: 700,
+							color: 'secondary.main',
+							textDecoration: 'none',
+						}}
+					>
+						GGLearning
+					</Typography>
+					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+						{pages.map((page) => (
+							<Button
+								key={page}
+								onClick={handleCloseMenu}
+								sx={{ my: 2, color: 'white', display: 'block', fontWeight: 400, fontSize: "16px"}}>
+								{page}
+							</Button>
+						))}
+					</Box>
+
+					<Box sx={{ flexGrow: 0 }}>
+						<Tooltip title="Open settings">
+							<IconButton
+								onClick={handleClickUser}
+								sx={{ p: 0 }}>
+								<Avatar alt="Remy Sharp" src="../../../assets/icons/user.svg" />
+							</IconButton>
+						</Tooltip>
+						<Menu
+							sx={{ mt: '45px' }}
+							id="menu-appbar"
+							anchorEl={anchorElUser}
+							anchorOrigin={{
+								vertical: 'top',
+								horizontal: 'right',
+							}}
+							keepMounted
+							transformOrigin={{
+								vertical: 'top',
+								horizontal: 'right',
+							}}
+							open={Boolean(anchorElUser)}
+							onClose={handleCloseUser}
+						>
+							{settings.map((setting) => (
+								<MenuItem key={setting} onClick={handleCloseUser}>
+									<Typography textAlign="center" variant='h5' color='white'>{setting}</Typography>
+								</MenuItem>
+							))}
+						</Menu>
+					</Box>
+				</Toolbar>
+			</Container>
 		</AppBar>
 	)
 }
