@@ -7,7 +7,8 @@ export const ROUTES = {
 	HOME: "/",
 	ALLARTICLES: "/allarticles",
 	ARTICLE:"/article",
-	QUIZZ:"/quizz"
+	QUIZZ:"/quizz",
+	COMPILADOR:"compilador"
 }
 
 const HomeRoutes = () => {
@@ -18,6 +19,7 @@ const HomeRoutes = () => {
 				<Route path={ROUTES.ALLARTICLES} element={<AllArticles/>}/>
 				<Route path={ROUTES.ARTICLE} element={<ArticleView/>}/>
 				<Route path={ROUTES.QUIZZ} element={<QuizzView/>}/>
+				<Route path={ROUTES.COMPILADOR} element={<HomeView/>}/>
 			</Routes>
 		</BrowserRouter>
 	)

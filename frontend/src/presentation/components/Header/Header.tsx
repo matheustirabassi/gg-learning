@@ -17,7 +17,13 @@ import { useState } from "react"
 /** A tela de cabeçalho do GGLearning */
 function Header() {
 
-	const pages = ['Artigos', 'Compilador'];
+	//Nome da página, caminho da página
+	type Pages = [string, string]
+	const pages: Pages[] = [
+		["Artigos", "/allarticles"],
+		["Compilador", "/compilador"]
+	]
+
 	const settings = ['Minha Conta', 'Sair'];
 
 
@@ -99,8 +105,10 @@ function Header() {
 							}}
 						>
 							{pages.map((page) => (
-								<MenuItem key={page} onClick={handleCloseMenu}>
-									<Typography textAlign="center" variant='h5' color='white'>{page}</Typography>
+								<MenuItem key={page[0]} onClick={handleCloseMenu} href={page[1]}>
+									<Button href={page[1]}>
+										<Typography textAlign="center" variant='h5' color='white'>{page[0]}</Typography>
+									</Button>
 								</MenuItem>
 							))}
 						</Menu>
@@ -114,7 +122,7 @@ function Header() {
 						variant="h5"
 						noWrap
 						component="a"
-						href=""
+						href="/"
 						sx={{
 							mr: 2,
 							display: { xs: 'flex', md: 'none' },
@@ -129,10 +137,11 @@ function Header() {
 					<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
 						{pages.map((page) => (
 							<Button
-								key={page}
+								key={page[0]}
 								onClick={handleCloseMenu}
-								sx={{ my: 2, color: 'white', display: 'block', fontWeight: 400, fontSize: "16px"}}>
-								{page}
+								href={page[1]}
+								sx={{ my: 2, color: 'white', display: 'block', fontWeight: 400, fontSize: "16px" }}>
+								{page[0]}
 							</Button>
 						))}
 					</Box>
