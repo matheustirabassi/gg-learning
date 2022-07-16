@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="run/debug spring" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="C:\Program Files\Java\jdk-17.0.1" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <envs>
+      <env name="spring_profiles_active" value="dev" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.matheustirabassi.pizzainbox.PizzainboxApplication" />
+    <module name="pizzainbox" />
+    <option name="PROGRAM_PARAMETERS" value="-Dspring-boot.run.profiles=dev" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
