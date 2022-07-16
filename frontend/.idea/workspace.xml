@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="b09a7e01-23d8-48e0-be3a-c5895b4ee3f0" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../backend/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/.run/building.run.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/.run/run_debug spring.run.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/.run/run_debug.run.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/HELP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/kotlin/com/gglearning/GGLearning/GgLearningApplication.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/application-dev.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/application-prod.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/application-test.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/src/test/kotlin/com/gglearning/GGLearning/GgLearningApplicationTests.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/system.properties" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2C5OZqd4et8hXIWUEVx33rMhaLM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="b09a7e01-23d8-48e0-be3a-c5895b4ee3f0" name="Changes" comment="" />
+      <created>1658089042262</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1658089042262</updated>
+    </task>
+    <servers />
+  </component>
+</project>
