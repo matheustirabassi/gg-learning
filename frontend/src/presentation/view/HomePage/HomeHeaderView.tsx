@@ -3,6 +3,7 @@ import { ReactComponent as ArticleIcn } from "assets/icons/article.svg"
 import { ReactComponent as CodeIcn } from "assets/icons/code.svg"
 import { ReactComponent as MenuIcn } from "assets/icons/logo.svg"
 import { ReactComponent as UserIcn } from "assets/icons/user.svg"
+import  MuiButton  from "@mui/material/Button"
 import { useState } from "react"
 
 /** A tela de cabeçalho do GGLearning */
@@ -28,24 +29,26 @@ function HomeHeaderView() {
 			<Toolbar disableGutters>
 				<Grid container padding="20px" justifyContent="space-between">
 					<Grid xs={4} sx={{ display: { xs: "flex" } }} alignItems="center" item>
-						<IconButton
-							size="large"
-							aria-label="menu"
-							aria-controls={open ? "basic-menu" : undefined}
-							aria-haspopup="true"
-							aria-expanded={open ? "true" : undefined}
-							onClick={handleClick}
-						>
-							<MenuIcn />
-						</IconButton>
-						<Typography
-							color="secondary"
-							variant="h4"
-							sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-							paddingLeft={"8px"}
-						>
-							GGLearning
-						</Typography>
+						<MuiButton>
+							<IconButton
+								size="large"
+								aria-label="menu"
+								aria-controls={open ? "basic-menu" : undefined}
+								aria-haspopup="true"
+								aria-expanded={open ? "true" : undefined}
+								onClick={handleClick}
+							>
+								<MenuIcn />
+							</IconButton>
+							<Typography
+								color="secondary"
+								variant="h4"
+								sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+								paddingLeft={"8px"}
+							>
+								GGLearning
+							</Typography>
+						</MuiButton>
 					</Grid>
 					<Menu
 						id="basic-menu"
@@ -69,21 +72,25 @@ function HomeHeaderView() {
 						</MenuItem>
 					</Menu>
 					<Grid xs={2} sx={{ display: { md: "flex", xs: "none" } }} alignItems="center">
-						<IconButton>
-							<ArticleIcn />
-						</IconButton>
+						<MuiButton>
+							<IconButton>
+								<ArticleIcn />
+							</IconButton>
 
-						<Typography color="secondary" variant="h4" paddingLeft={"8px"}>
-							Artigos
-						</Typography>
+							<Typography color="secondary" variant="h4" paddingLeft={"8px"}>
+								Artigos
+							</Typography>
+						</MuiButton>
 					</Grid>
 					<Grid xs={2} sx={{ display: { md: "flex", xs: "none" } }} alignItems="center">
-						<IconButton size="large" aria-label="artigos">
-							<CodeIcn />
-						</IconButton>
-						<Typography color="secondary" variant="h4" paddingLeft={"8px"}>
-							Compilador
-						</Typography>
+						<MuiButton>
+							<IconButton size="large" aria-label="artigos">
+								<CodeIcn />
+							</IconButton>
+							<Typography color="secondary" variant="h4" paddingLeft={"8px"}>
+								Compilador
+							</Typography>
+						</MuiButton>
 					</Grid>
 					<Grid
 						xs={4}
@@ -91,17 +98,19 @@ function HomeHeaderView() {
 						justifyContent="flex-end"
 						alignItems="center"
 					>
-						<IconButton size="large" aria-label="artigos">
-							<UserIcn />
-						</IconButton>
-						<Typography
-							color="secondary"
-							variant="h4"
-							sx={{ display: { md: "flex", xs: "none" } }}
-							paddingLeft={"8px"}
-						>
-							Minha conta
-						</Typography>
+						<MuiButton>
+							<IconButton size="large" aria-label="artigos">
+								<UserIcn />
+							</IconButton>
+							<Typography
+								color="secondary"
+								variant="h4"
+								sx={{ display: { md: "flex", xs: "none" } }}
+								paddingLeft={"8px"}
+							>
+								Minha conta
+							</Typography>
+						</MuiButton>
 					</Grid>
 				</Grid>
 			</Toolbar>
