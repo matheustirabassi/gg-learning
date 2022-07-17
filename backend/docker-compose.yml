@@ -11,7 +11,7 @@ services:
     volumes:
       - db:/var/lib/postgres
     ports:
-      - "5432:5432"
+      - "5440:5432"
     networks:
       - postgres-network
 
@@ -27,4 +27,3 @@ networks:
 
 volumes:
   db:
-  app:
