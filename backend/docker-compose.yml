@@ -24,7 +24,7 @@ services:
     ports:
       - "15432:80"
     volumes:
-      - pgadmin:/var/lib/pgadmin
+      - db:/var/lib/pgadmin
     networks:
       - postgres-network
     depends_on:
