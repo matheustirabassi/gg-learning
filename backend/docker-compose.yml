@@ -15,12 +15,20 @@ services:
     networks:
       - postgres-network
 
-  adminer:
-    image: adminer
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@email.com
+      PGADMIN_DEFAULT_PASSWORD: 123mudar
+      PGADMIN_LISTEN_PORT: 80
     ports:
-      - "8090:8080"
+      - "15432:80"
+    volumes:
+      - pgadmin:/var/lib/pgadmin
     networks:
       - postgres-network
+    depends_on:
+      - postgres
 
 networks:
   postgres-network:
