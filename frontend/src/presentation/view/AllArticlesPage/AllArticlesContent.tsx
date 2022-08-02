@@ -9,8 +9,8 @@ import data from '../../../data/json/articles.json';
 export const AllArticlesContent = () => {
     return (
         <LayoutBaseDePagina mostrarMenu mostrarRodape>
-            <Box display="flex" flexDirection="row" alignItems="center">
-                <Box>
+            <Box display="flex" flexDirection="row" alignItems="center" marginX={10}>
+                <Box display="flex" alignItems="center" justifyContent="center">
                     <IconButton>
                         <ArrowBackIosIcon sx={{ color: "primary.main" }} fontSize="large" />
                     </IconButton>
@@ -41,7 +41,7 @@ export const AllArticlesContent = () => {
 
                 </Grid>
 
-                <Box>
+                <Box display="flex" alignItems="center" justifyContent="center">
                     <IconButton>
                         <ArrowForwardIosIcon sx={{ color: "primary.main" }} fontSize="large" />
                     </IconButton>
