@@ -6,9 +6,7 @@ import HomeHeaderView from "../../components/Header/Header"
 const HomeView = () => {
 	return (
 		<>
-			<HomeHeaderView />
 			<HomeContentView />
-			<HomeFooterView />
 		</>
 	)
 }

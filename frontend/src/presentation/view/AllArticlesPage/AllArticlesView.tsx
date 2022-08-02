@@ -6,9 +6,7 @@ const AllArticles = () => {
     return(
 
         <>
-        <HeaderView/>
         <AllArticlesContent/>
-        <FooterView/>
         </>
 
     )

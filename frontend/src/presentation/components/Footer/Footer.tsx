@@ -4,7 +4,7 @@ import { Box, Grid, Stack, Typography } from "@mui/material"
 /** A tela do rodapé do GGLearning */
 function HomeFooterView() {
 	return (
-		<Box padding={"10px"} sx={{ backgroundColor: "primary.main" }}>
+		<Box padding={"10px"} sx={{ backgroundColor: "primary.main" }} width="100%">
 			<Grid container direction="row" justifyContent="space-evenly" alignItems="center">
 				<Stack direction="row" alignItems="center">
 					<Twitter color="secondary" sx={{ fontSize: "35px" }} />
