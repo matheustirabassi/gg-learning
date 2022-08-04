@@ -4,7 +4,7 @@ import { Grid, IconButton, Box } from "@mui/material"
 function SideFooter() {
     return (
 
-        <Box display="flex" flexDirection="column" position="fixed" right="0" bottom="0">
+        <Box display="flex" flexDirection="column" position="fixed" right="1" bottom="0">
             <IconButton>
                 <Twitter color="secondary" sx={{ fontSize: "50px" }} />
             </IconButton>

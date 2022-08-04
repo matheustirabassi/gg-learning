@@ -5,9 +5,7 @@ import { ArticleContentView } from "./ArticleContentView"
 export const ArticleView = () => {
     return(
         <>
-        <HomeHeaderView/>
         <ArticleContentView/>
-        <SideFooter/>
         </>
     )
 }

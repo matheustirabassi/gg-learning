@@ -17,31 +17,34 @@ export const LayoutBaseDePagina: React.FC<ILayoutBaseDePaginaProps> = ({ childre
     //const mdDown = useMediaQuery(theme.breakpoints.down('md'))
 
     return (
-        <Box height='100vh' display='flex' flexDirection='column' gap={2} width="100vw">
-            {
-                mostrarMenu && (
-                    <Box>
-                        <Header />
-                    </Box>
-                )
-            }
-
-            <Box flex={1} overflow='auto'>
+        <Box height='100vh' display='flex' flexDirection='column' gap={2} width="100vw" flex={1} overflow='auto'>
                 {
-                children
+                    mostrarMenu && (
+                        <Box>
+                            <Header />
+                        </Box>
+                    )
                 }
-                
-            </Box>
 
-            {
-                mostrarRodape && (
-                    <Box display="flex" position="relative" width="100%">
-                        <Footer />
-                    </Box>
-                )
-            }
+                {
+                    children
+                }
 
+                {
+                    mostrarSideRodape && (
+                        <Box>
+                            <SideFooter />
+                        </Box>
+                    )
+                }
 
+                {
+                    mostrarRodape && (
+                        <Box display="flex" width="100%" position="fixed" bottom={0}>
+                            <Footer />
+                        </Box>
+                    )
+                }
         </Box>
     )
 }

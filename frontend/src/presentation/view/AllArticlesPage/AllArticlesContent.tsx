@@ -8,7 +8,7 @@ import data from '../../../data/json/articles.json';
 
 export const AllArticlesContent = () => {
     return (
-        <LayoutBaseDePagina mostrarMenu mostrarRodape>
+        <LayoutBaseDePagina mostrarMenu mostrarSideRodape>
             <Box display="flex" flexDirection="row" alignItems="center" marginX={10}>
                 <Box display="flex" alignItems="center" justifyContent="center">
                     <IconButton>
