@@ -5,6 +5,9 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
+import javax.persistence.JoinTable
+import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 import javax.persistence.Table
 
 /**
@@ -33,5 +36,9 @@ class User(
     var age: String? = null,
 
     @Enumerated(EnumType.ORDINAL)
-    var typeUser: TypeUserEnum = TypeUserEnum.READER
+    var typeUser: TypeUserEnum = TypeUserEnum.READER,
+
+    @OneToMany
+    @JoinTable(name = "user_articles")
+    var articles: List<Article> = emptyList()
 ) : BaseEntity()
