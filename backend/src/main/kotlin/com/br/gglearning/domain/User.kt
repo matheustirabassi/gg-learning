@@ -12,6 +12,15 @@ import javax.persistence.Table
 
 /**
  * O usuário do site.
+ *
+ * @property userName O nome do usuário.
+ * @property password A senha do usuário.
+ * @property name O nome completo.
+ * @property cpf O documento.
+ * @property email O e-mail usado para o acesso.
+ * @property age A idade.
+ * @property typeUser O tipo de usuário, mapeado pelo [TypeUserEnum].
+ * @property articles Os artigos que foram escritos pelo usuário.
  */
 @Entity
 @Table(name = "\"user\"")
