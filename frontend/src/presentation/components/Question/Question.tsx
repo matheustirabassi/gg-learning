@@ -19,9 +19,7 @@ export const Question = ({num, question, alternatives }: QuestionProps) => {
 
             </FormLabel>
             <RadioGroup
-                aria-aria-labelledby="radio-group-question"
                 name="alternatives-group"
-
             >
 
                 {alternatives?.map((alternative, i) => {
