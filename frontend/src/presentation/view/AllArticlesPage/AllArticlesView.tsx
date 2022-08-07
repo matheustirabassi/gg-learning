@@ -1,10 +1,7 @@
-import FooterView from "../../components/Footer/SideFooter"
-import HeaderView from "../../components/Header/Header"
 import { AllArticlesContent } from "./AllArticlesContent"
 
-const AllArticles = () => {
+const AllArticlesView = () => {
     return(
-
         <>
         <AllArticlesContent/>
         </>
@@ -12,4 +9,4 @@ const AllArticles = () => {
     )
 }
 
-export default AllArticles
+export default AllArticlesView

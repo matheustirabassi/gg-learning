@@ -1,16 +1,11 @@
 import { Box, Grid, Typography } from "@mui/material"
 import { ArticleCard } from "presentation/components/Card/ArticleCard"
-import { LayoutBaseDePagina } from "presentation/components/LayoutBaseDePagina/LayoutBaseDePagina"
+import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
 
-// function useViewModel() {
-// 	return HomeViewModel()
-// }
 
 export const HomeContentView = () => {
-	// const { textButton, onChange } = useViewModel()
-
 	return (
-		<LayoutBaseDePagina mostrarMenu mostrarRodape>
+		<PageBaseLayout showMenu showFooter>
 			<Box display="flex" flexDirection="column" marginX={25}>
 				<Box>
 					<Typography
@@ -77,9 +72,7 @@ export const HomeContentView = () => {
 					</Grid>
 				</Box>
 			</Box>
-
-
-		</LayoutBaseDePagina>
+		</PageBaseLayout>
 
 	)
 }

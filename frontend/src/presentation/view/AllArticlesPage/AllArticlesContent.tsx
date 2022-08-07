@@ -1,18 +1,16 @@
-import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { ArrowForwardIos, ArrowBackIos } from '@mui/icons-material';
 import { Grid, IconButton, Box } from "@mui/material";
 import { ArticleCard } from 'presentation/components/Card/ArticleCard';
-import SideFooter from 'presentation/components/Footer/SideFooter';
-import { LayoutBaseDePagina } from 'presentation/components/LayoutBaseDePagina/LayoutBaseDePagina';
+import { PageBaseLayout } from 'presentation/components/PageBaseLayout/PageBaseLayout';
 import data from '../../../data/json/articles.json';
 
 export const AllArticlesContent = () => {
     return (
-        <LayoutBaseDePagina mostrarMenu mostrarSideRodape>
+        <PageBaseLayout showMenu showSideFooter>
             <Box display="flex" flexDirection="row" alignItems="center" marginX={10}>
                 <Box display="flex" alignItems="center" justifyContent="center">
                     <IconButton>
-                        <ArrowBackIosIcon sx={{ color: "primary.main" }} fontSize="large" />
+                        <ArrowBackIos sx={{ color: "primary.main" }} fontSize="large" />
                     </IconButton>
                 </Box>
 
@@ -20,7 +18,7 @@ export const AllArticlesContent = () => {
                 <Grid
                     container
                     direction="row"
-                    
+
                     alignItems="center"
                     spacing={2}
                 >
@@ -43,12 +41,11 @@ export const AllArticlesContent = () => {
 
                 <Box display="flex" alignItems="center" justifyContent="center">
                     <IconButton>
-                        <ArrowForwardIosIcon sx={{ color: "primary.main" }} fontSize="large" />
+                        <ArrowForwardIos sx={{ color: "primary.main" }} fontSize="large" />
                     </IconButton>
                 </Box>
             </Box>
 
-            
-        </LayoutBaseDePagina>
+        </PageBaseLayout>
     )
 }

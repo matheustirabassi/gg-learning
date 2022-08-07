@@ -1,7 +1,7 @@
 import { Instagram, Twitter } from "@mui/icons-material"
 import { Box, Grid, Stack, Typography } from "@mui/material"
 
-/** A tela do rodapé do GGLearning */
+/** O rodapé de inferior*/
 function HomeFooterView() {
 	return (
 		<Box padding={"10px"} sx={{ backgroundColor: "primary.main" }} width="100%">

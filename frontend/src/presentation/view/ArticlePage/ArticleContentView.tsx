@@ -1,10 +1,10 @@
-import { Button, Grid, Typography } from "@mui/material"
+import { Button, Typography } from "@mui/material"
 import { Box } from "@mui/system"
-import { LayoutBaseDePagina } from "presentation/components/LayoutBaseDePagina/LayoutBaseDePagina"
+import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
 
 export const ArticleContentView = () => {
     return (
-        <LayoutBaseDePagina mostrarMenu mostrarSideRodape>
+        <PageBaseLayout showMenu showSideFooter>
             <Box display="flex" flexDirection="column" justifyContent="center" marginX={20}>
                 <Box>
                     <Typography
@@ -95,6 +95,6 @@ export const ArticleContentView = () => {
                     </Button>
                 </Box>
             </Box>
-        </LayoutBaseDePagina>
+        </PageBaseLayout>
     )
 }

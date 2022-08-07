@@ -1,12 +1,12 @@
 import { Button, Box, FormControl, Grid, Typography } from "@mui/material"
-import { LayoutBaseDePagina } from "presentation/components/LayoutBaseDePagina/LayoutBaseDePagina"
+import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
 import { Question } from "presentation/components/Question/Question"
 
 
 export const QuizzContentView = () => {
     return (
 
-        <LayoutBaseDePagina mostrarMenu mostrarSideRodape>
+        <PageBaseLayout showMenu showSideFooter>
             <Box display="flex" justifyContent="center" >
                 <FormControl sx={{ marginTop: "20px" }}>
                     <Grid container spacing={2} direction="column">
@@ -51,7 +51,7 @@ export const QuizzContentView = () => {
                 </FormControl>
             </Box>
 
-        </LayoutBaseDePagina>
+        </PageBaseLayout>
 
     )
 }

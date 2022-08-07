@@ -1,4 +1,4 @@
-import { FormControl, FormControlLabel, FormLabel, Grid, Radio, RadioGroup, Typography } from "@mui/material"
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from "@mui/material"
 
 export interface QuestionProps {
     num?:number,

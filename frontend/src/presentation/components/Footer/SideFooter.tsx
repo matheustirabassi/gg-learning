@@ -1,6 +1,9 @@
 import { Instagram, Twitter } from "@mui/icons-material"
-import { Grid, IconButton, Box } from "@mui/material"
+import { IconButton, Box } from "@mui/material"
 
+/*
+* Rodapé lateral
+*/
 function SideFooter() {
     return (
 

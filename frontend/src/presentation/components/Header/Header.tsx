@@ -12,15 +12,16 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import { ReactComponent as LogoIcn } from "assets/icons/logo.svg";
 import { useState } from "react"
+import { ROUTES } from 'Routes';
 
-/** A tela de cabeçalho do GGLearning */
+/** Menu superior*/
 function Header() {
 
 	//Nome da página, caminho da página
 	type Pages = [string, string]
 	const pages: Pages[] = [
-		["Artigos", "/allarticles"],
-		["Compilador", "/compilador"]
+		["Artigos", ROUTES.ALLARTICLES],
+		["Compilador", ROUTES.COMPILADOR]
 	]
 
 	const settings = ['Minha Conta', 'Sair'];
@@ -75,7 +76,6 @@ function Header() {
 					<Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
 						<IconButton
 							size="large"
-							aria-label="account of current user"
 							aria-controls="menu-appbar"
 							aria-haspopup="true"
 							onClick={handleClickMenu}
