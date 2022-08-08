@@ -10,6 +10,13 @@ import javax.persistence.PreUpdate
 import javax.persistence.Temporal
 import javax.persistence.TemporalType
 
+/**
+ * A entidade base, ela serve para prover um identificador(id), data de criação e modificação.
+ *
+ * @property id O identificador da entidade.
+ * @property creationDate A data de criação da entidade.
+ * @property modificationDate A data da última modificação na entidade.
+ */
 @MappedSuperclass
 abstract class BaseEntity protected constructor(
     creationDate: Date? = null,
@@ -30,6 +37,9 @@ abstract class BaseEntity protected constructor(
         this.modificationDate = modificationDate
     }
 
+    /**
+     * Configura a data de modificação, caso a data de criação seja nula, cria uma nova.
+     */
     @PrePersist
     @PreUpdate
     fun configureDateCreationAndModification() {
