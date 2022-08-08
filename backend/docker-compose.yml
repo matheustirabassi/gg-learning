@@ -28,7 +28,7 @@ services:
     networks:
       - postgres-network
     depends_on:
-      - postgres
+      - db
 
 networks:
   postgres-network:
