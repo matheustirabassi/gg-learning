@@ -9,7 +9,7 @@ export const ROUTES = {
 	ALLARTICLES: "/all_articles",
 	ARTICLE:"/article",
 	QUIZZ:"/quizz",
-	COMPILADOR:"/compilador"
+	COMPILADOR:"/compiler"
 }
 
 const HomeRoutes = () => {

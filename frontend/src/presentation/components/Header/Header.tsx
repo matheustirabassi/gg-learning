@@ -31,9 +31,6 @@ function Header() {
 	const [anchorElMenu, setAnchorElMenu] = useState<null | HTMLElement>(null)
 	const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
 
-	/** Booleano que indica o status de exibição do menu */
-	//const open = Boolean(anchorEl)
-
 	/** Ao clicar, deve exibir o menu  */
 	const handleClickMenu = (event: React.MouseEvent<HTMLButtonElement>) => {
 		setAnchorElMenu(event.currentTarget)
