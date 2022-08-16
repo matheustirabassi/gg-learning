@@ -13,6 +13,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { ReactComponent as LogoIcn } from "assets/icons/logo.svg";
 import { useState } from "react"
 import { ROUTES } from 'Routes';
+import { useAuthContext } from 'presentation/contexts/AuthContext';
 
 /** Menu superior*/
 function Header() {
@@ -24,8 +25,7 @@ function Header() {
 		["Compilador", ROUTES.COMPILADOR]
 	]
 
-	const settings = ['Minha Conta', 'Sair'];
-
+	const settings = ["Minha conta","Sair"]
 
 	/** Observa o elemento ancorado */
 	const [anchorElMenu, setAnchorElMenu] = useState<null | HTMLElement>(null)
@@ -46,6 +46,8 @@ function Header() {
 	const handleCloseMenu = () => {
 		setAnchorElMenu(null)
 	}
+
+	
 
 	return (
 		<AppBar position="static" color="transparent">

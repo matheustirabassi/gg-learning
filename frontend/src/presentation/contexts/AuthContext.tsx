@@ -3,7 +3,7 @@ import { createContext, useState, useEffect, useCallback, useMemo, useContext } 
 interface IAuthContextData {
     isAuthenticated: boolean
     logout: () => void
-    login: (email: string, password: string) => Promise<string | void>
+    login: (userName: string, password: string) => Promise<string | void>
 }
 
 const AuthContext = createContext({} as IAuthContextData)
@@ -28,8 +28,8 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     }, [])
 
 
-    const handleLogin = useCallback(async (email: string, password: string) => {
-        if (email === "admin@gmail.com" && password === "123") {
+    const handleLogin = useCallback(async (userName: string, password: string) => {
+        if (userName === "admin" && password === "123") {
             localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify("T0K3N4C335"))
             setAccessToken("T0K3N4C335")
         } else {

@@ -8,6 +8,7 @@ const ggLearningTheme = createTheme({
 		},
 		secondary: {
 			main: "#FFFFFF",
+			contrastText:"rgb(0,0,0)"
 		},
 		success: {
 			main: "#4caf50",
@@ -46,8 +47,8 @@ const ggLearningTheme = createTheme({
 			fontSize: "16px",
 		},
 		h6: {
-			fontWeight: 300,
-			fontSize: "12px",
+			fontWeight: 400,
+			fontSize: "13px",
 		},
 
 		fontWeightRegular: 400,
