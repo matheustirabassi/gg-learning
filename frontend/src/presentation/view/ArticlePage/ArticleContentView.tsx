@@ -4,7 +4,7 @@ import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseL
 
 export const ArticleContentView = () => {
     return (
-        <PageBaseLayout showMenu showSideFooter>
+        <PageBaseLayout showSideFooter>
             <Box display="flex" flexDirection="column" justifyContent="center" marginX={20}>
                 <Box>
                     <Typography

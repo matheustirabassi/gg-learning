@@ -34,6 +34,8 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                 login(dadosValidados.userName, dadosValidados.password)
                     .then(() => {
                         setIsLoading(false)
+                        setPassword("")
+                        setUserName("")
                     })
             })
             .catch((errors: yup.ValidationError) => {
@@ -47,6 +49,8 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                 })
             })
     }
+
+    
 
     if (isAuthenticated)
         return (

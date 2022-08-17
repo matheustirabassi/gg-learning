@@ -6,7 +6,7 @@ import { Question } from "presentation/components/Question/Question"
 export const QuizzContentView = () => {
     return (
 
-        <PageBaseLayout showMenu showSideFooter>
+        <PageBaseLayout showSideFooter>
             <Box display="flex" justifyContent="center" >
                 <FormControl sx={{ marginTop: "20px" }}>
                     <Grid container spacing={2} direction="column">
