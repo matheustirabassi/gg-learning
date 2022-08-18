@@ -28,7 +28,7 @@ class Question (
     @CollectionTable(name = "question_alternatives")
     var alternatives: List<String>,
 
-    @Column(name = "aswer")
+    @Column(name = "answer")
     var answer: String,
 
     @ManyToOne
