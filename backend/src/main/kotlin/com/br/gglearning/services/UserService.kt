@@ -4,24 +4,33 @@ import com.br.gglearning.dao.UserRepository
 import com.br.gglearning.data.UserDto
 import com.br.gglearning.domain.User
 import com.br.gglearning.services.exceptions.DataIntegrityException
+import org.springframework.context.annotation.Bean
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
 @Service
 class UserService(
-    private val userRepository: UserRepository
+    private val userRepository: UserRepository,
+    private val bCryptPasswordEncoder: BCryptPasswordEncoder = BCryptPasswordEncoder()
 ) {
 
     /** Busca todos os usuários */
     fun findAllUsers(): List<UserDto> {
         return userRepository.findAll().map { user -> UserDto(user) }
     }
-
+    /** Cria um usuário novo no sistema,
+     *
+     * @param userDto O Dto que armazena os dados para inserir o usuário no sistema
+     * @throws DataIntegrityException caso o e-mail já exista.
+     */
     @Transactional
     fun insert(userDto: UserDto): UserDto {
         if (emailAlreadyExists(userDto.email)) {
             throw DataIntegrityException(msg = "O email já existe")
         }
+
+        userDto.password = bCryptPasswordEncoder.encode(userDto.password)
 
         val user = User()
         userDtoToUser(user, userDto)
@@ -30,10 +39,11 @@ class UserService(
         return userDto
     }
 
-    fun emailAlreadyExists(email: String): Boolean {
+    private fun emailAlreadyExists(email: String): Boolean {
         return userRepository.findIfEmailExists(email)
     }
 
+    /** Converte de Dto para usuário */
     private fun userDtoToUser(
         user: User,
         userDto: UserDto
