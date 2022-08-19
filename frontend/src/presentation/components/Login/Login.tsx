@@ -1,13 +1,21 @@
 import * as yup from "yup"
+import { yupResolver } from '@hookform/resolvers/yup'
 import "../../../assets/yup/TraducoesYup"
 import { useState } from "react"
 import { useAuthContext } from "presentation/contexts/AuthContext"
 import { Box, Card, CardContent, Typography, TextField, CardActions, Button, CircularProgress, Link } from "@mui/material"
 import { ReactComponent as LogoIcn } from "assets/icons/logo.svg";
 import { ROUTES } from "Routes"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { RHTextField } from "../FormComponents/RHTextField"
 
 interface ILoginProps {
     children: React.ReactNode
+}
+
+interface ILoginInput {
+    userName: string
+    password: string
 }
 
 const loginSchema = yup.object().shape({
@@ -15,42 +23,26 @@ const loginSchema = yup.object().shape({
     password: yup.string().required().min(3)
 })
 
+
 export const Login: React.FC<ILoginProps> = ({ children }) => {
     const { isAuthenticated, login } = useAuthContext()
-
-
-    const [userName, setUserName] = useState("")
-    const [password, setPassword] = useState("")
+    const { handleSubmit, reset, control } = useForm<ILoginInput>({
+        resolver: yupResolver(loginSchema)
+    })
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const [userNameError, setUserNameError] = useState("")
-    const [passwordError, setPasswordError] = useState("")
-
-    const handleSubmit = () => {
+    const onSubmit: SubmitHandler<ILoginInput> = (data) => {
         setIsLoading(true)
-        loginSchema.validate({ userName, password }, { abortEarly: false })
-            .then(dadosValidados => {
-                login(dadosValidados.userName, dadosValidados.password)
-                    .then(() => {
-                        setIsLoading(false)
-                        setPassword("")
-                        setUserName("")
-                    })
-            })
-            .catch((errors: yup.ValidationError) => {
-                setIsLoading(false)
-                errors.inner.forEach(error => {
-                    if (error.path === "userName") {
-                        setUserNameError(error.message)
-                    } else if (error.path === "password") {
-                        setPasswordError(error.message)
-                    }
-                })
-            })
-    }
 
-    
+        login(data.userName, data.password)
+            .then(() => {
+                setIsLoading(false)
+                reset()
+            })
+            
+            
+    }
 
     if (isAuthenticated)
         return (
@@ -85,37 +77,31 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
 
                             <Typography variant='h4' align='center'>Identifique-se</Typography>
 
-                            <TextField
-                                fullWidth
-                                label='Usuário'
-                                type='text'
-                                value={userName}
+                            <RHTextField
+                                name="userName"
+                                control={control}
+                                label="Usuário"
+                                type="text"
                                 disabled={isLoading}
-                                error={!!userNameError}
-                                helperText={userNameError}
-                                onKeyDown={() => setUserNameError('')}
-                                onChange={e => setUserName(e.target.value)}
                             />
-                            <TextField
-                                fullWidth
-                                label='Senha'
-                                type='password'
-                                value={password}
+
+                            <RHTextField
+                                name="password"
+                                control={control}
+                                label="Senha"
+                                type="password"
                                 disabled={isLoading}
-                                error={!!passwordError}
-                                helperText={passwordError}
-                                onKeyDown={() => setPasswordError('')}
-                                onChange={e => setPassword(e.target.value)}
                             />
+
 
                             <Link
                                 href={ROUTES.ALLARTICLES}
                                 underline="none"
-                                >
-                                
+                            >
+
                                 <Typography
                                     variant="h6"
-                                   
+
                                 >Esqueceu sua senha?</Typography>
                             </Link>
 
@@ -123,13 +109,15 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                                 href={ROUTES.ALLARTICLES}
                                 underline="none"
                                 color="secondary.contrastText"
-                                >
-                                
+                            >
+
                                 <Typography
                                     variant="h4"
-                                   align="center"
+                                    align="center"
                                 >Crie sua conta</Typography>
                             </Link>
+
+
 
                         </Box>
                     </CardContent>
@@ -138,7 +126,7 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                             <Button
                                 variant='contained'
                                 disabled={isLoading}
-                                onClick={handleSubmit}
+                                onClick={handleSubmit(onSubmit)}
                                 endIcon={isLoading ? <CircularProgress variant='indeterminate' color='inherit' size={20} /> : undefined}
                             >
                                 Entrar
@@ -146,6 +134,8 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                         </Box>
                     </CardActions>
                 </Card>
+
+
             </Box>
 
         </Box>

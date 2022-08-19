@@ -27,13 +27,12 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
         }
     }, [])
 
-
     const handleLogin = useCallback(async (userName: string, password: string) => {
         if (userName === "admin" && password === "123") {
             localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify("T0K3N4C335"))
             setAccessToken("T0K3N4C335")
         } else {
-            return "Erro ao efetuar login"
+            alert("Usuário e/ou senha incorretos!")
         }
     }, [])
 
@@ -43,7 +42,6 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     }, [])
 
     const isAuthenticated = useMemo(() => !!accessToken, [accessToken])
-
 
     return (
         <AuthContext.Provider value={{ isAuthenticated, login: handleLogin, logout: handleLogout }}>
