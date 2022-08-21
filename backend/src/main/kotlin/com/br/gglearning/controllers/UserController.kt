@@ -1,10 +1,10 @@
 package com.br.gglearning.controllers
 
 import com.br.gglearning.data.UserDto
+import com.br.gglearning.data.UserLoginDto
 import com.br.gglearning.services.UserService
 import lombok.extern.log4j.Log4j2
 import org.springframework.http.ResponseEntity
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
