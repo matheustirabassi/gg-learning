@@ -9,19 +9,15 @@ import HomeRoutes from "./Routes"
 function App() {
 	return (
 		<AuthProvider>
-
 			<ThemeProvider theme={ggLearningTheme}>
 				<Login>
 					<CssBaseline />
 					<Header>
 						<HomeRoutes />
 					</Header>
-
 				</Login>
 			</ThemeProvider>
-
 		</AuthProvider>
-
 	)
 }
 

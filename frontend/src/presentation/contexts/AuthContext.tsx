@@ -2,6 +2,7 @@ import { createContext, useState, useEffect, useCallback, useMemo, useContext } 
 
 interface IAuthContextData {
     isAuthenticated: boolean
+    register: () => void
     logout: () => void
     login: (userName: string, password: string) => Promise<string | void>
 }
@@ -41,10 +42,15 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
         setAccessToken(undefined)
     }, [])
 
+    const handleRegister = useCallback(() => {
+        localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify("T0K3N4C335"))
+        setAccessToken("T0K3N4C335")
+    }, [])
+
     const isAuthenticated = useMemo(() => !!accessToken, [accessToken])
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login: handleLogin, logout: handleLogout }}>
+        <AuthContext.Provider value={{ isAuthenticated, login: handleLogin, logout: handleLogout, register: handleRegister }}>
             {children}
         </AuthContext.Provider>
     )

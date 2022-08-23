@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import "../../../assets/yup/TraducoesYup"
 import { useState } from "react"
 import { useAuthContext } from "presentation/contexts/AuthContext"
-import { Box, Card, CardContent, Typography, TextField, CardActions, Button, CircularProgress, Link } from "@mui/material"
+import { Box, Card, CardContent, Typography, CardActions, Button, CircularProgress, Link } from "@mui/material"
 import { ReactComponent as LogoIcn } from "assets/icons/logo.svg";
 import { ROUTES } from "Routes"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -23,9 +23,8 @@ const loginSchema = yup.object().shape({
     password: yup.string().required().min(3)
 })
 
-
 export const Login: React.FC<ILoginProps> = ({ children }) => {
-    const { isAuthenticated, login } = useAuthContext()
+    const { isAuthenticated, login, register } = useAuthContext()
     const { handleSubmit, reset, control } = useForm<ILoginInput>({
         resolver: yupResolver(loginSchema)
     })
@@ -40,8 +39,6 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                 setIsLoading(false)
                 reset()
             })
-            
-            
     }
 
     if (isAuthenticated)
@@ -74,7 +71,6 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                                 </Typography>
                             </Box>
 
-
                             <Typography variant='h4' align='center'>Identifique-se</Typography>
 
                             <RHTextField
@@ -84,7 +80,6 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                                 type="text"
                                 disabled={isLoading}
                             />
-
                             <RHTextField
                                 name="password"
                                 control={control}
@@ -93,32 +88,26 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                                 disabled={isLoading}
                             />
 
-
                             <Link
                                 href={ROUTES.ALLARTICLES}
                                 underline="none"
                             >
-
                                 <Typography
                                     variant="h6"
 
                                 >Esqueceu sua senha?</Typography>
                             </Link>
-
                             <Link
-                                href={ROUTES.ALLARTICLES}
+                                href={ROUTES.CREATE_ACCOUNT}
+                                onClick={register}
                                 underline="none"
                                 color="secondary.contrastText"
                             >
-
                                 <Typography
                                     variant="h4"
                                     align="center"
                                 >Crie sua conta</Typography>
                             </Link>
-
-
-
                         </Box>
                     </CardContent>
                     <CardActions>
@@ -134,10 +123,7 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                         </Box>
                     </CardActions>
                 </Card>
-
-
             </Box>
-
         </Box>
     )
 }
