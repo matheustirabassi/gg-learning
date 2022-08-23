@@ -12,9 +12,10 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 class UserService(
     @Autowired
-    private val userRepository: UserRepository,
-    private val bCryptPasswordEncoder: BCryptPasswordEncoder = BCryptPasswordEncoder()
+    private val userRepository: UserRepository
 ) {
+
+    private val bCryptPasswordEncoder: BCryptPasswordEncoder = BCryptPasswordEncoder()
 
     /** Busca todos os usuários */
     fun findAllUsers(): List<UserDto> {

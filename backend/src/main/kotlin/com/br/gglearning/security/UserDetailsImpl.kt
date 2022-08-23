@@ -1,13 +1,13 @@
 package com.br.gglearning.security
 
-import com.br.gglearning.data.UserLoginDto
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.io.Serializable
 
 class UserDetailsImpl(
-    private var userLogin: UserLoginDto,
+    private var email: String,
+    private var password: String,
     private var authorities: List<String>
 ) : UserDetails, Serializable {
 
@@ -16,11 +16,11 @@ class UserDetailsImpl(
     }
 
     override fun getUsername(): String {
-        return userLogin.email.toString()
+        return email
     }
 
     override fun getPassword(): String {
-        return userLogin.password.toString()
+        return password
     }
 
     override fun isAccountNonExpired(): Boolean {

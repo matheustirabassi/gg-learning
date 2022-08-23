@@ -1,7 +1,6 @@
 package com.br.gglearning.controllers
 
 import com.br.gglearning.data.UserDto
-import com.br.gglearning.data.UserLoginDto
 import com.br.gglearning.services.UserService
 import lombok.extern.log4j.Log4j2
 import org.springframework.http.ResponseEntity

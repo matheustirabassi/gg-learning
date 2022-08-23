@@ -6,45 +6,59 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
-import org.springframework.security.authentication.AuthenticationManager
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity
+import org.springframework.http.HttpMethod
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
 import org.springframework.security.config.annotation.web.builders.HttpSecurity
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
 import org.springframework.security.config.http.SessionCreationPolicy
+import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.web.SecurityFilterChain
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-class SecurityConfig(
-    @Autowired
-    val environment: Environment,
+class SecurityConfig : WebSecurityConfigurerAdapter() {
+
+    private final val PUBLIC_MATCHERS =
+        arrayOf("/h2-console/**", "/users/create", "/users/create/**", "/login/", "/login/*")
+
+    private final val PUBLIC_MATCHERS_GET = arrayOf("/users")
 
     @Autowired
-    val jwtUtil: JwtUtil
-) {
+    private lateinit var environment: Environment
 
-    private final val PUBLIC_MATCHERS = arrayOf("/h2-console/**", "/users/create", "/users/create/**")
+    @Autowired
+    private lateinit var jwtUtil: JwtUtil
 
-    @Bean
+    @Autowired
+    private lateinit var userDetailsService: UserDetailsService
+
     @Throws(Exception::class)
-    fun filterChain(http: HttpSecurity): SecurityFilterChain? {
+    override fun configure(http: HttpSecurity) {
         if (environment.activeProfiles.contains("test")) {
             http.headers().frameOptions().disable()
         }
 
         http.cors().and().csrf().disable()
-        http.authorizeRequests().antMatchers(* PUBLIC_MATCHERS).permitAll()
-            .anyRequest().authenticated()
-        http.addFilter(JwtAuthenticationFilter(jwtUtil))
+        http.authorizeRequests()
+            .antMatchers(HttpMethod.GET, * PUBLIC_MATCHERS_GET).permitAll()
+            .antMatchers(* PUBLIC_MATCHERS).permitAll().anyRequest()
+            .authenticated()
+        http.addFilter(
+            JwtAuthenticationFilter(
+                authenticationManager(),
+                jwtUtil
+            )
+        )
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+    }
 
-        return http.build()
+    @Throws(java.lang.Exception::class)
+    override fun configure(auth: AuthenticationManagerBuilder) {
+        auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder())
     }
 
     @Bean
@@ -61,11 +75,5 @@ class SecurityConfig(
     @Bean
     fun bCryptPasswordEncoder(): BCryptPasswordEncoder {
         return BCryptPasswordEncoder()
-    }
-
-    @Bean
-    @Throws(java.lang.Exception::class)
-    fun authenticationManager(authenticationConfiguration: AuthenticationConfiguration): AuthenticationManager? {
-        return authenticationConfiguration.authenticationManager
     }
 }

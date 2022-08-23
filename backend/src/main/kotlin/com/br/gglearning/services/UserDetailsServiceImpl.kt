@@ -1,25 +1,27 @@
 package com.br.gglearning.services
 
-import com.br.gglearning.data.UserLoginDto
 import com.br.gglearning.security.UserDetailsImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.security.core.userdetails.UsernameNotFoundException
+import org.springframework.stereotype.Service
 
-class UserDetailsServiceImpl(
+@Service
+class UserDetailsServiceImpl : UserDetailsService {
+
     @Autowired
-    private val userService: UserService
-) : UserDetailsService {
+    private lateinit var userService: UserService
 
     override fun loadUserByUsername(email: String): UserDetails {
-        if (userService.emailAlreadyExists(email)) {
+        if (!userService.emailAlreadyExists(email)) {
             throw UsernameNotFoundException(email)
         }
 
         val user = userService.findUserByEmail(email)
         return UserDetailsImpl(
-            UserLoginDto(user),
+            user.email,
+            user.password,
             listOf(user.typeUser.toString())
         )
     }
