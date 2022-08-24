@@ -42,7 +42,7 @@ class UserService(
         return userDto
     }
 
-    fun emailAlreadyExists(email: String): Boolean {
+    private fun emailAlreadyExists(email: String): Boolean {
         return userRepository.findIfEmailExists(email)
     }
 
