@@ -13,6 +13,7 @@ import javax.persistence.*
  * @property publicationDate A data de publicação.
  * @property authorName O nome do autor publicador do artigo.
  * @property user O usuário escritor do artigo.
+ * @property quizzes Os quizzes associados ao artigo.
  */
 @Entity
 @Table(name = "article")
@@ -34,6 +35,9 @@ class Article (
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    var user: User
+    var user: User,
 
+    @OneToMany
+    @JoinTable(name = "article_quizzes")
+    var quizzes: List<Quizz>
     ): BaseEntity()

@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.gglearningcore"
-version = "1.1"
+version = "1.3"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
@@ -32,11 +32,18 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.apache.logging.log4j:log4j-api")
     implementation("org.apache.logging.log4j:log4j-core")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
     compileOnly("org.projectlombok:lombok")
+
     annotationProcessor("org.projectlombok:lombok")
+
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+
     runtimeOnly("com.h2database:h2")
     runtimeOnly("org.postgresql:postgresql")
+
+    testImplementation("org.springframework.security:spring-security-test")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
