@@ -48,7 +48,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 
 	return (
 		<>
-			<Box marginBottom={3}>
+			<Box>
 				<AppBar position="static" color="transparent">
 					<Box padding={1}>
 						<Toolbar disableGutters>
