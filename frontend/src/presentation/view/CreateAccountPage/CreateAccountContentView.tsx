@@ -9,6 +9,7 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useAuthContext } from "presentation/contexts/AuthContext"
 import { RHSelectTextfield } from "presentation/components/FormComponents/RHSelectTextField"
 import { RHMaskTextField } from "presentation/components/FormComponents/RHMaskTextField"
+import { Api } from "presentation/axios/AxiosConfig"
 
 const createAccountSchema = yup.object().shape({
     name: yup.string().required(),
@@ -30,7 +31,19 @@ interface ICreateAccountInput {
     password: string
 }
 
-type UserType = {label: string, value: string}
+type UserType = { label: string, value: string }
+
+const createUser = async (user: ICreateAccountInput) => {
+    try {
+        const { data } = await Api.post('/users/create', user)
+
+        if(data){
+            console.log(data)
+        }
+    } catch (error) {
+        alert(error)
+    }
+}
 
 export const CreateAccountContentView = () => {
     const { logout } = useAuthContext()
@@ -41,11 +54,11 @@ export const CreateAccountContentView = () => {
     const options: UserType[] = [
         {
             label: "Leitor",
-            value: "reader",
+            value: "READER",
         },
         {
             label: "Editor",
-            value: "publisher",
+            value: "PUBLISHER",
         }
     ]
 
@@ -53,14 +66,7 @@ export const CreateAccountContentView = () => {
 
     const onSubmit: SubmitHandler<ICreateAccountInput> = (data) => {
         setIsLoading(false)
-        console.log(data.birthDate)
-        console.log(data.cpf)
-        console.log(data.email)
-        console.log(data.name)
-        console.log(data.userName)
-        console.log(data.password)
-        console.log(data.userType)
-        console.log(data)
+        createUser(data)
         reset()
         logout()
     }
