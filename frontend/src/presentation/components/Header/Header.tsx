@@ -49,10 +49,10 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 	return (
 		<>
 			<Box>
-				<AppBar position="static" color="transparent">
+				<AppBar position="static" sx={{backgroundColor: "primary.main"}}>
 					<Box padding={1}>
 						<Toolbar disableGutters>
-							<Box sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} >
+							<Box sx={{ display: { xs: 'none', md: 'flex' }, ml: 2 }} >
 								<LogoIcn />
 							</Box>
 							<Typography
@@ -64,7 +64,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 									mr: 2,
 									display: { xs: 'none', md: 'flex' },
 									fontWeight: 700,
-									color: 'secondary.main',
+									color: 'secondary.contrastText',
 									textDecoration: 'none',
 								}}
 							>
@@ -77,7 +77,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 									aria-controls="menu-appbar"
 									aria-haspopup="true"
 									onClick={handleClickMenu}
-									color="inherit"
+									color="secondary"
 								>
 									<MenuIcon />
 								</IconButton>
@@ -104,7 +104,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 									{pages.map((page) => (
 										<MenuItem key={page[0]} onClick={handleCloseMenu} href={page[1]}>
 											<Button href={page[1]}>
-												<Typography textAlign="center" variant='h5' color='white'>{page[0]}</Typography>
+												<Typography textAlign="center" variant='h5'>{page[0]}</Typography>
 											</Button>
 										</MenuItem>
 									))}
@@ -125,7 +125,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 									display: { xs: 'flex', md: 'none' },
 									flexGrow: 1,
 									fontWeight: 700,
-									color: 'secondary.main',
+									color: 'secondary.contrastText',
 									textDecoration: 'none',
 								}}
 							>
@@ -137,7 +137,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 										key={page[0]}
 										onClick={handleCloseMenu}
 										href={page[1]}
-										sx={{ my: 2, color: 'white', display: 'block', fontWeight: 400, fontSize: "16px" }}>
+										sx={{ my: 2, color: 'secondary.contrastText', display: 'block', fontWeight: 400, fontSize: "16px" }}>
 										{page[0]}
 									</Button>
 								))}
@@ -169,7 +169,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 								>
 									{settings.map((setting) => (
 										<MenuItem key={setting[0]} onClick={setting[1]}>
-											<Typography textAlign="center" variant='h5' color='white'>{setting[0]}</Typography>
+											<Typography textAlign="center" variant='h5'>{setting[0]}</Typography>
 										</MenuItem>
 									))}
 								</Menu>

@@ -4,11 +4,11 @@ import "@fontsource/open-sans"
 const ggLearningTheme = createTheme({
 	palette: {
 		primary: {
-			main: "#FFB703",
+			main: "#f0c743",
 		},
 		secondary: {
-			main: "#FFFFFF",
-			contrastText:"rgb(0,0,0)"
+			main: "#3f53d9",
+			contrastText: "#FFFFFF"
 		},
 		success: {
 			main: "#4caf50",
@@ -52,23 +52,6 @@ const ggLearningTheme = createTheme({
 		},
 
 		fontWeightRegular: 400,
-	},
-	components: {
-		MuiMenu: {
-			styleOverrides: {
-				list: {
-					backgroundColor: "#FFB703",
-				},
-			},
-		},
-
-		MuiMenuItem: {
-			styleOverrides: {
-				root: {
-					backgroundColor: "#023047",
-				},
-			},
-		},
 	},
 })
 

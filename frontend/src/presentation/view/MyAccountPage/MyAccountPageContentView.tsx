@@ -1,5 +1,5 @@
 import { Article, Person } from "@mui/icons-material"
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from "@mui/material"
 
 import { useState, useCallback } from "react"
 
