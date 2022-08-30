@@ -2,7 +2,7 @@ import * as yup from "yup"
 import { yupResolver } from '@hookform/resolvers/yup'
 import "../../../assets/yup/TraducoesYup"
 import { Box, Card, CardContent, Typography, CardActions, Button, CircularProgress } from "@mui/material"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { RHMaskTextField } from "../FormComponents/RHMaskTextField"
 import { RHTextField } from "../FormComponents/RHTextField"
@@ -42,6 +42,7 @@ export const DetalhesUsuario = () => {
     }
 
     const handleTest = () => {
+        setUser(user)
         console.log(user)
     }
     
