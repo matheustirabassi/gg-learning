@@ -11,7 +11,6 @@ function HomeFooterView() {
 
 					<Typography
 						variant={"h5"}
-						fontWeight="700"
 						color="secondary.contrastText"
 						sx={{ alignmentBaseline: "title" }}
 						ml="4px"
@@ -25,7 +24,6 @@ function HomeFooterView() {
 
 					<Typography
 						variant={"h5"}
-						fontWeight="700"
 						color="secondary.contrastText"
 						sx={{ alignmentBaseline: "title" }}
 					>

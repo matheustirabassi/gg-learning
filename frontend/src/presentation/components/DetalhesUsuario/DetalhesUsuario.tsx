@@ -1,7 +1,7 @@
 import * as yup from "yup"
 import { yupResolver } from '@hookform/resolvers/yup'
 import "../../../assets/yup/TraducoesYup"
-import { Box, Card, CardContent, Typography, CardActions, Button, CircularProgress } from "@mui/material"
+import { Box, Card, CardContent, Typography, CardActions, Button, CircularProgress, Skeleton } from "@mui/material"
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { RHMaskTextField } from "../FormComponents/RHMaskTextField"
@@ -28,6 +28,7 @@ interface IInfoAccountInput {
 
 export const DetalhesUsuario = () => {
     const [user, setUser] = useState<IInfoAccountInput>(infoUser)
+    const [isLoadingFields, setIsLoadingFields] = useState(false)
 
     const { handleSubmit, control } = useForm<IInfoAccountInput>({
         resolver: yupResolver(createAccountSchema),
@@ -37,6 +38,7 @@ export const DetalhesUsuario = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     const onSubmit: SubmitHandler<IInfoAccountInput> = (data) => {
+        setIsLoadingFields(false)
         setIsLoading(false)
         console.log(data)
     }
@@ -55,50 +57,108 @@ export const DetalhesUsuario = () => {
 
                             <Typography variant='h4' align='center'>Suas informações</Typography>
 
-                            <RHTextField
-                                name="name"
-                                control={control}
-                                label="Nome"
-                                type="text"
-                                disabled={isLoading}
-                            />
-                            <RHMaskTextField
-                                name="cpf"
-                                control={control}
-                                label="CPF"
-                                type="text"
-                                disabled={isLoading}
-                                mask="000.000.000-00"
-                            />
-                            <RHTextField
-                                name="email"
-                                control={control}
-                                label="E-mail"
-                                type="email"
-                                disabled={isLoading}
-                            />
-                            <RHMaskTextField
-                                name="birthDate"
-                                control={control}
-                                label="Data de nascimento"
-                                type="text"
-                                disabled={isLoading}
-                                mask="00/00/0000"
-                            />
-                            <RHTextField
-                                name="userName"
-                                control={control}
-                                label="Usuário"
-                                type="text"
-                                disabled={isLoading}
-                            />
-                            <RHTextField
-                                name="password"
-                                control={control}
-                                label="Senha"
-                                type="password"
-                                disabled={isLoading}
-                            />
+                            {
+                                isLoadingFields && (
+                                    <Skeleton variant="rectangular" animation="wave" height={56} />
+                                )
+                            }
+                            {
+                                isLoadingFields && (
+                                    <Skeleton variant="rectangular" animation="wave" height={56} />
+                                )
+                            }
+                            {
+                                isLoadingFields && (
+                                    <Skeleton variant="rectangular" animation="wave" height={56} />
+                                )
+                            }
+                            {
+                                isLoadingFields && (
+                                    <Skeleton variant="rectangular" animation="wave" height={56} />
+                                )
+                            }
+                            {
+                                isLoadingFields && (
+                                    <Skeleton variant="rectangular" animation="wave" height={56} />
+                                )
+                            }
+                            {
+                                isLoadingFields && (
+                                    <Skeleton variant="rectangular" animation="wave" height={56} />
+                                )
+                            }
+                            {
+                                !isLoadingFields && (
+                                    <RHTextField
+                                        name="name"
+                                        control={control}
+                                        label="Nome"
+                                        type="text"
+                                        disabled={isLoading}
+                                    />
+                                )
+                            }
+                            {
+                                !isLoadingFields && (
+                                    <RHMaskTextField
+                                        name="cpf"
+                                        control={control}
+                                        label="CPF"
+                                        type="text"
+                                        disabled={isLoading}
+                                        mask="000.000.000-00"
+                                    />
+                                )
+                            }
+                            {
+                                !isLoadingFields && (
+                                    <RHTextField
+                                        name="email"
+                                        control={control}
+                                        label="E-mail"
+                                        type="email"
+                                        disabled={isLoading}
+                                    />
+                                )
+                            }
+                            {
+                                !isLoadingFields && (
+                                    <RHMaskTextField
+                                        name="birthDate"
+                                        control={control}
+                                        label="Data de nascimento"
+                                        type="text"
+                                        disabled={isLoading}
+                                        mask="00/00/0000"
+                                    />
+                                )
+                            }
+                            {
+                                !isLoadingFields && (
+                                    <RHTextField
+                                        name="userName"
+                                        control={control}
+                                        label="Usuário"
+                                        type="text"
+                                        disabled={isLoading}
+                                    />
+                                )
+                            }
+                            {
+                                !isLoadingFields && (
+                                    <RHTextField
+                                        name="password"
+                                        control={control}
+                                        label="Senha"
+                                        type="password"
+                                        disabled={isLoading}
+                                    />
+                                )
+                            }
+
+                            <Button variant='contained' onClick={() => setIsLoadingFields(oldValue => !oldValue)}>
+                                Teste skeleton
+                            </Button>
                         </Box>
                     </CardContent>
                     <CardActions>

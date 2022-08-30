@@ -47,7 +47,7 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
         )
 
     return (
-        <Box width='100vw' height='100vh' display='flex' alignItems='center' justifyContent='center' sx={{ background: "background" }}>
+        <Box width='100vw' height='100vh' display='flex' alignItems='center' justifyContent='center' sx={{ backgroundColor: "background.default" }}>
             <Box>
                 <Card>
                     <CardContent>
