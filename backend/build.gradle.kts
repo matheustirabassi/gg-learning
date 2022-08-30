@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.gglearningcore"
-version = "1.3"
+version = "1.4"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
@@ -33,6 +33,8 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-api")
     implementation("org.apache.logging.log4j:log4j-core")
     implementation("org.springframework.boot:spring-boot-starter-security")
+    // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
+    implementation("io.jsonwebtoken:jjwt:0.9.1")
 
     compileOnly("org.projectlombok:lombok")
 
