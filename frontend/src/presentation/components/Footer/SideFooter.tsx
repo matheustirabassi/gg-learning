@@ -9,10 +9,10 @@ function SideFooter() {
 
         <Box display="flex" flexDirection="column" position="fixed" right="1" bottom="0">
             <IconButton>
-                <Twitter color="primary" sx={{ fontSize: "50px" }} />
+                <Twitter color="primary" sx={{ fontSize: "40px" }} />
             </IconButton>
             <IconButton>
-                <Instagram color="primary" sx={{ fontSize: "50px" }} />
+                <Instagram color="primary" sx={{ fontSize: "40px" }} />
             </IconButton>
         </Box>
     )

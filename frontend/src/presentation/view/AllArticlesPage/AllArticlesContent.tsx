@@ -7,7 +7,7 @@ import data from '../../../data/json/articles.json';
 export const AllArticlesContent = () => {
     return (
         <PageBaseLayout showFooter>
-            <Box display="flex" flexDirection="row" alignItems="center" marginX={10} marginTop={2}>
+            <Box display="flex" flexDirection="row" alignItems="center" marginX={10} marginTop={5} justifyContent="center">
                 <Box display="flex" alignItems="center" justifyContent="center">
                     <IconButton>
                         <ArrowBackIos sx={{ color: "primary.main" }} fontSize="large" />
@@ -41,7 +41,7 @@ export const AllArticlesContent = () => {
 
                 <Box display="flex" alignItems="center" justifyContent="center">
                     <IconButton>
-                        <ArrowForwardIos sx={{ color: "secondary.main" }} fontSize="large" />
+                        <ArrowForwardIos sx={{ color: "primary.main" }} fontSize="large" />
                     </IconButton>
                 </Box>
             </Box>

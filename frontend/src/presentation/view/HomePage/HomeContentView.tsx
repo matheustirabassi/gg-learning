@@ -27,7 +27,7 @@ export const HomeContentView = () => {
 
 					</Box>
 					<Box>
-						<img style={{ width: "700px", height: "600px", borderRadius: "10px" }} src={Imagem} />
+						<img alt= "" style={{ width: "700px", height: "600px", borderRadius: "10px" }} src={Imagem} />
 					</Box>
 				</Box>
 

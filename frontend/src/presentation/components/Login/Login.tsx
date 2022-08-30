@@ -47,7 +47,7 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
         )
 
     return (
-        <Box width='100vw' height='100vh' display='flex' alignItems='center' justifyContent='center' sx={{ background: "#023047" }}>
+        <Box width='100vw' height='100vh' display='flex' alignItems='center' justifyContent='center' sx={{ background: "background" }}>
             <Box>
                 <Card>
                     <CardContent>
@@ -93,7 +93,7 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                                 underline="none"
                             >
                                 <Typography
-                                    variant="h6"
+                                    variant="h5"
 
                                 >Esqueceu sua senha?</Typography>
                             </Link>
@@ -106,6 +106,7 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                                 <Typography
                                     variant="h4"
                                     align="center"
+                                    color="primary.main"
                                 >Crie sua conta</Typography>
                             </Link>
                         </Box>

@@ -1,13 +1,14 @@
 import { createTheme } from "@mui/material"
 import "@fontsource/open-sans"
+import { yellow } from "@mui/material/colors"
 
 const ggLearningTheme = createTheme({
 	palette: {
 		primary: {
-			main: "#f0c743",
+			main: yellow[700],
 		},
 		secondary: {
-			main: "#3f53d9",
+			main: "#FFFFFF",
 			contrastText: "#FFFFFF"
 		},
 		success: {
@@ -17,7 +18,7 @@ const ggLearningTheme = createTheme({
 			main: "#C73E1D",
 		},
 		background: {
-			default: "#023047",
+			default: "#202124",
 		},
 	},
 	typography: {

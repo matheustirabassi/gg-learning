@@ -1,5 +1,6 @@
 import { Article, Person } from "@mui/icons-material"
 import { Box, List, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from "@mui/material"
+import { DetalhesUsuario } from "presentation/components/DetalhesUsuario/DetalhesUsuario"
 
 import { useState, useCallback } from "react"
 
@@ -14,14 +15,14 @@ export const MyAccountPageContentView = () => {
     }, [])
     return (
         <Box display = 'flex' flexDirection='row'>
-            <Box width={theme.spacing(28)} display='flex' flexDirection='column' height='100vh' bgcolor={theme.palette.secondary.main}>
+            <Box width={theme.spacing(28)} display='flex' flexDirection='column' height='100vh' bgcolor={theme.palette.primary.main}>
                 <Box flex={1}>
                     <List component='nav'>
                         <ListItemButton onClick={toggleMenu}>
                             <ListItemIcon>
                                 <Person />
                             </ListItemIcon>
-                            <ListItemText primary={"Minha informações"} />
+                            <ListItemText primary={"Minha informações"} sx={{color: "secondary.contrastText"}} />
                         </ListItemButton>
                         <ListItemButton onClick={toggleMenu}>
                             <ListItemIcon>
@@ -35,7 +36,7 @@ export const MyAccountPageContentView = () => {
             <Box width='100%' >
                 {
                     myInfo && (
-                        <Typography>Minha info</Typography>
+                        <DetalhesUsuario/>
                     )
                 }
 
