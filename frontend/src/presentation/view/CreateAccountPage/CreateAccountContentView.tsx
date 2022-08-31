@@ -10,8 +10,6 @@ import { useAuthContext } from "presentation/contexts/AuthContext"
 import { RHSelectTextfield } from "presentation/components/FormComponents/RHSelectTextField"
 import { RHMaskTextField } from "presentation/components/FormComponents/RHMaskTextField"
 import { Api } from "presentation/axios/AxiosConfig"
-import axios from 'axios'
-
 
 const createAccountSchema = yup.object().shape({
     name: yup.string().required(),
