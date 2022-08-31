@@ -43,7 +43,6 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 	return (
 		<>
 			<Box>
-				<AppBar position="static" sx={{ backgroundColor: "primary.main" }}>
 					<Box padding={1}>
 						<Toolbar disableGutters>
 							<Box sx={{ display: { xs: 'none', md: 'flex' }, ml: 2 }} >
@@ -161,24 +160,17 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 									open={Boolean(anchorElUser)}
 									onClose={handleCloseUser}
 								>
-
-									<MenuItem >
-										<Button sx={{ textTransform: "none" }} href="/myaccount" onClick={handleCloseUser}>
-											<Typography textAlign="center" variant='h5'>Minha conta</Typography>
-										</Button>
-									</MenuItem>
-									<MenuItem >
-										<Button sx={{ textTransform: "none" }} href="/" onClick={logout}>
-											<Typography textAlign="center" variant='h5'>Sair</Typography>
-										</Button>
-									</MenuItem>
+									{settings.map((setting) => (
+										<MenuItem key={setting[0]} onClick={setting[1]}>
+											<Typography textAlign="center" variant='h5'>{setting[0]}</Typography>
+										</MenuItem>
+									))}
 								</Menu>
 							</Box>
 						</Toolbar>
 					</Box>
 				</AppBar>
 			</Box>
-
 			<Box>
 				{children}
 			</Box>
