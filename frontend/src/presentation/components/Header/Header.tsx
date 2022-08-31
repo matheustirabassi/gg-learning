@@ -20,12 +20,6 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 		["Compilador", ROUTES.COMPILADOR]
 	]
 
-	type Setting = [string, () => void]
-	const settings: Setting[] = [
-		["Minha conta", logout],
-		["Sair", logout]
-	]
-
 	/** Observa o elemento ancorado */
 	const [anchorElMenu, setAnchorElMenu] = useState<null | HTMLElement>(null)
 	const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null)
@@ -49,7 +43,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 	return (
 		<>
 			<Box>
-				<AppBar position="static" sx={{backgroundColor: "primary.main"}}>
+				<AppBar position="static" sx={{ backgroundColor: "primary.main" }}>
 					<Box padding={1}>
 						<Toolbar disableGutters>
 							<Box sx={{ display: { xs: 'none', md: 'flex' }, ml: 2 }} >
@@ -167,11 +161,17 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 									open={Boolean(anchorElUser)}
 									onClose={handleCloseUser}
 								>
-									{settings.map((setting) => (
-										<MenuItem key={setting[0]} onClick={setting[1]}>
-											<Typography textAlign="center" variant='h5'>{setting[0]}</Typography>
-										</MenuItem>
-									))}
+
+									<MenuItem >
+										<Button sx={{ textTransform: "none" }} href="/myaccount" onClick={handleCloseUser}>
+											<Typography textAlign="center" variant='h5'>Minha conta</Typography>
+										</Button>
+									</MenuItem>
+									<MenuItem >
+										<Button sx={{ textTransform: "none" }} href="/" onClick={logout}>
+											<Typography textAlign="center" variant='h5'>Sair</Typography>
+										</Button>
+									</MenuItem>
 								</Menu>
 							</Box>
 						</Toolbar>

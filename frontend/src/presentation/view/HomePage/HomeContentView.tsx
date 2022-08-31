@@ -17,7 +17,7 @@ export const HomeContentView = () => {
 						>GGLearning a melhor ferramenta para começar a programar</Typography>
 
 						<Box>
-							<Button variant="contained">
+							<Button variant="contained" href="/register">
 								<Typography
 									variant="h3"
 									color="secondary.contrastText"
@@ -30,8 +30,6 @@ export const HomeContentView = () => {
 						<img alt= "" style={{ width: "700px", height: "600px", borderRadius: "10px" }} src={Imagem} />
 					</Box>
 				</Box>
-
-
 
 				<Box>
 					<Typography variant={"h2"} my="32px" color="secondary.contrastText" sx={{ alignmentBaseline: "title" }}>
@@ -81,8 +79,6 @@ export const HomeContentView = () => {
 								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
 							/>
 						</Grid>
-
-
 					</Grid>
 				</Box>
 			</Box>
