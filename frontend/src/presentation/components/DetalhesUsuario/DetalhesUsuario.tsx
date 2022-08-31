@@ -38,14 +38,10 @@ export const DetalhesUsuario = () => {
     const [isLoading, setIsLoading] = useState(false)
 
     const onSubmit: SubmitHandler<IInfoAccountInput> = (data) => {
+        setUser(infoUser)
         setIsLoadingFields(false)
         setIsLoading(false)
         console.log(data)
-    }
-
-    const handleTest = () => {
-        setUser(user)
-        console.log(user)
     }
     
     return(
@@ -171,7 +167,6 @@ export const DetalhesUsuario = () => {
                             >
                                 Atualizar
                             </Button>
-                            <Button onClick={handleTest}>tdsad  </Button>
                         </Box>
                     </CardActions>
                 </Card>

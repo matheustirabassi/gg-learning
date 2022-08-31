@@ -14,12 +14,12 @@ interface ILoginProps {
 }
 
 interface ILoginInput {
-    userName: string
+    email: string
     password: string
 }
 
 const loginSchema = yup.object().shape({
-    userName: yup.string().required(),
+    email: yup.string().email().required(),
     password: yup.string().required().min(3)
 })
 
@@ -34,7 +34,7 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
     const onSubmit: SubmitHandler<ILoginInput> = (data) => {
         setIsLoading(true)
 
-        login(data.userName, data.password)
+        login(data.email, data.password)
             .then(() => {
                 setIsLoading(false)
                 reset()
@@ -74,10 +74,10 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                             <Typography variant='h4' align='center'>Identifique-se</Typography>
 
                             <RHTextField
-                                name="userName"
+                                name="email"
                                 control={control}
-                                label="Usuário"
-                                type="text"
+                                label="Email"
+                                type="email"
                                 disabled={isLoading}
                             />
                             <RHTextField

@@ -14,8 +14,8 @@ export const MyAccountPageContentView = () => {
         setMyArticles(oldMyArticles => !oldMyArticles)
     }, [])
     return (
-        <Box display = 'flex' flexDirection='row'>
-            <Box width={theme.spacing(28)} display='flex' flexDirection='column' height='100vh' bgcolor={theme.palette.primary.main}>
+        <Box display = 'flex' flexDirection='row' height='100vh'>
+            <Box width={theme.spacing(28)} display='flex' flexDirection='column' bgcolor={theme.palette.primary.main}>
                 <Box flex={1}>
                     <List component='nav'>
                         <ListItemButton onClick={toggleMenu}>
@@ -28,7 +28,7 @@ export const MyAccountPageContentView = () => {
                             <ListItemIcon>
                                 <Article />
                             </ListItemIcon>
-                            <ListItemText primary={"Meus artigos"} />
+                            <ListItemText primary={"Meus artigos"} sx={{color: "secondary.contrastText"}} />
                         </ListItemButton>
                     </List>
                 </Box>
@@ -42,7 +42,7 @@ export const MyAccountPageContentView = () => {
 
                 {
                     myArticles && (
-                        <Typography>Meus artigos</Typography>
+                        <Typography color="secondary.main">Meus artigos</Typography>
                     )
                 }
             </Box>

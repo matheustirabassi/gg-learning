@@ -10,13 +10,15 @@ import { useAuthContext } from "presentation/contexts/AuthContext"
 import { RHSelectTextfield } from "presentation/components/FormComponents/RHSelectTextField"
 import { RHMaskTextField } from "presentation/components/FormComponents/RHMaskTextField"
 import { Api } from "presentation/axios/AxiosConfig"
+import axios from 'axios'
+
 
 const createAccountSchema = yup.object().shape({
     name: yup.string().required(),
     cpf: yup.string().required(),
     email: yup.string().email().required(),
     birthDate: yup.string().required().min(10).max(10),
-    userType: yup.string().required(),
+    typeUser: yup.string().required(),
     userName: yup.string().required(),
     password: yup.string().required().min(3),
 })
@@ -26,7 +28,7 @@ interface ICreateAccountInput {
     cpf: string
     email: string
     birthDate: string
-    userType: string
+    typeUser: string
     userName: string
     password: string
 }
@@ -35,13 +37,22 @@ type UserType = { label: string, value: string }
 
 const createUser = async (user: ICreateAccountInput) => {
     try {
-        const { data } = await Api.post('/users/create', user)
-
+        const data = await Api.post('/users/create', {
+            "name": user.name,
+            "cpf": user.cpf,
+            "email": user.email,
+            "typeUser": user.typeUser,
+            "userName": user.userName,
+            "password": user.password 
+        })
+        console.log(data)
         if (data) {
             console.log(data)
         }
+        
     } catch (error) {
-        alert(error)
+        console.log(error)
+        
     }
 }
 
@@ -185,7 +196,7 @@ export const CreateAccountContentView = () => {
                                 !isLoadingFields && (
                                     <RHSelectTextfield
                                         options={options}
-                                        name="userType"
+                                        name="typeUser"
                                         control={control}
                                         label="Tipo de usuário"
                                         type="text"

@@ -1,3 +1,4 @@
+import { Api } from "presentation/axios/AxiosConfig"
 import { createContext, useState, useEffect, useCallback, useMemo, useContext } from "react"
 
 interface IAuthContextData {
@@ -28,11 +29,18 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
         }
     }, [])
 
-    const handleLogin = useCallback(async (userName: string, password: string) => {
-        if (userName === "admin" && password === "123") {
+    const handleLogin = useCallback(async (email: string, password: string) => {
+        const data = await Api.post("/login", {
+            "email": email,
+            "password": password
+        })
+
+        if (data) {
+            console.log(data)
             localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify("T0K3N4C335"))
             setAccessToken("T0K3N4C335")
         } else {
+            console.log(data)
             alert("Usuário e/ou senha incorretos!")
         }
     }, [])
