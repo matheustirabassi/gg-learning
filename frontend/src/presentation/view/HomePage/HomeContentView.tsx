@@ -81,8 +81,6 @@ export const HomeContentView = () => {
 								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
 							/>
 						</Grid>
-
-
 					</Grid>
 				</Box>
 			</Box>
