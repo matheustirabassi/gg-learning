@@ -1,14 +1,23 @@
 import CssBaseline from "@mui/material/CssBaseline"
 import { ThemeProvider } from "@mui/material/styles"
+import { Header } from "presentation/components/Header/Header"
+import { Login } from "presentation/components/Login/Login"
+import { AuthProvider } from "presentation/contexts/AuthContext"
 import ggLearningTheme from "theme"
 import HomeRoutes from "./Routes"
 
 function App() {
 	return (
-		<ThemeProvider theme={ggLearningTheme}>
-			<CssBaseline />
-			<HomeRoutes />
-		</ThemeProvider>
+		<AuthProvider>
+			<ThemeProvider theme={ggLearningTheme}>
+				<Login>
+					<CssBaseline />
+					<Header>
+						<HomeRoutes />
+					</Header>
+				</Login>
+			</ThemeProvider>
+		</AuthProvider>
 	)
 }
 

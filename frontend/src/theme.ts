@@ -1,13 +1,15 @@
 import { createTheme } from "@mui/material"
 import "@fontsource/open-sans"
+import { yellow } from "@mui/material/colors"
 
 const ggLearningTheme = createTheme({
 	palette: {
 		primary: {
-			main: "#FFB703",
+			main: yellow[700],
 		},
 		secondary: {
 			main: "#FFFFFF",
+			contrastText: "#FFFFFF"
 		},
 		success: {
 			main: "#4caf50",
@@ -16,7 +18,7 @@ const ggLearningTheme = createTheme({
 			main: "#C73E1D",
 		},
 		background: {
-			default: "#023047",
+			default: "#202124",
 		},
 	},
 	typography: {
@@ -46,28 +48,11 @@ const ggLearningTheme = createTheme({
 			fontSize: "16px",
 		},
 		h6: {
-			fontWeight: 300,
-			fontSize: "12px",
+			fontWeight: 400,
+			fontSize: "13px",
 		},
 
 		fontWeightRegular: 400,
-	},
-	components: {
-		MuiMenu: {
-			styleOverrides: {
-				list: {
-					backgroundColor: "#FFB703",
-				},
-			},
-		},
-
-		MuiMenuItem: {
-			styleOverrides: {
-				root: {
-					backgroundColor: "#023047",
-				},
-			},
-		},
 	},
 })
 

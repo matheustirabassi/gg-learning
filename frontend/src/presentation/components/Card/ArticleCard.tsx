@@ -33,7 +33,7 @@ export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProp
 					<Typography
 						gutterBottom
 						variant="h4"
-						color="secondary"
+						color="secondary.contrastText"
 						fontWeight="700"
 						height="70px"
 					>
@@ -42,7 +42,7 @@ export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProp
 
 					<Typography
 						variant="h5"
-						color="secondary"
+						color="secondary.contrastText"
 						whiteSpace='nowrap'
 						overflow='hidden'
 						textOverflow='ellipsis'
@@ -53,7 +53,7 @@ export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProp
 				</CardContent>
 				<CardActions>
 					<Button size="small">
-						<Typography color="secondary" variant="h4" fontWeight="700"
+						<Typography color="secondary.contrastText" variant="h4" fontWeight="700"
 							sx={{
 								'&:hover': {
 									color: 'background.default',
