@@ -5,7 +5,7 @@ import Imagem from "../../../assets/imgs/img.jpg"
 
 export const HomeContentView = () => {
 	return (
-		<PageBaseLayout showFooter>
+		<PageBaseLayout showSideFooter>
 			<Box display="flex" flexDirection="column" marginX={25}>
 				<Box display="flex" flexDirection="row" alignItems="center" marginTop={2}>
 					<Box display="flex" flexDirection="column" alignItems="center" >

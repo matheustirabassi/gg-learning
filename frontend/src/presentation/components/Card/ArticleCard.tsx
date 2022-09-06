@@ -46,7 +46,6 @@ export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProp
 						whiteSpace='nowrap'
 						overflow='hidden'
 						textOverflow='ellipsis'
-						
 						>
 						{description}
 					</Typography>
