@@ -10,6 +10,7 @@ O frontend foi desenvolvido em React com o uso da biblioteca Material UI. O back
 ## Autores
 
 Matheus Henrique Tirabassi
+
 Miguel Sbrissa
 
 ## Acessar site
