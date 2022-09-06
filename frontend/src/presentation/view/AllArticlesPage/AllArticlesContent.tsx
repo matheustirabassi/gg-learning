@@ -13,7 +13,6 @@ export const AllArticlesContent = () => {
                         <ArrowBackIos sx={{ color: "primary.main" }} fontSize="large" />
                     </IconButton>
                 </Box>
-
                 <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
                     <Box marginBottom={2} width="50%" padding={1} display="flex" alignItems="center" justifyContent="center" flexDirection="row">
                         <TextField
@@ -45,7 +44,6 @@ export const AllArticlesContent = () => {
                             }}
                         />
                     </Box>
-
                     <Grid
                         container
                         direction="row"
@@ -56,7 +54,7 @@ export const AllArticlesContent = () => {
                         {
                             data.map(article => {
                                 return (
-                                    <Grid item xs={6} md={4} lg={3} xl={2}>
+                                    <Grid item xs={6} md={3} lg={2}>
                                         <ArticleCard
                                             bgColor='primary'
                                             linkImage={article.img}
@@ -70,7 +68,6 @@ export const AllArticlesContent = () => {
 
                     </Grid>
                 </Box>
-
                 <Box display="flex" alignItems="center" justifyContent="center">
                     <IconButton>
                         <ArrowForwardIos sx={{ color: "primary.main" }} fontSize="large" />
