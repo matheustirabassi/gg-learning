@@ -31,6 +31,7 @@ const createUser = async (user: ICreateAccountInput) => {
             "email": user.email,
             "typeUser": user.typeUser,
             "userName": user.userName,
+            "birthDate":user.birthDate,
             "password": user.password 
         })
         console.log(data)
