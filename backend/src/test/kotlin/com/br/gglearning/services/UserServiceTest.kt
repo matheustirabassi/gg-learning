@@ -40,7 +40,7 @@ class UserServiceTest {
             "Matheus",
             "12345678909",
             "matheus@email.com",
-            "21",
+            "01/01/2000",
             TypeUserEnum.READER
         )
         val exception: DataIntegrityException = assertThrows(
@@ -62,7 +62,7 @@ class UserServiceTest {
             "Matheus",
             "12345678909",
             "matheus@email.com",
-            "21",
+            "01/01/2000",
             TypeUserEnum.READER
         )
 
