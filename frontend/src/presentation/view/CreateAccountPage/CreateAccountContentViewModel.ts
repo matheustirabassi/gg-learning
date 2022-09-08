@@ -1,5 +1,4 @@
 import * as yup from "yup"
-import { yupResolver } from '@hookform/resolvers/yup'
 import "../../../assets/yup/TraducoesYup"
 import { Api } from "presentation/axios/AxiosConfig"
 
