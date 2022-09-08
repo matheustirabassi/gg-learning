@@ -34,7 +34,6 @@ export const HomeContentView = () => {
 							borderRadius: "10px",
 							maxHeight: { xl: 600, lg: 400},
 							maxWidth: { xl: 700, lg: 500},
-							
 						}}
 					>
 					</Box>

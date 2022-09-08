@@ -9,7 +9,6 @@ function SideFooter() {
         <Box display="flex" flexDirection="column" position="fixed" right="1" bottom="0">
             <IconButton>
                 <Twitter
-                    
                     sx={{
                         color: "secondary.dark",
                         fontSize: "40px",
@@ -19,12 +18,10 @@ function SideFooter() {
                             transition: 'all 0.7s ease-in-out',
                         }
                     }}
-
                 />
             </IconButton>
             <IconButton>
                 <Instagram
-                    
                     sx={{
                         color: "secondary.dark",
                         fontSize: "40px",
