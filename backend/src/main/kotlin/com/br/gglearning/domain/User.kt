@@ -1,6 +1,7 @@
 package com.br.gglearning.domain
 
 import com.br.gglearning.domain.enums.TypeUserEnum
+import java.util.*
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
@@ -42,7 +43,7 @@ class User(
     var email: String = "",
 
     @Column(name = "age")
-    var age: String? = null,
+    var birthDate: Date? = null,
 
     @Enumerated(EnumType.ORDINAL)
     var typeUser: TypeUserEnum = TypeUserEnum.READER,

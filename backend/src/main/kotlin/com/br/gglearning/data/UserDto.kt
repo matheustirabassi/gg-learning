@@ -5,6 +5,7 @@ import com.br.gglearning.domain.enums.TypeUserEnum
 import lombok.Builder
 import org.hibernate.validator.constraints.br.CPF
 import java.io.Serializable
+import java.text.SimpleDateFormat
 import javax.validation.constraints.Email
 import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotEmpty
@@ -19,7 +20,7 @@ import javax.validation.constraints.NotNull
  * @property name O nome do usuário.
  * @property cpf O documento CPF do usuário.
  * @property email O e-mail do usuário.
- * @property age A idade do usuário.
+ * @property birthDate A data de nascimento do usuário.
  * @property typeUser O tipo de usuário, mapeado pelo [TypeUserEnum].
  */
 data class UserDto(
@@ -40,7 +41,8 @@ data class UserDto(
     @field:NotEmpty(message = "Preenchimento obrigatório")
     var email: String,
 
-    var age: String?,
+    @field:NotEmpty(message = "Preenchimento obrigatório")
+    var birthDate: String?,
 
     @field:NotNull(message = "Preenchimento obrigatório")
     var typeUser: TypeUserEnum
@@ -52,7 +54,7 @@ data class UserDto(
         user.name,
         user.cpf,
         user.email,
-        user.age,
+        SimpleDateFormat("dd/MM/yyyy").format(user.birthDate),
         user.typeUser
     )
 }

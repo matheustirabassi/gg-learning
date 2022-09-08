@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.text.SimpleDateFormat
 
 @Service
 class UserService(
@@ -61,6 +62,6 @@ class UserService(
         user.email = userDto.email
         user.typeUser = userDto.typeUser
         user.name = userDto.name
-        user.age = userDto.age
+        user.birthDate = SimpleDateFormat("dd/MM/yyyy").parse(userDto.birthDate)
     }
 }
