@@ -2,6 +2,7 @@ package com.br.gglearning.data
 
 import com.br.gglearning.domain.User
 import com.br.gglearning.domain.enums.TypeUserEnum
+import lombok.Builder
 import org.hibernate.validator.constraints.br.CPF
 import java.io.Serializable
 import java.text.SimpleDateFormat
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotBlank
 import javax.validation.constraints.NotEmpty
 import javax.validation.constraints.NotNull
 
+@Builder
 /**
  * O Dto para inserção de usuário
  *
