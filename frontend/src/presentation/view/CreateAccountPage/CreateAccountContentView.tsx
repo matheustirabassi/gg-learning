@@ -8,7 +8,8 @@ import { useForm, SubmitHandler } from "react-hook-form"
 import { useAuthContext } from "presentation/contexts/AuthContext"
 import { RHSelectTextfield } from "presentation/components/FormComponents/RHSelectTextField"
 import { RHMaskTextField } from "presentation/components/FormComponents/RHMaskTextField"
-import { CreateAccountViewModel, ICreateAccountInput, UserType } from "./CreateAccountContentViewModel"
+import { CreateAccountViewModel } from "./CreateAccountContentViewModel"
+import { ICreateAccountInput, UserType } from 'presentation/api/UserAPI';
 
 export const CreateAccountContentView = () => {
     const { logout } = useAuthContext()
