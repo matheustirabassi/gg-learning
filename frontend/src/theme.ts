@@ -6,9 +6,11 @@ const ggLearningTheme = createTheme({
 	palette: {
 		primary: {
 			main: yellow[700],
+			contrastText: "#FFFFFF"
 		},
 		secondary: {
 			main: "#FFFFFF",
+			dark: "#9e9e9d",
 			contrastText: "#FFFFFF"
 		},
 		success: {
