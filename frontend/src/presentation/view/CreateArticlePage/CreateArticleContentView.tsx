@@ -1,6 +1,6 @@
 import { Box, Stepper, Typography, Step, StepLabel, Button } from "@mui/material";
 import { CreateArticle } from "presentation/components/CreateArticle/CreateArticle";
-import { DetalhesUsuario } from "presentation/components/DetalhesUsuario/DetalhesUsuario";
+import { CreateQuizz } from "presentation/components/CreateQuizz/CreateQuizz";
 import { useState, Fragment, ReactNode } from "react";
 
 const steps = ['Criar artigo', 'Criar quizz'];
@@ -58,7 +58,7 @@ export const CreateArticleContentView = () => {
                     } = {};
                     if (isStepOptional(index)) {
                         labelProps.optional = (
-                            <Typography variant="caption">Opcional</Typography>
+                            <Typography variant="caption" color="secondary">Opcional</Typography>
                         );
                     }
                     if (isStepSkipped(index)) {
@@ -66,14 +66,18 @@ export const CreateArticleContentView = () => {
                     }
                     return (
                         <Step key={label} {...stepProps}>
-                            <StepLabel {...labelProps}>{label}</StepLabel>
+                            <StepLabel {...labelProps}>
+                                <Typography color="secondary">
+                                    {label}
+                                </Typography>
+                            </StepLabel>
                         </Step>
                     );
                 })}
             </Stepper>
             {activeStep === steps.length ? (
                 <Fragment>
-                    <Typography sx={{ mt: 2, mb: 1 }}>
+                    <Typography sx={{ mt: 2, mb: 1 }} color="secondary">
                         Artigo finalizado deseja publicá-lo?
                     </Typography>
                     <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
@@ -85,9 +89,9 @@ export const CreateArticleContentView = () => {
                 <Fragment>
                     {
                         activeStep === 0 ? (
-                                <CreateArticle/>
+                            <CreateArticle />
                         ) : (
-                            <>Cria quizz</>
+                            <CreateQuizz />
                         )
                     }
                     <Typography sx={{ mt: 2, mb: 1 }}>Etapa {activeStep + 1}/2</Typography>

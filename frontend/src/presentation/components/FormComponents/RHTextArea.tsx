@@ -8,10 +8,9 @@ interface IRHTextAreaProps {
   type: string
   disabled: boolean
   rows: number
-  maxRows: number
 }
 
-export const RHTextArea = ({ name, control, label, type, disabled, rows, maxRows }: IRHTextAreaProps) => {
+export const RHTextArea = ({ name, control, label, type, disabled, rows }: IRHTextAreaProps) => {
   return (
     <Controller
       name={name}
@@ -24,7 +23,6 @@ export const RHTextArea = ({ name, control, label, type, disabled, rows, maxRows
           fullWidth
           multiline
           rows={rows}
-          maxRows={maxRows}
           label={label}
           type={type}
           value={value || ''}
