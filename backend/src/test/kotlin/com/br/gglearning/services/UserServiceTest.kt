@@ -1,6 +1,7 @@
 package com.br.gglearning.services
 
 import com.br.gglearning.dao.ArticleRepository
+import com.br.gglearning.dao.UserRepository
 import com.br.gglearning.data.UserDto
 import com.br.gglearning.domain.enums.TypeUserEnum
 import com.br.gglearning.services.exceptions.DataIntegrityException
@@ -18,7 +19,7 @@ import org.mockito.MockitoAnnotations
 class UserServiceTest {
 
     @Mock
-    private lateinit var articleRepository: ArticleRepository
+    private lateinit var userRepository: UserRepository
 
     @InjectMocks
     private lateinit var userService: UserService
@@ -32,7 +33,7 @@ class UserServiceTest {
 
     @Test
     fun `insertTest caso o e-mail já exista, deve ser lançada uma DataIntegrityException`() {
-        `when`(articleRepository.findIfEmailExists(anyString())).thenReturn(true)
+        `when`(userRepository.findIfEmailExists(anyString())).thenReturn(true)
 
         val userDto = UserDto(
             "Matheus",
@@ -54,7 +55,7 @@ class UserServiceTest {
 
     @Test
     fun `insertTest caso o e-mail não exista, o usuário deve ser salvo`() {
-        `when`(articleRepository.findIfEmailExists(anyString())).thenReturn(false)
+        `when`(userRepository.findIfEmailExists(anyString())).thenReturn(false)
 
         val userDto = UserDto(
             "Matheus",

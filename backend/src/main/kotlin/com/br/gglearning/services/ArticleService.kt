@@ -3,6 +3,7 @@ package com.br.gglearning.services
 import com.br.gglearning.dao.ArticleRepository
 import com.br.gglearning.data.ArticleDto
 import com.br.gglearning.domain.Article
+import com.br.gglearning.services.exceptions.ObjectNotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
@@ -17,14 +18,13 @@ class ArticleService(
     @Autowired
     private val userService: UserService
 ) {
-    @Autowired
-    private lateinit var bCryptPasswordEncoder: BCryptPasswordEncoder
 
     @Transactional
-    fun insert(articleDto: ArticleDto, email: String) {
-        val user = userService.findUserByEmail(email) ?: return
+    fun insert(articleDto: ArticleDto, email: String): Article {
+        val user = userService.findUserByEmail(email)
+            ?: throw ObjectNotFoundException("O usuário vinculado a este e-mail não existe")
 
-        val article: Article = Article(
+        val article = Article(
             articleDto.title,
             articleDto.subtitle,
             articleDto.content,
@@ -37,5 +37,7 @@ class ArticleService(
         articleRepository.save(article)
 
         user.articles.add(article)
+
+        return article
     }
 }

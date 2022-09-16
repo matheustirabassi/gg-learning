@@ -24,13 +24,13 @@ abstract class BaseEntity protected constructor(
 ) {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private val id: Long? = null
+    val id: Long? = null
 
     @Temporal(TemporalType.TIMESTAMP)
-    private var creationDate: Date?
+    var creationDate: Date?
 
     @Temporal(TemporalType.TIMESTAMP)
-    private var modificationDate: Date?
+    var modificationDate: Date?
 
     init {
         this.creationDate = creationDate
