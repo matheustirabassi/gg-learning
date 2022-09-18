@@ -23,7 +23,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     private final val PUBLIC_MATCHERS =
-        arrayOf("/h2-console/**", "/users/create", "/users/create/**", "/login/", "/login/*")
+        arrayOf("/h2-console/**", "/users/create", "/users/create/**", "/login/", "/login/*", "/articles/*")
 
     private final val PUBLIC_MATCHERS_GET = arrayOf("/users")
 

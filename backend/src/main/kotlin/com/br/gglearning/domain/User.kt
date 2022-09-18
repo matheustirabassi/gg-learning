@@ -50,5 +50,5 @@ class User(
 
     @OneToMany
     @JoinTable(name = "user_articles")
-    var articles: List<Article> = emptyList()
+    var articles: MutableList<Article> = emptyList<Article>().toMutableList()
 ) : BaseEntity()
