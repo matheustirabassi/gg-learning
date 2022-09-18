@@ -1,11 +1,13 @@
-import { Box, Button, Grid, Typography } from "@mui/material"
+import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { ArticleCard } from "presentation/components/Card/ArticleCard"
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
 import Imagem from "../../../assets/imgs/img.jpg"
 
 export const HomeContentView = () => {
+	const theme = useTheme()
+	const lgDown = useMediaQuery(theme.breakpoints.down("lg"))
 	return (
-		<PageBaseLayout showFooter>
+		<PageBaseLayout showSideFooter>
 			<Box display="flex" flexDirection="column" marginX={25}>
 				<Box display="flex" flexDirection="row" alignItems="center" marginTop={2}>
 					<Box display="flex" flexDirection="column" alignItems="center" >
@@ -15,7 +17,6 @@ export const HomeContentView = () => {
 							color="secondary.contrastText"
 							padding={2}
 						>GGLearning a melhor ferramenta para começar a programar</Typography>
-
 						<Box>
 							<Button variant="contained">
 								<Typography
@@ -24,24 +25,27 @@ export const HomeContentView = () => {
 								>Crie uma conta</Typography>
 							</Button>
 						</Box>
-
 					</Box>
-					<Box>
-						<img alt= "" style={{ width: "700px", height: "600px", borderRadius: "10px" }} src={Imagem} />
+					<Box
+						hidden={lgDown}
+						component="img"
+						src={Imagem}
+						sx={{
+							borderRadius: "10px",
+							maxHeight: { xl: 600, lg: 400},
+							maxWidth: { xl: 700, lg: 500},
+						}}
+					>
 					</Box>
 				</Box>
-
-
-
 				<Box>
 					<Typography variant={"h2"} my="32px" color="secondary.contrastText" sx={{ alignmentBaseline: "title" }}>
 						Conheça alguns artigos
 					</Typography>
 				</Box>
-
-				<Box display='flex' justifyItems="center">
-					<Grid container spacing={3} columns={15}>
-						<Grid item xs={15} md={5} xl={3} >
+				<Box display='flex' justifyItems="center" alignItems="center" >
+					<Grid container spacing={2} justifyContent="space-evenly" >
+						<Grid item sm={12} md={6} lg={4} xl={3}>
 							<ArticleCard
 								bgColor="primary"
 								linkImage="imgs/python.svg"
@@ -49,7 +53,7 @@ export const HomeContentView = () => {
 								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
 							/>
 						</Grid>
-						<Grid item xs={15} md={5} xl={3} >
+						<Grid item sm={12} md={6} lg={4} xl={3}>
 							<ArticleCard
 								bgColor="primary"
 								linkImage="imgs/python.svg"
@@ -57,7 +61,7 @@ export const HomeContentView = () => {
 								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
 							/>
 						</Grid>
-						<Grid item xs={15} md={5} xl={3} >
+						<Grid item sm={12} md={6} lg={4} xl={3}>
 							<ArticleCard
 								bgColor="primary"
 								linkImage="imgs/python.svg"
@@ -65,7 +69,7 @@ export const HomeContentView = () => {
 								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
 							/>
 						</Grid>
-						<Grid item xs={15} md={5} xl={3} >
+						<Grid item sm={12} md={6} lg={4} xl={3}>
 							<ArticleCard
 								bgColor="primary"
 								linkImage="imgs/python.svg"
@@ -73,7 +77,15 @@ export const HomeContentView = () => {
 								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
 							/>
 						</Grid>
-						<Grid item xs={15} md={5} xl={3} >
+						<Grid item sm={12} md={6} lg={4} xl={3}>
+							<ArticleCard
+								bgColor="primary"
+								linkImage="imgs/python.svg"
+								title="Primeiros passos em Python"
+								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
+							/>
+						</Grid>
+						<Grid item sm={12} md={6} lg={4} xl={3}>
 							<ArticleCard
 								bgColor="primary"
 								linkImage="imgs/python.svg"
@@ -85,6 +97,5 @@ export const HomeContentView = () => {
 				</Box>
 			</Box>
 		</PageBaseLayout>
-
 	)
 }

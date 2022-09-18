@@ -1,6 +1,5 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material"
 
-
 export interface CardProps {
 	/** a cor de fundo do cartão */
 	bgColor?: "secondary" | "primary"
@@ -19,13 +18,19 @@ export interface CardProps {
 export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProps) => {
 	return (
 		<Box>
-			<Card sx={{ bgcolor: `${bgColor}.main` }}>
+			<Card sx={{
+				bgcolor: `${bgColor}.main`,
+				maxWidth: "300px"
+			}}
+			>
 				<Box display="flex" justifyContent="center" margin={1}>
 					<CardMedia
 						image={linkImage}
 						title={title}
 						component="img"
-						sx={{ width: "150px" }}
+						sx={{
+							maxWidth: "150px",
+						}}
 					/>
 				</Box>
 
@@ -46,8 +51,7 @@ export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProp
 						whiteSpace='nowrap'
 						overflow='hidden'
 						textOverflow='ellipsis'
-						
-						>
+					>
 						{description}
 					</Typography>
 				</CardContent>
@@ -61,15 +65,12 @@ export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProp
 									transition: 'all 0.5s ease-in-out',
 								}
 							}}
-
 						>
 							Leia mais
 						</Typography>
-
 					</Button>
 				</CardActions>
 			</Card>
 		</Box>
-
 	)
 }
