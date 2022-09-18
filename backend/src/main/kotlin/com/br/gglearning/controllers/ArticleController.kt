@@ -23,8 +23,11 @@ class ArticleController(
 
     /**
      * Insere um novo artigo no sistema.
+     *
+     * @param articleDto O Dto representando o artigo, que deverá ser recebido pelo corpo da requisição.
+     * @param email O e-mail do usuário autenticado.
      */
-    @PostMapping(value = ["/create"])
+    @PostMapping
     fun insertNewArticle(
         @Valid
         @RequestBody
