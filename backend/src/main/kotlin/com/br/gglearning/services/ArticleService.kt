@@ -27,9 +27,8 @@ class ArticleService(
      * @throws ObjectNotFoundException Caso não seja encontrado um usuário com o e-mail recebido.
      */
     @Transactional
-    fun insert(articleDto: ArticleDto, email: String): Article {
-        // TODO: remover autenticação via e-mail e implementar token.
-        val user = userService.findUserByEmail(email)
+    fun insert(articleDto: ArticleDto): Article {
+        val user = userService.getUser()
             ?: throw ObjectNotFoundException("O usuário vinculado a este e-mail não existe")
 
         val article = Article(

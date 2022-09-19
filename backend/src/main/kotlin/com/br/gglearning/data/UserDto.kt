@@ -54,7 +54,7 @@ data class UserDto(
         user.name,
         user.cpf,
         user.email,
-        SimpleDateFormat("dd/MM/yyyy").format(user.birthDate),
+        if (user.birthDate != null) SimpleDateFormat("dd/MM/yyyy").format(user.birthDate) else null,
         user.typeUser
     )
 }
