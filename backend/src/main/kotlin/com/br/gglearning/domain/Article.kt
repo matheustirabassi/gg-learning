@@ -1,6 +1,5 @@
 package com.br.gglearning.domain
 
-
 import java.util.*
 import javax.persistence.*
 
@@ -17,7 +16,7 @@ import javax.persistence.*
  */
 @Entity
 @Table(name = "article")
-class Article (
+class Article(
     @Column(name = "title")
     var title: String,
 
@@ -40,4 +39,4 @@ class Article (
     @OneToMany
     @JoinTable(name = "article_quizzes")
     var quizzes: List<Quizz>
-    ): BaseEntity()
+) : BaseEntity()

@@ -1,5 +1,6 @@
 package com.br.gglearning.services
 
+import com.br.gglearning.dao.ArticleRepository
 import com.br.gglearning.dao.UserRepository
 import com.br.gglearning.data.UserDto
 import com.br.gglearning.domain.enums.TypeUserEnum

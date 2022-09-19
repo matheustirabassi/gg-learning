@@ -20,7 +20,7 @@ class UserDetailsServiceImpl : UserDetailsService {
 
         val user = userService.findUserByEmail(email)
         return UserDetailsImpl(
-            user.email,
+            user!!.email,
             user.password,
             listOf(user.typeUser.toString())
         )

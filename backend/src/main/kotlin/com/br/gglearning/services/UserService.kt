@@ -47,7 +47,7 @@ class UserService(
         return userRepository.findIfEmailExists(email)
     }
 
-    fun findUserByEmail(email: String): User {
+    fun findUserByEmail(email: String): User? {
         return userRepository.findUserByEmail(email)
     }
 
