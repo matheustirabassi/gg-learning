@@ -9,10 +9,15 @@ const createQuizzSchema = yup.object().shape({
 export interface IInfoQuizzInput {
     question: string
     alternative: string[]
+    correctAlternative: number
 }
 
-const create = async (quizz: IInfoQuizzInput) => {
-    console.log(quizz)
+export interface IQuizz{
+    quizz: IInfoQuizzInput[]
+}
+
+const create = async (data: IQuizz) => {
+    console.log(data)
 }
 
 export const QuizzAPI = {

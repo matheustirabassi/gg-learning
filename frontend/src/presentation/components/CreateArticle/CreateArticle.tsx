@@ -29,6 +29,13 @@ export const CreateArticle = () => {
                             type="text"
                             disabled={isLoading}
                         />
+                        <RHTextField
+                            name="subtitle"
+                            control={control}
+                            label="Subtitulo"
+                            type="text"
+                            disabled={isLoading}
+                        />
                         <RHTextArea
                             name="content"
                             control={control}
