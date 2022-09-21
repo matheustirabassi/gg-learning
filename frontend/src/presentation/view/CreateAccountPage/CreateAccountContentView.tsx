@@ -9,15 +9,16 @@ import { useAuthContext } from "presentation/contexts/AuthContext"
 import { RHSelectTextfield } from "presentation/components/FormComponents/RHSelectTextField"
 import { RHMaskTextField } from "presentation/components/FormComponents/RHMaskTextField"
 import { CreateAccountViewModel } from "./CreateAccountContentViewModel"
-import { ICreateAccountInput, UserType } from 'presentation/api/UserAPI';
+import { UserDTO } from 'data/dto/UserDTO';
 
 export const CreateAccountContentView = () => {
     const { logout } = useAuthContext()
-    const { handleSubmit, reset, control } = useForm<ICreateAccountInput>({
+    const { handleSubmit, reset, control } = useForm<UserDTO>({
         resolver: yupResolver(CreateAccountViewModel.createAccountSchema)
     })
     const [isLoadingFields, setIsLoadingFields] = useState(false)
 
+    type UserType = { label: string, value: string }
     const options: UserType[] = [
         {
             label: "Leitor",
@@ -31,7 +32,7 @@ export const CreateAccountContentView = () => {
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const onSubmit: SubmitHandler<ICreateAccountInput> = (data) => {
+    const onSubmit: SubmitHandler<UserDTO> = (data) => {
         setIsLoading(false)
         setIsLoadingFields(false)
         console.log(data)

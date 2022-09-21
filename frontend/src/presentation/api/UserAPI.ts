@@ -1,18 +1,8 @@
+import { UserDTO } from "data/dto/UserDTO"
 import { Api } from "presentation/axios/AxiosConfig"
 
-export interface ICreateAccountInput {
-    name: string
-    cpf: string
-    email: string
-    birthDate: string
-    typeUser: string
-    userName: string
-    password: string
-}
-
-export type UserType = { label: string, value: string }
-
-const create = async (user: ICreateAccountInput) => {
+const create = async (user: UserDTO) => {
+    console.log(user)
     const data = await Api.post('/users/create', {
         "name": user.name,
         "cpf": user.cpf,

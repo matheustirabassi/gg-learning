@@ -1,4 +1,5 @@
-import { ICreateAccountInput, UserAPI } from "presentation/api/UserAPI"
+import { UserDTO } from "data/dto/UserDTO"
+import { UserAPI } from "presentation/api/UserAPI"
 import * as yup from "yup"
 import "../../../assets/yup/TraducoesYup"
 
@@ -12,7 +13,7 @@ const createAccountSchema = yup.object().shape({
     password: yup.string().required().min(3),
 })
 
-const createUser = (user: ICreateAccountInput) => {
+const createUser = (user: UserDTO) => {
     UserAPI.create(user)
 }
 

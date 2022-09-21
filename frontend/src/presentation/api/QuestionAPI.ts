@@ -1,26 +1,10 @@
-import * as yup from "yup"
-import "../../assets/yup/TraducoesYup"
+import { QuizzDTO } from "data/dto/QuestionDTO"
 
-const createQuizzSchema = yup.object().shape({
-    question: yup.string().required(),
-    alternative: yup.array().of(yup.string().required()),
-})
-
-export interface IInfoQuizzInput {
-    question: string
-    alternative: string[]
-    correctAlternative: number
-}
-
-export interface IQuizz{
-    quizz: IInfoQuizzInput[]
-}
-
-const create = async (data: IQuizz) => {
+const create = async (data: QuizzDTO) => {
+    
     console.log(data)
 }
 
 export const QuizzAPI = {
-    create,
-    createQuizzSchema
+    create
 }

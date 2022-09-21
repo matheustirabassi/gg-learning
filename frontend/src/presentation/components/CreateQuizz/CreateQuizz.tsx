@@ -1,31 +1,39 @@
 import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from "yup"
+import "../../../assets/yup/TraducoesYup"
 import { Box, Button, Card, CardActions, CardContent, CircularProgress } from "@mui/material"
-import { IInfoQuizzInput, IQuizz, QuizzAPI } from 'presentation/api/QuestionAPI'
+import { QuestionDTO, QuizzDTO } from 'data/dto/QuestionDTO'
+import { QuizzAPI } from 'presentation/api/QuestionAPI'
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { RHRadioButton } from '../FormComponents/RHRadioButton'
 import { RHTextField } from "../FormComponents/RHTextField"
 
+const createQuizzSchema = yup.object().shape({
+    question: yup.string().required(),
+    alternative: yup.array().of(yup.string().required()),
+})
+
 export const CreateQuizz = () => {
-    let questions: IQuizz = {
-        quizz: []
-    }
+    const questions = new QuizzDTO([])
     const alt = [0, 1, 2, 3]
     const altCor = ["A", "B", "C", "D"]
-    const { handleSubmit, control, reset } = useForm<IInfoQuizzInput>({
-        resolver: yupResolver(QuizzAPI.createQuizzSchema)
+    const { handleSubmit, control, reset } = useForm<QuestionDTO>({
+        resolver: yupResolver(createQuizzSchema)
     })
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const onCreateQuestion: SubmitHandler<IInfoQuizzInput> = (data) => {
+    const onCreateQuestion: SubmitHandler<QuestionDTO> = (data) => {
         setIsLoading(true)
-        console.log(data)
+        questions.quizz.push(data)
+        console.log(questions)
         reset()
         setIsLoading(false)
     }
 
     const onSubmit = () => {
+        console.log(questions)
         QuizzAPI.create(questions)
     }
     return (

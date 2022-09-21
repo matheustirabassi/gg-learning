@@ -1,19 +1,28 @@
 import { Box, Button, Card, CardActions, CardContent, CircularProgress } from "@mui/material"
 import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from "yup"
+import "../../../assets/yup/TraducoesYup"
 import { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { RHTextField } from "../FormComponents/RHTextField"
 import { RHTextArea } from "../FormComponents/RHTextArea"
-import { IInfoArticleInput, ArticleAPI } from "presentation/api/ArticleAPI"
+import { ArticleAPI } from "presentation/api/ArticleAPI"
+import { ArticleDTO } from "data/dto/ArticleDTO"
+
+const createArticleSchema = yup.object().shape({
+    title: yup.string().required(),
+    content: yup.string().required(),
+    subtitle: yup.string().required(),
+})
 
 export const CreateArticle = () => {
-    const { control, handleSubmit } = useForm<IInfoArticleInput>({
-        resolver: yupResolver(ArticleAPI.createArticleSchema)
+    const { control, handleSubmit } = useForm<ArticleDTO>({
+        resolver: yupResolver(createArticleSchema)
     })
 
     const [isLoading, setIsLoading] = useState(false)
 
-    const onSubmit: SubmitHandler<IInfoArticleInput> = (data) => {
+    const onSubmit: SubmitHandler<ArticleDTO> = (data) => {
         setIsLoading(true)
         ArticleAPI.create(data)
     }
