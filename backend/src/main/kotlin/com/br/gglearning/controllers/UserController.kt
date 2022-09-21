@@ -2,14 +2,15 @@ package com.br.gglearning.controllers
 
 import com.br.gglearning.data.UserDto
 import com.br.gglearning.services.UserService
-import javax.validation.Valid
 import lombok.extern.log4j.Log4j2
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import javax.validation.Valid
 
 @RestController
 @Log4j2
@@ -18,6 +19,7 @@ class UserController(
     val userService: UserService
 ) {
 
+    @Secured("ADMIN")
     @GetMapping
     fun findAll(): ResponseEntity<List<UserDto>> {
         return ResponseEntity.ok(userService.findAllUsers())

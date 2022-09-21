@@ -5,6 +5,7 @@ import com.br.gglearning.services.ArticleService
 import lombok.extern.log4j.Log4j2
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -25,17 +26,15 @@ class ArticleController(
      * Insere um novo artigo no sistema.
      *
      * @param articleDto O Dto representando o artigo, que deverá ser recebido pelo corpo da requisição.
-     * @param email O e-mail do usuário autenticado.
      */
+    @Secured("ADMIN", "PUBLISHER")
     @PostMapping
     fun insertNewArticle(
         @Valid
         @RequestBody
-        articleDto: ArticleDto,
-
-        email: String
+        articleDto: ArticleDto
     ): ResponseEntity<URI> {
-        val article = articleService.insert(articleDto, email)
+        val article = articleService.insert(articleDto)
 
         val uri: URI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(article.id).toUri()
