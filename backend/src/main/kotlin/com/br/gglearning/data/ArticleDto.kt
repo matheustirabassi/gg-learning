@@ -1,8 +1,6 @@
 package com.br.gglearning.data
 
-import com.br.gglearning.domain.Article
 import java.io.Serializable
-import java.text.SimpleDateFormat
 import javax.validation.constraints.NotEmpty
 
 /**
@@ -29,14 +27,8 @@ data class ArticleDto(
     val publicationDate: String,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
-    val authorName: String
-) : Serializable {
+    val authorName: String,
 
-    constructor(article: Article) : this(
-        article.title,
-        article.subtitle,
-        article.content,
-        SimpleDateFormat("dd/MM/yyyy").format(article.publicationDate),
-        article.authorName
-    )
-}
+    @field:NotEmpty(message = "Preenchimento obrigatório")
+    val quizzes: List<QuizDto>
+) : Serializable
