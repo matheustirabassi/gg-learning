@@ -17,15 +17,15 @@ import javax.persistence.Table
  */
 @Entity
 @Table(name = "quizz")
-class Quizz (
-        @Column(name = "name")
-        var name: String,
+class Quizz(
+    @Column(name = "name")
+    var name: String,
 
-        @ManyToOne
-        @JoinColumn(name = "article_id")
-        var article: Article,
+    @ManyToOne
+    @JoinColumn(name = "article_id")
+    var article: Article,
 
-        @OneToMany
-        @JoinTable(name = "quizz_questions")
-        var questions: List<Question>
- ): BaseEntity()
+    @OneToMany
+    @JoinTable(name = "quizz_questions")
+    var questions: List<Question>
+) : BaseEntity()

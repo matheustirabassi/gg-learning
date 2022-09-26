@@ -3,8 +3,10 @@ package com.br.gglearning.services
 import com.br.gglearning.dao.UserRepository
 import com.br.gglearning.data.UserDto
 import com.br.gglearning.domain.User
+import com.br.gglearning.security.UserDetailsImpl
 import com.br.gglearning.services.exceptions.DataIntegrityException
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -17,6 +19,11 @@ class UserService(
 ) {
 
     private val bCryptPasswordEncoder: BCryptPasswordEncoder = BCryptPasswordEncoder()
+
+    fun getUser(): User? {
+        val user = SecurityContextHolder.getContext().authentication.principal as UserDetailsImpl
+        return findUserByEmail(user.username)
+    }
 
     /** Busca todos os usuários */
     fun findAllUsers(): List<UserDto> {

@@ -1,12 +1,10 @@
 package com.br.gglearning.domain
 
-import java.util.Date
 import javax.persistence.CollectionTable
 import javax.persistence.Column
 import javax.persistence.ElementCollection
 import javax.persistence.Entity
 import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
 import javax.persistence.ManyToOne
 import javax.persistence.Table
 
@@ -20,7 +18,7 @@ import javax.persistence.Table
  */
 @Entity
 @Table(name = "question")
-class Question (
+class Question(
     @Column(name = "text")
     var text: String,
 
@@ -34,4 +32,4 @@ class Question (
     @ManyToOne
     @JoinColumn(name = "quizz_id")
     var quizz: Quizz
-): BaseEntity()
+) : BaseEntity()

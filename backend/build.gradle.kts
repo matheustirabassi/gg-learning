@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.gglearningcore"
-version = "1.6"
+version = "1.7"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
@@ -35,6 +35,8 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-security")
     // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
     implementation("io.jsonwebtoken:jjwt:0.9.1")
+    // https://mvnrepository.com/artifact/org.modelmapper/modelmapper
+    implementation("org.modelmapper:modelmapper:3.1.0")
 
     compileOnly("org.projectlombok:lombok")
 

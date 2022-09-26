@@ -22,6 +22,10 @@ class JwtAuthenticationFilter(
     private val jwtUtil: JwtUtil
 ) : UsernamePasswordAuthenticationFilter() {
 
+    init {
+        setAuthenticationFailureHandler(JWTAuthenticationFailureHandler())
+    }
+
     @Throws(AuthenticationException::class)
     override fun attemptAuthentication(
         request: HttpServletRequest,
