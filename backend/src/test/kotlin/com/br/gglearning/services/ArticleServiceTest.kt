@@ -2,11 +2,12 @@ package com.br.gglearning.services
 
 import com.br.gglearning.dao.ArticleRepository
 import com.br.gglearning.data.ArticleDto
+import com.br.gglearning.data.QuestionDto
+import com.br.gglearning.data.QuizDto
 import com.br.gglearning.domain.User
 import com.br.gglearning.services.exceptions.ObjectNotFoundException
 import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -44,12 +45,13 @@ internal class ArticleServiceTest {
             "Aprenda a programar em Java",
             "<html> </html>",
             "17/09/2022",
-            "Jeremias"
+            "Jeremias",
+            emptyList()
         )
+
         val exception: ObjectNotFoundException = assertThrows {
             articleService.insert(
-                articleDto,
-                "jeremias@email.com"
+                articleDto
             )
         }
 
@@ -59,21 +61,36 @@ internal class ArticleServiceTest {
     @Test
     fun insert_AllValid_Success() {
         val user = User()
+        `when`(userService.getUser()).thenReturn(user)
         `when`(userService.findUserByEmail(anyString())).thenReturn(user)
+
+        val questionDto = QuestionDto(
+            "Jeremias",
+            listOf("a", "b", "c"),
+            "c"
+        )
+
+        val quizDto = QuizDto(
+            "Quiz jeremias",
+            listOf(questionDto)
+        )
 
         val articleDto = ArticleDto(
             "Progração orientada a objeto",
             "Aprenda a programar em Java",
             "<html> </html>",
             "17/09/2022",
-            "Jeremias"
+            "Jeremias",
+            listOf(quizDto)
         )
+
         articleService.insert(
-            articleDto,
-            "jeremias@email.com"
+            articleDto
         )
 
         val article = user.articles[0]
+        val quiz = article.quizzes[0]
+        val question = quiz.questions[0]
 
         assertAll(
             { assertEquals(articleDto.title, article.title) },
@@ -85,7 +102,23 @@ internal class ArticleServiceTest {
                     article.publicationDate
                 )
             },
-            { assertEquals(articleDto.authorName, article.authorName) }
+            { assertEquals(articleDto.authorName, article.authorName) },
+            { assertEquals(quizDto.name, quiz.name) },
+            {
+                assertEquals(
+                    questionDto.text,
+                    questionDto.text
+                )
+            },
+            {
+                assertEquals(
+                    questionDto.answer,
+                    question.answer
+                )
+            },
+            {
+                assertEquals(questionDto.alternatives, question.alternatives)
+            }
         )
     }
 
