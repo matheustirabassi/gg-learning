@@ -34,15 +34,16 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
             "email": email,
             "password": password
         })
-
-        if (data) {
-            console.log(data)
-            localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify("T0K3N4C335"))
-            setAccessToken("T0K3N4C335")
-        } else {
-            console.log(data)
-            alert("Usuário e/ou senha incorretos!")
-        }
+            .then((response) => {
+                console.log(response)
+                console.log(response.headers)
+                console.log(response.headers["Authorization"])
+                localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify("T0K3N4C335"))
+                setAccessToken("T0K3N4C335")
+            })
+            .catch((error) =>{
+                alert("Usuário ou senha incorretos")
+            })
     }, [])
 
     const handleLogout = useCallback(() => {
