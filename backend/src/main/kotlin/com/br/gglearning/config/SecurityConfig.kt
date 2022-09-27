@@ -28,15 +28,16 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     private final val PUBLIC_MATCHERS =
         arrayOf(
             "/h2-console/**",
-            "/users/create",
-            "/users/create/**",
             "/login/",
             "/login/*",
             "/articles/",
             "/articles/*"
         )
-
+        
+    private final val PUBLIC_MATCHERS_POST = arrayOf("/users/create")
     private final val PUBLIC_MATCHERS_GET = arrayOf("/users")
+    
+    
 
     @Autowired
     private lateinit var environment: Environment
@@ -56,9 +57,9 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         http.cors().and().csrf().disable()
 
         http.authorizeRequests()
-            .antMatchers(HttpMethod.GET, * PUBLIC_MATCHERS_GET).permitAll()
-            .antMatchers(* PUBLIC_MATCHERS).permitAll().anyRequest()
-            .authenticated()
+            .antMatchers(HttpMethod.POST, * PUBLIC_MATCHERS_POST).permitAll()
+            .antMatchers(HttpMethod.GET, * PUBLIC_MATCHERS_GET).permitAll().authenticated()
+            .antMatchers(* PUBLIC_MATCHERS).permitAll().authenticated()
 
         http.addFilter(
             JwtAuthenticationFilter(
@@ -85,11 +86,11 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
+        val configuration = CorsConfiguration().applyPermitDefaultValues()
+        configuration.setAllowedMethods(listOf("POST", "GET", "PUT", "DELETE", "OPTIONS"));
+        
         val source = UrlBasedCorsConfigurationSource()
-        source.registerCorsConfiguration(
-            "/*",
-            CorsConfiguration().applyPermitDefaultValues()
-        )
+        source.registerCorsConfiguration("/**", configuration)
 
         return source
     }
