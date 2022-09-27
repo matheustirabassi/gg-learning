@@ -30,7 +30,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     }, [])
 
     const handleLogin = useCallback(async (email: string, password: string) => {
-        const data = await Api.post("/login", {
+        await Api.post("/login", {
             "email": email,
             "password": password
         })
