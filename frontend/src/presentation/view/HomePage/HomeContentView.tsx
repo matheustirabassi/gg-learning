@@ -96,6 +96,22 @@ export const HomeContentView = () => {
 								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
 							/>
 						</Grid>
+						<Grid item sm={12} md={6} lg={4} xl={3}>
+							<ArticleCard
+								bgColor="primary"
+								linkImage="imgs/python.svg"
+								title="Primeiros passos em Python"
+								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
+							/>
+						</Grid>
+						<Grid item sm={12} md={6} lg={4} xl={3}>
+							<ArticleCard
+								bgColor="primary"
+								linkImage="imgs/python.svg"
+								title="Primeiros passos em Python"
+								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
+							/>
+						</Grid>
 					</Grid>
 				</Box>
 			</Box>

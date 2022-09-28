@@ -137,9 +137,6 @@ export const CreateAccountContentView = () => {
                                     </Fragment>
                                 )
                             }
-                            <Button variant='contained' onClick={() => setIsLoadingFields(oldValue => !oldValue)}>
-                                Teste skeleton
-                            </Button>
                         </Box>
                     </CardContent>
                     <CardActions>
