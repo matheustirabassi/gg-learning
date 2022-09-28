@@ -53,6 +53,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         }
 
         http.cors().and().csrf().disable()
+        http.headers().frameOptions().disable()
 
         http.authorizeRequests()
             .antMatchers(HttpMethod.POST, * PUBLIC_MATCHERS_POST).permitAll()
@@ -61,6 +62,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .permitAll().anyRequest().authenticated()
 
             .antMatchers(* PUBLIC_MATCHERS).permitAll().anyRequest().authenticated()
+
 
         http.addFilter(
             JwtAuthenticationFilter(
