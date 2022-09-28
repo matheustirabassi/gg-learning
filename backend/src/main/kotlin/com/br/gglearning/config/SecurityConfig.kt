@@ -36,9 +36,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         
     private final val PUBLIC_MATCHERS_POST = arrayOf("/users/create")
     private final val PUBLIC_MATCHERS_GET = arrayOf("/users")
-    
-    
-
+        
     @Autowired
     private lateinit var environment: Environment
 
@@ -60,6 +58,8 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .antMatchers(HttpMethod.POST, * PUBLIC_MATCHERS_POST).permitAll()
             .antMatchers(HttpMethod.GET, * PUBLIC_MATCHERS_GET).permitAll().authenticated()
             .antMatchers(* PUBLIC_MATCHERS).permitAll().authenticated()
+
+        http.headers().frameOptions().disable()
 
         http.addFilter(
             JwtAuthenticationFilter(
