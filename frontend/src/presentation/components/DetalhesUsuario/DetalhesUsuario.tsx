@@ -4,7 +4,6 @@ import "../../../assets/yup/TraducoesYup"
 import { Box, Card, CardContent, Typography, CardActions, Button, CircularProgress, Skeleton } from "@mui/material"
 import { Fragment, useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
-import { RHMaskTextField } from "../FormComponents/RHMaskTextField"
 import { RHTextField } from "../FormComponents/RHTextField"
 import infoUser from '../../../data/json/info.json';
 
@@ -74,13 +73,12 @@ export const DetalhesUsuario = () => {
                                             type="text"
                                             disabled={isLoading}
                                         />
-                                        <RHMaskTextField
+                                        <RHTextField
                                             name="cpf"
                                             control={control}
                                             label="CPF"
                                             type="text"
                                             disabled={isLoading}
-                                            mask="000.000.000-00"
                                         />
                                         <RHTextField
                                             name="email"
@@ -89,13 +87,12 @@ export const DetalhesUsuario = () => {
                                             type="email"
                                             disabled={isLoading}
                                         />
-                                        <RHMaskTextField
+                                        <RHTextField
                                             name="birthDate"
                                             control={control}
                                             label="Data de nascimento"
                                             type="text"
                                             disabled={isLoading}
-                                            mask="00/00/0000"
                                         />
                                         <RHTextField
                                             name="userName"
