@@ -36,9 +36,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         
     private final val PUBLIC_MATCHERS_POST = arrayOf("/users/create")
     private final val PUBLIC_MATCHERS_GET = arrayOf("/users")
-    
-    
-
+        
     @Autowired
     private lateinit var environment: Environment
 
