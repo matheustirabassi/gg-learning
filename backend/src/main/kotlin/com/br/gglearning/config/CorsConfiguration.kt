@@ -1,3 +1,5 @@
+package com.br.gglearning.config
+
 import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsRegistry
 import org.springframework.security.config.annotation.web.configuration.WebMvcConfigurer
