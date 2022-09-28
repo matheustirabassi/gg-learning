@@ -1,3 +1,7 @@
+import org.springframework.web.cors.CorsConfiguration
+import org.springframework.web.cors.CorsRegistry
+import org.springframework.security.config.annotation.web.configuration.WebMvcConfigurer
+import org.springframework.context.annotation.Configuration
 
 /** 
 * Configura o Cors.
