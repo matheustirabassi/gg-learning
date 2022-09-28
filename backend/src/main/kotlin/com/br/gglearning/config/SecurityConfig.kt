@@ -61,6 +61,8 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             .antMatchers(HttpMethod.GET, * PUBLIC_MATCHERS_GET).permitAll().authenticated()
             .antMatchers(* PUBLIC_MATCHERS).permitAll().authenticated()
 
+        http.headers().frameOptions().disable()
+
         http.addFilter(
             JwtAuthenticationFilter(
                 authenticationManager(),
