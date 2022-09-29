@@ -33,10 +33,10 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             "/articles/",
             "/articles/*"
         )
-        
+
     private final val PUBLIC_MATCHERS_POST = arrayOf("/users/create")
     private final val PUBLIC_MATCHERS_GET = arrayOf("/users")
-        
+
     @Autowired
     private lateinit var environment: Environment
 
@@ -57,12 +57,9 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
 
         http.authorizeRequests()
             .antMatchers(HttpMethod.POST, * PUBLIC_MATCHERS_POST).permitAll()
-
             .antMatchers(HttpMethod.GET, * PUBLIC_MATCHERS_GET)
             .permitAll().anyRequest().authenticated()
-
             .antMatchers(* PUBLIC_MATCHERS).permitAll().anyRequest().authenticated()
-
 
         http.addFilter(
             JwtAuthenticationFilter(
@@ -90,8 +87,8 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
         val configuration = CorsConfiguration().applyPermitDefaultValues()
-        configuration.setAllowedMethods(listOf("POST", "GET", "PUT", "DELETE", "OPTIONS"));
-        
+        configuration.allowedMethods = listOf("POST", "GET", "PUT", "DELETE", "OPTIONS")
+
         val source = UrlBasedCorsConfigurationSource()
         source.registerCorsConfiguration("/**", configuration)
 
