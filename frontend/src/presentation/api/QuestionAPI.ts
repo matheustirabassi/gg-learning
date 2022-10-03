@@ -1,6 +1,6 @@
-import { QuizzDTO } from "data/dto/QuestionDTO"
+import { QuestionDTO } from "data/dto/QuestionDTO"
 
-const create = async (data: QuizzDTO) => {
+const create = async (data: QuestionDTO[]) => {
     
     console.log(data)
 }

@@ -2,7 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
 import "../../../assets/yup/TraducoesYup"
 import { Box, Button, Card, CardActions, CardContent, CircularProgress } from "@mui/material"
-import { QuestionDTO, QuizzDTO } from 'data/dto/QuestionDTO'
+import { QuestionDTO } from 'data/dto/QuestionDTO'
 import { QuizzAPI } from 'presentation/api/QuestionAPI'
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
@@ -15,26 +15,31 @@ const createQuizzSchema = yup.object().shape({
 })
 
 export const CreateQuizz = () => {
-    const questions = new QuizzDTO([])
     const alt = [0, 1, 2, 3]
     const altCor = ["A", "B", "C", "D"]
     const { handleSubmit, control, reset } = useForm<QuestionDTO>({
         resolver: yupResolver(createQuizzSchema)
     })
 
+    const [question, setQuestion] = useState<QuestionDTO[]>([])
+    const handleQuizz = (data: QuestionDTO) => {
+
+        setQuestion(oldArray => [...oldArray, data])
+    }
+
     const [isLoading, setIsLoading] = useState(false)
 
     const onCreateQuestion: SubmitHandler<QuestionDTO> = (data) => {
         setIsLoading(true)
-        questions.quizz.push(data)
-        console.log(questions)
+        handleQuizz(data)
+        console.log(question)
         reset()
         setIsLoading(false)
     }
 
     const onSubmit = () => {
-        console.log(questions)
-        QuizzAPI.create(questions)
+        console.log(question)
+        QuizzAPI.create(question)
     }
     return (
         <Box width='100%' height='100%' display='flex' alignItems='center' justifyContent='center' sx={{ background: "background.default" }}>
