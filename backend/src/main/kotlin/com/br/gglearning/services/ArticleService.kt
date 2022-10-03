@@ -8,6 +8,8 @@ import com.br.gglearning.domain.User
 import com.br.gglearning.services.exceptions.ObjectNotFoundException
 import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.text.SimpleDateFormat
@@ -41,6 +43,20 @@ class ArticleService(
         user.articles.add(article)
 
         return article
+    }
+
+    /**
+     * Busca todos os artigos do sistema
+     *
+     * @return A lista com todos os arquivos paginanda
+     */
+    fun findAllArticles(pageable: Pageable): Page<ArticleDto> {
+        return articleRepository.findAll(pageable).map { article ->
+            ModelMapper().map(
+                article,
+                ArticleDto::class.java
+            )
+        }
     }
 
     private fun parseDtoToEntity(
