@@ -85,4 +85,14 @@ class ArticleService(
 
         return article
     }
+
+    @Transactional
+    fun updateArticle(articleId: Long, articleDto: ArticleDto) {
+        val article = articleRepository.findById(articleId).get()
+
+        article.authorName = articleDto.authorName
+        article.content = articleDto.content
+        article.title = articleDto.title
+        article.subtitle = articleDto.subtitle
+    }
 }
