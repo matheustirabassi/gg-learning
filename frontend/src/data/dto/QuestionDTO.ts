@@ -1,12 +1,12 @@
 export class QuestionDTO {
     question: string
     alternative: string[]
-    correctAlternative: number
+    answer: number
 
-    constructor(question: string, alternative: string[], correctAlternative: number) {
+    constructor(question: string, alternative: string[], answer: number) {
         this.question = question
         this.alternative = alternative
-        this.correctAlternative = correctAlternative
+        this.answer = answer
     }
 }
 
