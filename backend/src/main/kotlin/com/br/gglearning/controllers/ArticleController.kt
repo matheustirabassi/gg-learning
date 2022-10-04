@@ -9,7 +9,9 @@ import org.springframework.data.domain.Pageable
 import org.springframework.http.ResponseEntity
 import org.springframework.security.access.annotation.Secured
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
@@ -51,5 +53,16 @@ class ArticleController(
     @GetMapping
     fun findAllArticles(pageable: Pageable): ResponseEntity<Page<ArticleDto>> {
         return ResponseEntity.ok().body(articleService.findAllArticles(pageable))
+    }
+
+    @PutMapping
+    fun updateArticle(
+        @PathVariable articleId: Long,
+        @RequestBody @Valid
+        articleDto: ArticleDto
+    ):
+        ResponseEntity<Any> {
+        articleService.updateArticle(articleId, articleDto)
+        return ResponseEntity.noContent().build()
     }
 }
