@@ -6,6 +6,7 @@ import javax.validation.constraints.NotEmpty
 /**
  * O Dto do artigo.
  *
+ * @property id O identificador do artigo.
  * @property title O título do artigo.
  * @property subtitle O subtítulo do artigo.
  * @property content O conteúdo HTML do artigo.
@@ -13,6 +14,7 @@ import javax.validation.constraints.NotEmpty
  * @property authorName O nome do autor publicador do artigo.
  */
 data class ArticleDto(
+    val id: Long,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
     val title: String,
