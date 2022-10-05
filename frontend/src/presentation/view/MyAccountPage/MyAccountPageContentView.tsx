@@ -1,8 +1,9 @@
 import { Article, Person } from "@mui/icons-material"
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from "@mui/material"
+import { Box, List, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme, Button } from "@mui/material"
 import { DetalhesUsuario } from "presentation/components/DetalhesUsuario/DetalhesUsuario"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, Fragment } from "react"
+import { ROUTES } from "Routes"
 
 export const MyAccountPageContentView = () => {
     const theme = useTheme()
@@ -14,7 +15,7 @@ export const MyAccountPageContentView = () => {
         setMyArticles(oldMyArticles => !oldMyArticles)
     }, [])
     return (
-        <Box display = 'flex' flexDirection='row' height='100vh'>
+        <Box display='flex' flexDirection='row' height='100vh'>
             <Box width={theme.spacing(28)} display='flex' flexDirection='column' bgcolor={theme.palette.primary.main}>
                 <Box flex={1}>
                     <List component='nav'>
@@ -22,13 +23,13 @@ export const MyAccountPageContentView = () => {
                             <ListItemIcon>
                                 <Person />
                             </ListItemIcon>
-                            <ListItemText primary={"Minha informações"} sx={{color: "secondary.contrastText"}} />
+                            <ListItemText primary={"Minha informações"} sx={{ color: "secondary.contrastText" }} />
                         </ListItemButton>
                         <ListItemButton onClick={toggleMenu}>
                             <ListItemIcon>
                                 <Article />
                             </ListItemIcon>
-                            <ListItemText primary={"Meus artigos"} sx={{color: "secondary.contrastText"}} />
+                            <ListItemText primary={"Meus artigos"} sx={{ color: "secondary.contrastText" }} />
                         </ListItemButton>
                     </List>
                 </Box>
@@ -36,13 +37,27 @@ export const MyAccountPageContentView = () => {
             <Box width='100%' >
                 {
                     myInfo && (
-                        <DetalhesUsuario/>
+                        <DetalhesUsuario />
                     )
                 }
 
                 {
                     myArticles && (
-                        <Typography color="secondary.main">Meus artigos</Typography>
+                        <Fragment>
+                            <Box display="flex" flexDirection="column" alignItems="center" marginTop={2}>
+                                <Button
+                                    variant="contained"
+                                    href={ROUTES.CREATE_ARTICLE}>
+                                    <Typography
+                                        variant="h3"
+                                        color="secondary.contrastText"
+                                    >Crie um artigo</Typography>
+                                </Button>
+
+                                <Typography color="secondary.main">Meus artigos</Typography>
+                            </Box>
+
+                        </Fragment>
                     )
                 }
             </Box>
