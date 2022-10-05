@@ -68,6 +68,6 @@ class ArticleController(
     fun findArticleById(
         @PathVariable articleId: Long,
     ): ResponseEntity <ArticleDto> {
-        return ResponseEntity.ok().body(articleService.findArticleById(articleId)
+        return ResponseEntity.ok().body(articleService.findArticleById(articleId))
     }
 }
