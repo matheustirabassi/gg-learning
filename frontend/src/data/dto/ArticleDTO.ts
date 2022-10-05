@@ -1,4 +1,5 @@
-import { QuizzDTO } from "./QuestionDTO"
+import { QuestionDTO } from "./QuestionDTO"
+import {  QuizzDTO } from "./QuizzDTO"
 
 export class ArticleDTO{
     title: string
@@ -6,13 +7,14 @@ export class ArticleDTO{
     subtitle: string
     authorName: string
     publicationDate: string
-    quizz?: QuizzDTO
+    quizzes?: QuizzDTO[]
 
-    constructor(title: string, content: string, subtitle: string, authorName: string, publicationDate: string){
+    constructor(title: string, content: string, subtitle: string, authorName: string, publicationDate: string, quizzes?: QuizzDTO[]){
         this.title = title
         this.content = content
         this.subtitle = subtitle
         this.authorName = authorName
         this.publicationDate = publicationDate
+        this.quizzes = quizzes
     }
 }

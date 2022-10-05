@@ -1,19 +1,11 @@
 export class QuestionDTO {
-    question: string
-    alternative: string[]
-    answer: number
+    text: string
+    alternatives: string[]
+    answer: string
 
-    constructor(question: string, alternative: string[], answer: number) {
-        this.question = question
-        this.alternative = alternative
+    constructor(text: string, alternatives: string[], answer: string) {
+        this.text = text
+        this.alternatives = alternatives
         this.answer = answer
-    }
-}
-
-export class QuizzDTO{
-    quizz: QuestionDTO[]
-
-    constructor(quizz: QuestionDTO[]){
-        this.quizz = quizz
     }
 }

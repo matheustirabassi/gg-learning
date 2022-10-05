@@ -1,10 +1,25 @@
 import { ArrowForwardIos, ArrowBackIos, Search } from '@mui/icons-material';
 import { Grid, IconButton, Box, TextField, InputAdornment } from "@mui/material";
+import { ArticleDTO } from 'data/dto/ArticleDTO';
+import { ArticleAPI } from 'presentation/api/ArticleAPI';
 import { ArticleCard } from 'presentation/components/Card/ArticleCard';
 import { PageBaseLayout } from 'presentation/components/PageBaseLayout/PageBaseLayout';
-import data from '../../../data/json/articles.json';
+import { useEffect, useState } from 'react';
 
 export const AllArticlesContent = () => {
+    const [articles, setArticle] = useState<ArticleDTO[]>([])
+
+    useEffect(() =>{
+        ArticleAPI.getAll()
+        .then((result) =>{
+            if (result instanceof Error) {
+                alert(result.message)
+            } else {
+                setArticle(result.data)
+            }
+        })
+    })
+
     return (
         <PageBaseLayout showSideFooter>
             <Box display="flex" flexDirection="row" alignItems="center" marginX={10} marginTop={2} justifyContent="center">
@@ -51,14 +66,14 @@ export const AllArticlesContent = () => {
                         spacing={1}
                     >
                         {
-                            data.map(article => {
+                            articles.map(article => {
                                 return (
                                     <Grid item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
                                         <ArticleCard
                                             bgColor='primary'
-                                            linkImage={article.img}
+                                            linkImage={"imgs/python.svg"}
                                             title={article.title}
-                                            description={article.description}
+                                            description={article.subtitle}
                                         />
                                     </Grid>
                                 )

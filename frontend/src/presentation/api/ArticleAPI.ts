@@ -1,21 +1,38 @@
 import { ArticleDTO } from "data/dto/ArticleDTO"
+import { parseDateToString } from "helper/DateHelper"
 import { Api } from "presentation/axios/AxiosConfig"
 
 const create = async (article: ArticleDTO) => {
-    let currentDate = new Date()
-    article.publicationDate = `${currentDate.getUTCDate().toString()}/${currentDate.getUTCMonth().toString()}/${currentDate.getUTCFullYear().toString()}`
+    let currentDate = parseDateToString(new Date())
+    article.publicationDate = `${currentDate}`
     article.authorName = "Miguel Sbrissa"
     console.log(article)
-    const data = await Api.post('/articles/create', {
-        "title": article.title,
-        "subtitle": article.subtitle,
-        "content": article.content,
-        "publicationDate": article.publicationDate,
-        "authorName": article.authorName,
-    })
+    const data = await Api.post('/articles', article)
     console.log(data)
 }
 
+const getAll = async () => {
+    const data = await Api.get('/articles')
+
+    if(data){
+        return data
+    }else{
+        return new Error('Erro ao listar os registros')
+    }
+}
+
+const getById = async (id: number) => {
+    const data = await Api.get('/articles')
+
+    if(data){
+        return data
+    }else{
+        return new Error('Erro ao listar os registros')
+    }
+}
+
 export const ArticleAPI = {
-    create
+    create,
+    getAll,
+    getById
 }

@@ -1,121 +1,176 @@
-import { Box, Stepper, Typography, Step, StepLabel, Button } from "@mui/material";
-import { CreateArticle } from "presentation/components/CreateArticle/CreateArticle";
-import { CreateQuizz } from "presentation/components/CreateQuizz/CreateQuizz";
-import { useState, Fragment, ReactNode } from "react";
+import { Box, Button, Card, CardActions, CardContent, CircularProgress, Typography } from "@mui/material";
+import { useState } from "react";
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from "yup"
+import "../../../assets/yup/TraducoesYup"
+import { ArticleDTO } from "data/dto/ArticleDTO";
+import { ArticleAPI } from "presentation/api/ArticleAPI";
+import { RHTextArea } from "presentation/components/FormComponents/RHTextArea";
+import { RHTextField } from "presentation/components/FormComponents/RHTextField";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { QuestionDTO } from "data/dto/QuestionDTO";
+import { QuizzDTO } from "data/dto/QuizzDTO";
+import { RHRadioButton } from "presentation/components/FormComponents/RHRadioButton";
 
-const steps = ['Criar artigo', 'Criar quizz'];
+const createArticleSchema = yup.object().shape({
+    title: yup.string().required(),
+    content: yup.string().required(),
+    subtitle: yup.string().required(),
+})
+
+const createQuizzSchema = yup.object().shape({
+    text: yup.string().required(),
+    alternatives: yup.array().of(yup.string().required()),
+})
 
 export const CreateArticleContentView = () => {
-    const [activeStep, setActiveStep] = useState(0);
-    const [skipped, setSkipped] = useState(new Set<number>());
+    //Article
+    const { control: controlArticle, handleSubmit: handleSubmitArticle, getValues } = useForm<ArticleDTO>({
+        resolver: yupResolver(createArticleSchema)
+    })
 
-    const isStepOptional = (step: number) => {
-        return step === 1;
-    };
+    const [isLoading, setIsLoading] = useState(false)
 
-    const isStepSkipped = (step: number) => {
-        return skipped.has(step);
-    };
+    const onSubmit: SubmitHandler<ArticleDTO> = (data) => {
+        setIsLoading(true)
+        
+    }
 
-    const handleNext = () => {
-        let newSkipped = skipped;
-        if (isStepSkipped(activeStep)) {
-            newSkipped = new Set(newSkipped.values());
-            newSkipped.delete(activeStep);
-        }
+    //Quizz
+    const { handleSubmit: handleSubmitQuizz, control: controlQuizz, reset: resetQuizz } = useForm<QuestionDTO>({
+        resolver: yupResolver(createQuizzSchema)
+    })
+    const alt = [0, 1, 2, 3]
+    const altCor = ["A", "B", "C", "D"]
 
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped(newSkipped);
-    };
+    const [question, setQuestion] = useState<QuestionDTO[]>([])
+    const handleQuizz = (data: QuestionDTO) => {
+        setQuestion(oldArray => [...oldArray, data])
+    }
 
-    const handleBack = () => {
-        setActiveStep((prevActiveStep) => prevActiveStep - 1);
-    };
+    const onCreateQuestion: SubmitHandler<QuestionDTO> = (data) => {
+        handleQuizz(data)
+        console.log(question)
+        resetQuizz()
+    }
 
-    const handleSkip = () => {
-        if (!isStepOptional(activeStep)) {
-            throw new Error("Você não pode pular uma etapa obrigatória");
-        }
+    const onSubmitQuizz = () => {
+        let quizz = new QuizzDTO(getValues("title"), question)
+        let finalArticle = new ArticleDTO(getValues("title"), getValues("content"), getValues("subtitle"), "", "", [quizz])
+        console.log(finalArticle)
+        ArticleAPI.create(finalArticle)
+    }
 
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped((prevSkipped) => {
-            const newSkipped = new Set(prevSkipped.values());
-            newSkipped.add(activeStep);
-            return newSkipped;
-        });
-    };
-
-    const handleReset = () => {
-        setActiveStep(0);
-    };
     return (
-        <Box sx={{ width: '80%', mt: 2, mx: 20 }}>
-            <Stepper activeStep={activeStep}>
-                {steps.map((label, index) => {
-                    const stepProps: { completed?: boolean } = {};
-                    const labelProps: {
-                        optional?: ReactNode;
-                    } = {};
-                    if (isStepOptional(index)) {
-                        labelProps.optional = (
-                            <Typography variant="caption" color="secondary">Opcional</Typography>
-                        );
-                    }
-                    if (isStepSkipped(index)) {
-                        stepProps.completed = false;
-                    }
-                    return (
-                        <Step key={label} {...stepProps}>
-                            <StepLabel {...labelProps}>
-                                <Typography color="secondary">
-                                    {label}
-                                </Typography>
-                            </StepLabel>
-                        </Step>
-                    );
-                })}
-            </Stepper>
-            {activeStep === steps.length ? (
-                <Fragment>
-                    <Typography sx={{ mt: 2, mb: 1 }} color="secondary">
-                        Artigo finalizado deseja publicá-lo?
-                    </Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                        <Box sx={{ flex: '1 1 auto' }} />
-                        <Button onClick={handleReset}>Reiniciar</Button>
-                    </Box>
-                </Fragment>
-            ) : (
-                <Fragment>
-                    {
-                        activeStep === 0 ? (
-                            <CreateArticle />
-                        ) : (
-                            <CreateQuizz />
-                        )
-                    }
-                    <Typography sx={{ mt: 2, mb: 1 }}>Etapa {activeStep + 1}/2</Typography>
-                    <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-                        <Button
-                            color="inherit"
-                            disabled={activeStep === 0}
-                            onClick={handleBack}
-                            sx={{ mr: 1 }}
-                        >
-                            Voltar
-                        </Button>
-                        <Box sx={{ flex: '1 1 auto' }} />
-                        {isStepOptional(activeStep) && (
-                            <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
-                                Pular
+        <Box width='100%' height='100%' display='flex' alignItems='center' justifyContent='center' flexDirection="column" sx={{ background: "background.default" }}>
+            { /**Article*/}
+            <Box marginTop={2}>
+                <Card>
+                    <CardContent>
+                        <Box display='flex' flexDirection='column' gap={2} width={900} padding={2}>
+                            <Typography
+                                variant='h3'
+                            >Adicione as informações do artigo</Typography>
+                            <RHTextField
+                                name="title"
+                                control={controlArticle}
+                                label="Titulo"
+                                type="text"
+                                disabled={isLoading}
+                            />
+                            <RHTextField
+                                name="subtitle"
+                                control={controlArticle}
+                                label="Subtitulo"
+                                type="text"
+                                disabled={isLoading}
+                            />
+                            <RHTextArea
+                                name="content"
+                                control={controlArticle}
+                                label="Conteúdo"
+                                type="text"
+                                disabled={isLoading}
+                                rows={20}
+                            />
+                        </Box>
+                    </CardContent>
+                    <CardActions>
+                        <Box width='100%' display='flex' justifyContent='center' marginBottom={1}>
+                            <Button
+                                variant='contained'
+                                disabled={isLoading}
+                                onClick={handleSubmitArticle(onSubmit)}
+                                endIcon={isLoading ? <CircularProgress variant='indeterminate' color='inherit' size={20} /> : undefined}
+                            >
+                                Finalizar artigo
                             </Button>
-                        )}
-                        <Button onClick={handleNext}>
-                            {activeStep === steps.length - 1 ? 'Finalizar artigo' : 'Próximo'}
-                        </Button>
-                    </Box>
-                </Fragment>
-            )}
+                        </Box>
+                    </CardActions>
+                </Card>
+            </Box>
+            { /**Quizz*/}
+            <Box marginTop={2}>
+                <Card>
+                    <CardContent>
+                        <Box display='flex' flexDirection='column' gap={2} width={900} padding={2}>
+                        <Typography
+                                variant='h3'
+                            >Adicione as informações do quizz (Opcional)</Typography>
+                            <RHTextField
+                                name="text"
+                                control={controlQuizz}
+                                label="Digite a questão"
+                                type="text"
+                                disabled={isLoading}
+                            />
+                            {
+                                alt.map((index) => (
+                                    <RHTextField
+                                        key={index}
+                                        name={`alternatives[${index}]`}
+                                        control={controlQuizz}
+                                        label={`Digite a alternativa ${altCor[index]}`}
+                                        type="text"
+                                        disabled={isLoading}
+                                    />
+                                ))
+                            }
+
+                            <RHRadioButton
+                                name="answer"
+                                control={controlQuizz}
+                                label="Escolha qual alternativa será a correta"
+                                disabled={isLoading}
+                                options={altCor}
+                            />
+                        </Box>
+                    </CardContent>
+                    <CardActions>
+                        <Box width='100%' display='flex' justifyContent='center' marginBottom={1}>
+                            <Button
+                                variant='contained'
+                                disabled={isLoading}
+                                onClick={handleSubmitQuizz(onCreateQuestion)}
+                                endIcon={isLoading ? <CircularProgress variant='indeterminate' color='inherit' size={20} /> : undefined}
+                            >
+                                Adicionar pergunta
+                            </Button>
+                        </Box>
+                        <Box width='100%' display='flex' justifyContent='center' marginBottom={1}>
+                            <Button
+                                variant='contained'
+                                disabled={isLoading}
+                                onClick={onSubmitQuizz}
+                                endIcon={isLoading ? <CircularProgress variant='indeterminate' color='inherit' size={20} /> : undefined}
+                            >
+                                Criar quizz
+                            </Button>
+                        </Box>
+                    </CardActions>
+                </Card>
+            </Box>
+
         </Box>
     )
 }
