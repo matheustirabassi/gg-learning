@@ -7,7 +7,6 @@ import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
 import javax.persistence.JoinTable
-import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
 
@@ -27,7 +26,7 @@ import javax.persistence.Table
 @Table(name = "\"user\"")
 class User(
 
-    @Column(name = "userName", unique = true)
+    @Column(name = "userName")
     var userName: String = "",
 
     @Column(name = "password")
@@ -36,7 +35,7 @@ class User(
     @Column(name = "name")
     var name: String? = null,
 
-    @Column(name = "cpf", unique = true)
+    @Column(name = "cpf")
     var cpf: String = "",
 
     @Column(name = "email", unique = true)

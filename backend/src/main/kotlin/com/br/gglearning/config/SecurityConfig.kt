@@ -20,9 +20,9 @@ import org.springframework.web.cors.CorsConfiguration
 import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 class SecurityConfig : WebSecurityConfigurerAdapter() {
 
     private final val PUBLIC_MATCHERS =
@@ -31,13 +31,8 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             "/login/",
             "/login/*",
             "/articles/",
-            "/articles/*",
-            "/users/create/",
-            "/users/create/*"
+            "/articles/*"
         )
-
-    private final val PUBLIC_MATCHERS_POST = arrayOf("/users/create")
-    private final val PUBLIC_MATCHERS_GET = arrayOf("/users")
 
     @Autowired
     private lateinit var environment: Environment
@@ -55,19 +50,19 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         }
 
         http.cors().and().csrf().disable()
-        http.headers().frameOptions().disable()
 
         http.authorizeRequests()
-            .antMatchers(HttpMethod.POST, * PUBLIC_MATCHERS_POST).permitAll()
-            .antMatchers(HttpMethod.GET, * PUBLIC_MATCHERS_GET).permitAll()
+            .antMatchers(HttpMethod.POST, "/users/create").permitAll()
+            .antMatchers(HttpMethod.GET, "/users").permitAll()
             .antMatchers(* PUBLIC_MATCHERS)
             .permitAll().anyRequest().authenticated()
 
-        http.addFilter(
+        http.addFilterBefore(
             JwtAuthenticationFilter(
                 authenticationManager(),
                 jwtUtil
-            )
+            ),
+            JwtAuthenticationFilter::class.java
         )
 
         http.addFilter(
@@ -81,14 +76,14 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
     }
 
-    @Throws(java.lang.Exception::class)
+    @Throws(Exception::class)
     override fun configure(auth: AuthenticationManagerBuilder) {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder())
     }
 
     @Bean
     fun corsConfigurationSource(): CorsConfigurationSource {
-        val configuration = CorsConfiguration().applyPermitDefaultValues()
+        val configuration: CorsConfiguration = CorsConfiguration().applyPermitDefaultValues()
         configuration.allowedMethods = listOf("POST", "GET", "PUT", "DELETE", "OPTIONS")
 
         val source = UrlBasedCorsConfigurationSource()
