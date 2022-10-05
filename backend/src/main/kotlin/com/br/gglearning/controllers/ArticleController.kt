@@ -2,7 +2,6 @@ package com.br.gglearning.controllers
 
 import com.br.gglearning.data.ArticleDto
 import com.br.gglearning.services.ArticleService
-import lombok.extern.log4j.Log4j2
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -20,8 +19,7 @@ import java.net.URI
 import javax.validation.Valid
 
 @RestController
-@Log4j2
-@RequestMapping(value = ["/articles"])
+@RequestMapping("/articles")
 class ArticleController(
     @Autowired
     val articleService: ArticleService

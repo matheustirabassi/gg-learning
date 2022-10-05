@@ -41,6 +41,7 @@ internal class ArticleServiceTest {
         `when`(userService.findUserByEmail(anyString())).thenReturn(null)
 
         val articleDto = ArticleDto(
+            1,
             "Progração orientada a objeto",
             "Aprenda a programar em Java",
             "<html> </html>",
@@ -76,6 +77,7 @@ internal class ArticleServiceTest {
         )
 
         val articleDto = ArticleDto(
+            1,
             "Progração orientada a objeto",
             "Aprenda a programar em Java",
             "<html> </html>",
