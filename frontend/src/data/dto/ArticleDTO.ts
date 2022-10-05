@@ -1,4 +1,3 @@
-import { QuestionDTO } from "./QuestionDTO"
 import {  QuizzDTO } from "./QuizzDTO"
 
 export class ArticleDTO{
