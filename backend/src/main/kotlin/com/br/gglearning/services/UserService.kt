@@ -5,6 +5,8 @@ import com.br.gglearning.data.UserDto
 import com.br.gglearning.domain.User
 import com.br.gglearning.security.UserDetailsImpl
 import com.br.gglearning.services.exceptions.DataIntegrityException
+import com.br.gglearning.services.exceptions.ObjectNotFoundException
+import org.modelmapper.ModelMapper
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
