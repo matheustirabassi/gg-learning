@@ -58,7 +58,14 @@ class ArticleService(
             )
         }
     }
-
+    /**
+    * Converte de Dto para para a entidade artigo.
+    *
+    * @param articleDto O Dto que representa o artigo.
+    * @param user O usuário autenticado.
+    * 
+    * @return O artigo com os dados atualizados.
+    */
     private fun parseDtoToEntity(
         articleDto: ArticleDto,
         user: User
@@ -86,13 +93,32 @@ class ArticleService(
         return article
     }
 
+    /**
+    * Atualiza o artigo com base no identificador.
+    *
+    * @param articleId O identificador do artigo.
+    * @param articleDto O dto a ser usado para atualizar o artigo.
+    *
+    * @return O artigo buscado.
+    */
     @Transactional
     fun updateArticle(articleId: Long, articleDto: ArticleDto) {
         val article = articleRepository.findById(articleId).get()
 
-        article.authorName = articleDto.authorName
         article.content = articleDto.content
         article.title = articleDto.title
         article.subtitle = articleDto.subtitle
+    }
+
+    /**
+    * Busca o artigo com base no identificador.
+    *
+    * @param articleId O identificador do artigo.
+    * @return O artigo buscado.
+    */
+    fun findArticleById(articleId: Long): ArticleDto {
+        val article = articleRepository.findById(articleId).get()
+
+        return ModelMapper().map(article, ArticleDto::class.java)
     }
 }
