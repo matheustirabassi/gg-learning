@@ -1,6 +1,7 @@
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { ArticleCard } from "presentation/components/Card/ArticleCard"
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
+import { ROUTES } from "Routes"
 import Imagem from "../../../assets/imgs/img.jpg"
 
 export const HomeContentView = () => {
@@ -18,7 +19,9 @@ export const HomeContentView = () => {
 							padding={2}
 						>GGLearning a melhor ferramenta para começar a programar</Typography>
 						<Box>
-							<Button variant="contained">
+							<Button
+								variant="contained"
+								href={ROUTES.CREATE_ACCOUNT}>
 								<Typography
 									variant="h3"
 									color="secondary.contrastText"
@@ -32,8 +35,8 @@ export const HomeContentView = () => {
 						src={Imagem}
 						sx={{
 							borderRadius: "10px",
-							maxHeight: { xl: 600, lg: 400},
-							maxWidth: { xl: 700, lg: 500},
+							maxHeight: { xl: 600, lg: 400 },
+							maxWidth: { xl: 700, lg: 500 },
 						}}
 					>
 					</Box>
@@ -45,6 +48,22 @@ export const HomeContentView = () => {
 				</Box>
 				<Box display='flex' justifyItems="center" alignItems="center" >
 					<Grid container spacing={2} justifyContent="space-evenly" >
+						<Grid item sm={12} md={6} lg={4} xl={3}>
+							<ArticleCard
+								bgColor="primary"
+								linkImage="imgs/python.svg"
+								title="Primeiros passos em Python"
+								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
+							/>
+						</Grid>
+						<Grid item sm={12} md={6} lg={4} xl={3}>
+							<ArticleCard
+								bgColor="primary"
+								linkImage="imgs/python.svg"
+								title="Primeiros passos em Python"
+								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
+							/>
+						</Grid>
 						<Grid item sm={12} md={6} lg={4} xl={3}>
 							<ArticleCard
 								bgColor="primary"

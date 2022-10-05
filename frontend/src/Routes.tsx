@@ -5,6 +5,7 @@ import { ArticleView } from "presentation/view/ArticlePage/ArticleView"
 import { QuizzView } from "presentation/view/QuizzPage/QuizzView"
 import CreateAccountView from "presentation/view/CreateAccountPage/CreateAccountView"
 import { MyAccountPageView } from "presentation/view/MyAccountPage/MyAccountPageView"
+import CreateArticleView from "presentation/view/CreateArticlePage/CreateArticleView"
 
 export const ROUTES = {
 	HOME: "/",
@@ -13,7 +14,8 @@ export const ROUTES = {
 	QUIZZ:"/quizz",
 	COMPILADOR:"/compiler",
 	CREATE_ACCOUNT:"/register",
-	MY_ACCOUNT:"/myaccount"
+	MY_ACCOUNT:"/myaccount",
+	CREATE_ARTICLE: "/create_article"
 }
 
 const HomeRoutes = () => {
@@ -27,6 +29,7 @@ const HomeRoutes = () => {
 				<Route path={ROUTES.COMPILADOR} element={<HomeView/>}/>
 				<Route path={ROUTES.CREATE_ACCOUNT} element={<CreateAccountView />}/>
 				<Route path={ROUTES.MY_ACCOUNT} element={<MyAccountPageView />}/>
+				<Route path={ROUTES.CREATE_ARTICLE} element={<CreateArticleView />}/>
 				
 				<Route path='*' element={<Navigate to="/"/>}></Route>
 			</Routes>

@@ -47,14 +47,13 @@ export const AllArticlesContent = () => {
                     <Grid
                         container
                         direction="row"
-
                         alignItems="center"
-                        spacing={2}
+                        spacing={1}
                     >
                         {
                             data.map(article => {
                                 return (
-                                    <Grid item xs={6} md={3} lg={2}>
+                                    <Grid item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
                                         <ArticleCard
                                             bgColor='primary'
                                             linkImage={article.img}

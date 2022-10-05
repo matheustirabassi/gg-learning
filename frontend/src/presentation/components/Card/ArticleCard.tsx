@@ -33,7 +33,6 @@ export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProp
 						}}
 					/>
 				</Box>
-
 				<CardContent>
 					<Typography
 						gutterBottom
@@ -44,7 +43,6 @@ export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProp
 					>
 						{title}
 					</Typography>
-
 					<Typography
 						variant="h5"
 						color="secondary.contrastText"
