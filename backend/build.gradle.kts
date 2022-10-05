@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.gglearningcore"
-version = "1.8"
+version = "1.9"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 configurations {
