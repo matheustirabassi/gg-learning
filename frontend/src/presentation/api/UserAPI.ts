@@ -10,7 +10,7 @@ const create = async (user: UserDTO) => {
         "typeUser": user.typeUser,
         "userName": user.userName,
         "birthDate":user.birthDate,
-        "password": user.password 
+        "password": user.password
     })
     console.log(data)
 }
