@@ -41,4 +41,9 @@ class UserController(
             .buildAndExpand(userSaved.email).toUri()
         return ResponseEntity.created(uri).body(userSaved)
     }
+
+    @GetMapping("/myUser")
+    fun getMyUserData() : ResponseEntity<UserDto> {
+        return ResponseEntity.ok(userService.getMyUser())
+    }
 }

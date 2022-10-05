@@ -71,4 +71,19 @@ class UserService(
         user.name = userDto.name
         user.birthDate = SimpleDateFormat("dd/MM/yyyy").parse(userDto.birthDate)
     }
+
+    /**
+    * Obtém os dados cadastrais do usuário logado na sessão.
+    *
+    * @return Os dados cadastrais do usuário autenticado.
+    */
+    fun getMyUser(): UserDto {
+        val user = getUser()
+
+        if(user == null) {
+            throw ObjectNotFoundException("O usuário não foi encontrado")
+        }
+
+        return ModelMapper().map(user, UserDto::class.java)
+    }
 }
