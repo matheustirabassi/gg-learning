@@ -15,7 +15,7 @@ export const AllArticlesContent = () => {
             if (result instanceof Error) {
                 alert(result.message)
             } else {
-                setArticle(result.data)
+                setArticle(result)
             }
         })
     })

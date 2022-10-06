@@ -6,9 +6,9 @@ export class ArticleDTO{
     subtitle: string
     authorName: string
     publicationDate: string
-    quizzes?: QuizzDTO[]
+    quizzes: QuizzDTO[]
 
-    constructor(title: string, content: string, subtitle: string, authorName: string, publicationDate: string, quizzes?: QuizzDTO[]){
+    constructor(title: string, content: string, subtitle: string, authorName: string, publicationDate: string, quizzes: QuizzDTO[]){
         this.title = title
         this.content = content
         this.subtitle = subtitle

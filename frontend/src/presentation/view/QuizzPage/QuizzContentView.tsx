@@ -1,15 +1,54 @@
 import { Button, Box, FormControl, Grid, Typography } from "@mui/material"
+import { ArticleDTO } from "data/dto/ArticleDTO"
+import { QuizzDTO } from "data/dto/QuizzDTO"
+import { ArticleAPI } from "presentation/api/ArticleAPI"
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
 import { Question } from "presentation/components/Question/Question"
+import { useState, useEffect } from "react"
+import { useParams, useNavigate } from "react-router-dom"
+import { ROUTES } from "Routes"
 
+interface IQuizzProps {
+    id: number
+}
 
-export const QuizzContentView = () => {
+export const QuizzContentView = ({ id }: IQuizzProps) => {
+    const [isLoading, setIsLoading] = useState(false)
+    const [article, setArticle] = useState<ArticleDTO>(new ArticleDTO('','','','','',[]))
+    const navigate = useNavigate()
+
+    // useEffect(() => {
+    //     setIsLoading(true)
+    //     ArticleAPI.getById(Number(id))
+    //         .then((result) => {
+    //             setIsLoading(false)
+
+    //             if (result instanceof Error) {
+    //                 alert(result.message)
+    //                 navigate(ROUTES.HOME)
+    //             } else {
+    //                 setArticle(result)
+    //                 setIsLoading(false)
+    //             }
+    //         })
+
+    // }, [id])
     return (
-
-        <PageBaseLayout showSideFooter>
+        <PageBaseLayout>
             <Box display="flex" justifyContent="center" >
                 <FormControl sx={{ marginTop: "20px" }}>
                     <Grid container spacing={2} direction="column">
+                        {/* {article?.quizzes[0].questions.map((question, index) => {
+                            return (
+                                <Grid item key={index}>
+                                    <Question
+                                        num={index}
+                                        question={question.text}
+                                        alternatives={question.alternatives}
+                                    />
+                                </Grid>
+                            )
+                        })} */}
                         <Grid item >
                             <Question
                                 num={1}
@@ -50,8 +89,6 @@ export const QuizzContentView = () => {
 
                 </FormControl>
             </Box>
-
         </PageBaseLayout>
-
     )
 }

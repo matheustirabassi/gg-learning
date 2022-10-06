@@ -1,4 +1,5 @@
 import { Box, Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material"
+import { useNavigate } from 'react-router-dom'
 
 export interface CardProps {
 	/** a cor de fundo do cartão */
@@ -11,11 +12,14 @@ export interface CardProps {
 
 	description?: string
 
+	id?: number
+
 	/** A ação do card ao ser clicado */
 	onClick?: () => void
 }
 
-export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProps) => {
+export const ArticleCard = ({ linkImage, title, description, bgColor, id }: CardProps) => {
+	const navigate = useNavigate()
 	return (
 		<Box>
 			<Card sx={{
@@ -54,7 +58,7 @@ export const ArticleCard = ({ linkImage, title, description, bgColor }: CardProp
 					</Typography>
 				</CardContent>
 				<CardActions>
-					<Button size="small">
+					<Button size="small" onClick = {() => navigate(`/article/${id}`)}>
 						<Typography color="secondary.contrastText" variant="h4" fontWeight="700"
 							sx={{
 								'&:hover': {

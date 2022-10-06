@@ -54,6 +54,7 @@ export const HomeContentView = () => {
 								linkImage="imgs/python.svg"
 								title="Primeiros passos em Python"
 								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
+								id={1}
 							/>
 						</Grid>
 						<Grid item sm={12} md={6} lg={4} xl={3}>
