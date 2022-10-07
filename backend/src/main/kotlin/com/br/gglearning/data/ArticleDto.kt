@@ -1,5 +1,6 @@
 package com.br.gglearning.data
 
+import com.br.gglearning.domain.Article
 import java.io.Serializable
 import javax.validation.constraints.NotEmpty
 
@@ -14,7 +15,7 @@ import javax.validation.constraints.NotEmpty
  * @property authorName O nome do autor publicador do artigo.
  */
 data class ArticleDto(
-    val id: Long,
+    val id: Long?,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
     val title: String,
@@ -32,5 +33,15 @@ data class ArticleDto(
     val authorName: String,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
-    val quizzes: List<QuizDto>
-) : Serializable
+    val quizzes: List<QuizDto>?
+) : Serializable {
+    constructor(article: Article) : this(
+        article.id,
+        article.title,
+        article.subtitle,
+        article.content,
+        article.publicationDate.toString(),
+        article.authorName,
+        null
+    )
+}

@@ -6,7 +6,6 @@ import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.EnumType
 import javax.persistence.Enumerated
-import javax.persistence.JoinTable
 import javax.persistence.OneToMany
 import javax.persistence.Table
 
@@ -47,7 +46,6 @@ class User(
     @Enumerated(EnumType.ORDINAL)
     var typeUser: TypeUserEnum = TypeUserEnum.READER,
 
-    @OneToMany
-    @JoinTable(name = "user_articles")
+    @OneToMany(mappedBy = "user")
     var articles: MutableList<Article> = emptyList<Article>().toMutableList()
 ) : BaseEntity()

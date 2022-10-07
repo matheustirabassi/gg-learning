@@ -1,7 +1,13 @@
 package com.br.gglearning.domain
 
 import java.util.*
-import javax.persistence.*
+import javax.persistence.CascadeType
+import javax.persistence.Column
+import javax.persistence.Entity
+import javax.persistence.JoinColumn
+import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
+import javax.persistence.Table
 
 /**
  * A entidade que representa os artigos no sistema.
@@ -36,7 +42,10 @@ class Article(
     @JoinColumn(name = "user_id")
     var user: User,
 
-    @OneToMany
-    @JoinTable(name = "article_quizzes")
-    var quizzes: List<Quizz>
+    @OneToMany(
+        mappedBy = "article",
+        orphanRemoval = true,
+        cascade = [CascadeType.ALL]
+    )
+    var quizzes: MutableList<Quizz>
 ) : BaseEntity()
