@@ -15,6 +15,7 @@ export const AllArticlesContent = () => {
             if (result instanceof Error) {
                 alert(result.message)
             } else {
+                console.log(result)
                 setArticle(result)
             }
         })
@@ -23,13 +24,8 @@ export const AllArticlesContent = () => {
     return (
         <PageBaseLayout showSideFooter>
             <Box display="flex" flexDirection="row" alignItems="center" marginX={10} marginTop={2} justifyContent="center">
-                <Box display="flex" alignItems="center" justifyContent="center">
-                    <IconButton>
-                        <ArrowBackIos sx={{ color: "primary.main" }} fontSize="large" />
-                    </IconButton>
-                </Box>
                 <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                    <Box marginBottom={2} width="50%" padding={1} display="flex" alignItems="center" justifyContent="center" flexDirection="row">
+                    <Box marginBottom={2} width="70%" padding={1} display="flex" alignItems="center" justifyContent="center" flexDirection="row">
                         <TextField
                             fullWidth
                             sx={{
@@ -66,14 +62,15 @@ export const AllArticlesContent = () => {
                         spacing={1}
                     >
                         {
-                            articles.map(article => {
+                            articles.map((article, index) => {
                                 return (
-                                    <Grid item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
+                                    <Grid key={index} item xs={12} sm={6} lg={4} xl={4} marginBottom={2}>
                                         <ArticleCard
                                             bgColor='primary'
                                             linkImage={"imgs/python.svg"}
                                             title={article.title}
                                             description={article.subtitle}
+                                            id={article.id}
                                         />
                                     </Grid>
                                 )
@@ -81,11 +78,6 @@ export const AllArticlesContent = () => {
                         }
 
                     </Grid>
-                </Box>
-                <Box display="flex" alignItems="center" justifyContent="center">
-                    <IconButton>
-                        <ArrowForwardIos sx={{ color: "primary.main" }} fontSize="large" />
-                    </IconButton>
                 </Box>
             </Box>
         </PageBaseLayout>

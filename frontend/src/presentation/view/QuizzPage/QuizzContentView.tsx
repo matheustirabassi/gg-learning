@@ -1,11 +1,10 @@
 import { Button, Box, FormControl, Grid, Typography } from "@mui/material"
 import { ArticleDTO } from "data/dto/ArticleDTO"
-import { QuizzDTO } from "data/dto/QuizzDTO"
 import { ArticleAPI } from "presentation/api/ArticleAPI"
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
 import { Question } from "presentation/components/Question/Question"
 import { useState, useEffect } from "react"
-import { useParams, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { ROUTES } from "Routes"
 
 interface IQuizzProps {

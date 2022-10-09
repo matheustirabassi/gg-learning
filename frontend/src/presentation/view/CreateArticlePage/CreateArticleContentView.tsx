@@ -11,6 +11,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { QuestionDTO } from "data/dto/QuestionDTO";
 import { QuizzDTO } from "data/dto/QuizzDTO";
 import { RHRadioButton } from "presentation/components/FormComponents/RHRadioButton";
+import { useNavigate } from "react-router-dom";
 
 const createArticleSchema = yup.object().shape({
     title: yup.string().required(),
@@ -24,6 +25,7 @@ const createQuizzSchema = yup.object().shape({
 })
 
 export const CreateArticleContentView = () => {
+    const navigate = useNavigate()
     //Article
     const { control: controlArticle, handleSubmit: handleSubmitArticle, getValues } = useForm<ArticleDTO>({
         resolver: yupResolver(createArticleSchema)
@@ -50,7 +52,7 @@ export const CreateArticleContentView = () => {
 
     const onCreateQuestion: SubmitHandler<QuestionDTO> = (data) => {
         handleQuizz(data)
-        console.log(question)
+        alert("Pergunta adicionada")
         resetQuizz()
     }
 
@@ -59,6 +61,8 @@ export const CreateArticleContentView = () => {
         let finalArticle = new ArticleDTO(getValues("title"), getValues("content"), getValues("subtitle"), "", "", [quizz])
         console.log(finalArticle)
         ArticleAPI.create(finalArticle)
+        alert("Artigo criado")
+        navigate("/")
     }
 
     return (

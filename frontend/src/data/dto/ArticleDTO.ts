@@ -1,6 +1,7 @@
 import {  QuizzDTO } from "./QuizzDTO"
 
 export class ArticleDTO{
+    id?: number
     title: string
     content: string
     subtitle: string

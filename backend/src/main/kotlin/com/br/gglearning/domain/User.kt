@@ -40,7 +40,7 @@ class User(
     @Column(name = "email", unique = true)
     var email: String = "",
 
-    @Column(name = "age")
+    @Column(name = "birthDate")
     var birthDate: Date? = null,
 
     @Enumerated(EnumType.ORDINAL)

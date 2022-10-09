@@ -1,12 +1,28 @@
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { ArticleDTO } from "data/dto/ArticleDTO"
+import { ArticleAPI } from "presentation/api/ArticleAPI"
 import { ArticleCard } from "presentation/components/Card/ArticleCard"
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
+import { useState, useEffect } from "react"
 import { ROUTES } from "Routes"
 import Imagem from "../../../assets/imgs/img.jpg"
 
 export const HomeContentView = () => {
 	const theme = useTheme()
 	const lgDown = useMediaQuery(theme.breakpoints.down("lg"))
+	const [articles, setArticle] = useState<ArticleDTO[]>([])
+
+    useEffect(() =>{
+        ArticleAPI.getAll()
+        .then((result) =>{
+            if (result instanceof Error) {
+                alert(result.message)
+            } else {
+                console.log(result)
+                setArticle(result)
+            }
+        })
+    })
 	return (
 		<PageBaseLayout showSideFooter>
 			<Box display="flex" flexDirection="column" marginX={25}>
@@ -48,71 +64,21 @@ export const HomeContentView = () => {
 				</Box>
 				<Box display='flex' justifyItems="center" alignItems="center" >
 					<Grid container spacing={2} justifyContent="space-evenly" >
-						<Grid item sm={12} md={6} lg={4} xl={3}>
-							<ArticleCard
-								bgColor="primary"
-								linkImage="imgs/python.svg"
-								title="Primeiros passos em Python"
-								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
-								id={1}
-							/>
-						</Grid>
-						<Grid item sm={12} md={6} lg={4} xl={3}>
-							<ArticleCard
-								bgColor="primary"
-								linkImage="imgs/python.svg"
-								title="Primeiros passos em Python"
-								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
-							/>
-						</Grid>
-						<Grid item sm={12} md={6} lg={4} xl={3}>
-							<ArticleCard
-								bgColor="primary"
-								linkImage="imgs/python.svg"
-								title="Primeiros passos em Python"
-								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
-							/>
-						</Grid>
-						<Grid item sm={12} md={6} lg={4} xl={3}>
-							<ArticleCard
-								bgColor="primary"
-								linkImage="imgs/python.svg"
-								title="Primeiros passos em Python"
-								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
-							/>
-						</Grid>
-						<Grid item sm={12} md={6} lg={4} xl={3}>
-							<ArticleCard
-								bgColor="primary"
-								linkImage="imgs/python.svg"
-								title="Primeiros passos em Python"
-								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
-							/>
-						</Grid>
-						<Grid item sm={12} md={6} lg={4} xl={3}>
-							<ArticleCard
-								bgColor="primary"
-								linkImage="imgs/python.svg"
-								title="Primeiros passos em Python"
-								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
-							/>
-						</Grid>
-						<Grid item sm={12} md={6} lg={4} xl={3}>
-							<ArticleCard
-								bgColor="primary"
-								linkImage="imgs/python.svg"
-								title="Primeiros passos em Python"
-								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
-							/>
-						</Grid>
-						<Grid item sm={12} md={6} lg={4} xl={3}>
-							<ArticleCard
-								bgColor="primary"
-								linkImage="imgs/python.svg"
-								title="Primeiros passos em Python"
-								description="Curabitur a consequat augue. Nunc ac urna semper, varius risus eu, cursus mauris. "
-							/>
-						</Grid>
+					{
+                            articles.map((article, index) => {
+                                return (
+                                    <Grid key={index} item xs={12} sm={6} lg={4} xl={4} marginBottom={2}>
+                                        <ArticleCard
+                                            bgColor='primary'
+                                            linkImage={"imgs/python.svg"}
+                                            title={article.title}
+                                            description={article.subtitle}
+                                            id={article.id}
+                                        />
+                                    </Grid>
+                                )
+                            })
+                        }
 					</Grid>
 				</Box>
 			</Box>

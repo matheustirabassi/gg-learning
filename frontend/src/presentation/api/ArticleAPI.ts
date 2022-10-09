@@ -15,7 +15,7 @@ const getAll = async (): Promise<ArticleDTO[] | Error> => {
     const data = await Api.get('/articles')
 
     if (data) {
-        return data.data
+        return data.data.content
     } else {
         return new Error('Erro ao listar os artigos')
     }

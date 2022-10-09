@@ -1,12 +1,12 @@
-import { Button, Typography } from "@mui/material"
+import { Typography } from "@mui/material"
 import { Box } from "@mui/system"
-import { ArticleAPI } from "presentation/api/ArticleAPI"
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
 import { useNavigate, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { ArticleDTO } from "data/dto/ArticleDTO"
 import { ROUTES } from "Routes"
 import { QuizzContentView } from "../QuizzPage/QuizzContentView"
+import { ArticleAPI } from "presentation/api/ArticleAPI"
 
 export const ArticleContentView = () => {
     const { id } = useParams<'id'>()
@@ -14,23 +14,23 @@ export const ArticleContentView = () => {
     const [article, setArticle] = useState<ArticleDTO>(new ArticleDTO('','','','','',[]))
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     setIsLoading(true)
-    //     ArticleAPI.getById(Number(id))
-    //         .then((result) => {
-    //             setIsLoading(false)
+    useEffect(() => {
+        setIsLoading(true)
+        ArticleAPI.getById(Number(id))
+            .then((result) => {
+                setIsLoading(false)
 
-    //             if (result instanceof Error) {
-    //                 alert(result.message)
-    //                 navigate(ROUTES.HOME)
-    //             } else {
-    //                 console.log(result)
-    //                 setArticle(result)
-    //                 setIsLoading(false)
-    //             }
-    //         })
+                if (result instanceof Error) {
+                    alert(result.message)
+                    navigate(ROUTES.HOME)
+                } else {
+                    console.log(result)
+                    setArticle(result)
+                    setIsLoading(false)
+                }
+            })
 
-    // }, [id])
+    }, [id])
 
     return (
         <PageBaseLayout showSideFooter>
