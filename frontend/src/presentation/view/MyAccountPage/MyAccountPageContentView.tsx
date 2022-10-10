@@ -1,8 +1,8 @@
 import { Article, Person } from "@mui/icons-material"
-import { Box, List, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme, Button } from "@mui/material"
-import { DetalhesUsuario } from "presentation/components/DetalhesUsuario/DetalhesUsuario"
+import { Box, Button, List, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from "@mui/material"
+import { UserDetails } from "presentation/view/MyAccountPage/UserDetails/UserDetails"
 
-import { useState, useCallback, Fragment } from "react"
+import { Fragment, useCallback, useState } from "react"
 import { ROUTES } from "Routes"
 
 export const MyAccountPageContentView = () => {
@@ -37,7 +37,7 @@ export const MyAccountPageContentView = () => {
             <Box width='100%' >
                 {
                     myInfo && (
-                        <DetalhesUsuario />
+                        <UserDetails />
                     )
                 }
 

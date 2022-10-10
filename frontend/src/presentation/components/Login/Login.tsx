@@ -2,7 +2,7 @@ import * as yup from "yup"
 import { yupResolver } from '@hookform/resolvers/yup'
 import "../../../assets/yup/TraducoesYup"
 import { useState } from "react"
-import { useAuthContext } from "presentation/contexts/AuthContext"
+import { useAuthContext } from "contexts/AuthContext"
 import { Box, Card, CardContent, Typography, CardActions, Button, CircularProgress, Link } from "@mui/material"
 import { ReactComponent as LogoIcn } from "assets/icons/logo.svg";
 import { ROUTES } from "Routes"

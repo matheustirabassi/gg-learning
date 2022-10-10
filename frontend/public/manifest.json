@@ -1,0 +1,8 @@
+{
+  "name": "GG-LEARNING",
+  "short_name": "GL",
+  "start_url": "/",
+  "display": "minimal-ui",
+  "orientation": "portrait-primary",
+  "language": "pt_br"
+}

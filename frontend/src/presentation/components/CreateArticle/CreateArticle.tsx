@@ -6,7 +6,7 @@ import { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { RHTextField } from "../FormComponents/RHTextField"
 import { RHTextArea } from "../FormComponents/RHTextArea"
-import { ArticleAPI } from "presentation/api/ArticleAPI"
+import { ArticleAPI } from "data/api/ArticleAPI"
 import { ArticleDTO } from "data/dto/ArticleDTO"
 
 const createArticleSchema = yup.object().shape({

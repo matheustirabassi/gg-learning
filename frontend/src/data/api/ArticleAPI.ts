@@ -1,5 +1,5 @@
 import { ArticleDTO } from "data/dto/ArticleDTO"
-import { Api } from "presentation/axios/AxiosConfig"
+import { Api } from "config/axios/AxiosConfig"
 
 const create = async (article: ArticleDTO) => {
     let currentDate = new Date()

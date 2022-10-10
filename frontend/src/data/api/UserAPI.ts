@@ -1,6 +1,6 @@
+import { Api } from "config/axios/AxiosConfig"
+import { useAuthContext } from "contexts/AuthContext"
 import { UserDTO } from "data/dto/UserDTO"
-import { Api } from "presentation/axios/AxiosConfig"
-
 const create = async (user: UserDTO) => {
     console.log(user)
     const data = await Api.post('/users/create', {
@@ -15,6 +15,18 @@ const create = async (user: UserDTO) => {
     console.log(data)
 }
 
+async function getMyAccountData() {
+
+	await Api.get('/users/myUser')
+	.then((res) => {
+		console.info(res.data as UserDTO)
+		return res
+	}).catch((error) => {
+		console.error(error)
+	})
+}
+
 export const UserAPI = {
-    create
+    create,
+		getMyAccountData
 }
