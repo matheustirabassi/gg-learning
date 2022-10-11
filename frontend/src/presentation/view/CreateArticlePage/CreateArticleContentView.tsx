@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CircularProgress, Typography } from "@mui/material";
+import { Alert, Box, Button, Card, CardActions, CardContent, CircularProgress, Snackbar, Typography } from "@mui/material";
 import { useState } from "react";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
@@ -12,6 +12,7 @@ import { QuestionDTO } from "data/dto/QuestionDTO";
 import { QuizzDTO } from "data/dto/QuizzDTO";
 import { RHRadioButton } from "presentation/components/FormComponents/RHRadioButton";
 import { useNavigate } from "react-router-dom";
+import { useDebounce } from "hooks/UseDebounce";
 
 const createArticleSchema = yup.object().shape({
     title: yup.string().required(),
@@ -22,9 +23,13 @@ const createArticleSchema = yup.object().shape({
 const createQuizzSchema = yup.object().shape({
     text: yup.string().required(),
     alternatives: yup.array().of(yup.string().required()),
+    answer: yup.string().required(),
 })
 
 export const CreateArticleContentView = () => {
+    const [openSnackQuestion, setOpenSnackQuestion] = useState(false)
+    const [openSnackQuizz, setOpenSnackQuizz] = useState(false)
+    const { debounce } = useDebounce(1500, false)
     const navigate = useNavigate()
     //Article
     const { control: controlArticle, handleSubmit: handleSubmitArticle, getValues } = useForm<ArticleDTO>({
@@ -35,7 +40,7 @@ export const CreateArticleContentView = () => {
 
     const onSubmit: SubmitHandler<ArticleDTO> = (data) => {
         setIsLoading(true)
-        
+
     }
 
     //Quizz
@@ -50,19 +55,36 @@ export const CreateArticleContentView = () => {
         setQuestion(oldArray => [...oldArray, data])
     }
 
+    const handleCloseSnackQuestion = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnackQuestion(false);
+    };
+
+    const handleCloseSnackQuizz = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnackQuizz(false);
+    };
+
     const onCreateQuestion: SubmitHandler<QuestionDTO> = (data) => {
         handleQuizz(data)
-        alert("Pergunta adicionada")
+        setOpenSnackQuestion(true)
         resetQuizz()
     }
 
     const onSubmitQuizz = () => {
         let quizz = new QuizzDTO(getValues("title"), question)
         let finalArticle = new ArticleDTO(getValues("title"), getValues("content"), getValues("subtitle"), "", "", [quizz])
-        console.log(finalArticle)
-        ArticleAPI.create(finalArticle)
-        alert("Artigo criado")
-        navigate("/")
+        setOpenSnackQuizz(true)
+        debounce(() => {
+            ArticleAPI.create(finalArticle)
+            navigate("/")
+        })
     }
 
     return (
@@ -99,18 +121,6 @@ export const CreateArticleContentView = () => {
                             />
                         </Box>
                     </CardContent>
-                    <CardActions>
-                        <Box width='100%' display='flex' justifyContent='center' marginBottom={1}>
-                            <Button
-                                variant='contained'
-                                disabled={isLoading}
-                                onClick={handleSubmitArticle(onSubmit)}
-                                endIcon={isLoading ? <CircularProgress variant='indeterminate' color='inherit' size={20} /> : undefined}
-                            >
-                                Finalizar artigo
-                            </Button>
-                        </Box>
-                    </CardActions>
                 </Card>
             </Box>
             { /**Quizz*/}
@@ -118,9 +128,9 @@ export const CreateArticleContentView = () => {
                 <Card>
                     <CardContent>
                         <Box display='flex' flexDirection='column' gap={2} width={900} padding={2}>
-                        <Typography
+                            <Typography
                                 variant='h3'
-                            >Adicione as informações do quizz (Opcional)</Typography>
+                            >Adicione as informações do quizz </Typography>
                             <RHTextField
                                 name="text"
                                 control={controlQuizz}
@@ -160,6 +170,11 @@ export const CreateArticleContentView = () => {
                             >
                                 Adicionar pergunta
                             </Button>
+                            <Snackbar open={openSnackQuestion} onClose={handleCloseSnackQuestion} autoHideDuration={1500}>
+                                <Alert severity='success'>
+                                    Pergunta criada com sucesso
+                                </Alert>
+                            </Snackbar>
                         </Box>
                         <Box width='100%' display='flex' justifyContent='center' marginBottom={1}>
                             <Button
@@ -168,8 +183,13 @@ export const CreateArticleContentView = () => {
                                 onClick={onSubmitQuizz}
                                 endIcon={isLoading ? <CircularProgress variant='indeterminate' color='inherit' size={20} /> : undefined}
                             >
-                                Criar quizz
+                                Criar artigo
                             </Button>
+                            <Snackbar open={openSnackQuizz} onClose={handleCloseSnackQuizz} autoHideDuration={1500}>
+                                <Alert severity='success'>
+                                    Artigo criado com sucesso
+                                </Alert>
+                            </Snackbar>
                         </Box>
                     </CardActions>
                 </Card>
