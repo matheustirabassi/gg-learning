@@ -66,8 +66,8 @@ class ArticleController(
 
     @GetMapping("{articleId}")
     fun findArticleById(
-        @PathVariable articleId: Long,
-    ): ResponseEntity <ArticleDto> {
+        @PathVariable articleId: Long
+    ): ResponseEntity<ArticleDto> {
         return ResponseEntity.ok().body(articleService.findArticleById(articleId))
     }
 }

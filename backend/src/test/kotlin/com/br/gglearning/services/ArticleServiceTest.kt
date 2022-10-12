@@ -1,22 +1,29 @@
 package com.br.gglearning.services
 
 import com.br.gglearning.dao.ArticleRepository
+import com.br.gglearning.dao.UserRepository
 import com.br.gglearning.data.ArticleDto
 import com.br.gglearning.data.QuestionDto
 import com.br.gglearning.data.QuizDto
+import com.br.gglearning.domain.Article
+import com.br.gglearning.domain.Quizz
 import com.br.gglearning.domain.User
 import com.br.gglearning.services.exceptions.ObjectNotFoundException
+import org.hamcrest.CoreMatchers.`is`
+import org.hamcrest.MatcherAssert.assertThat
 import org.junit.jupiter.api.Assertions.assertAll
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import org.mockito.ArgumentMatchers.anyLong
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import java.text.SimpleDateFormat
+import java.util.*
 
 internal class ArticleServiceTest {
 
@@ -26,12 +33,39 @@ internal class ArticleServiceTest {
     @Mock
     private lateinit var userService: UserService
 
+    @Mock
+    private lateinit var userRepository: UserRepository
+
     @InjectMocks
     private lateinit var articleService: ArticleService
+
+    private lateinit var articleDto: ArticleDto
+
+    private lateinit var article: Article
 
     @BeforeEach
     fun setUp() {
         MockitoAnnotations.openMocks(this)
+
+        articleDto = ArticleDto(
+            1L,
+            "Jeremias",
+            "Descrição sobre Jeremias",
+            "Conteúdo sobre Jeremias",
+            "10/11/2022",
+            "Jeremias, o autor",
+            null
+        )
+
+        article = Article(
+            "Progração orientada a objeto",
+            "Aprenda a programar em Java",
+            "Content",
+            SimpleDateFormat("dd/mm/yyyy").parse("11/10/2022"),
+            "Jeremias",
+            null,
+            emptyList<Quizz>().toMutableList()
+        )
     }
 
     // region insert tests
@@ -122,6 +156,23 @@ internal class ArticleServiceTest {
                 assertEquals(questionDto.alternatives, question.alternatives)
             }
         )
+    }
+
+    // endregion
+
+    // region findArticleById tests
+    @Test
+    fun `Caso a busca pelo identificador do artigo retorne um resultado, o Dto deve ser convertido corretamente`() {
+        `when`(articleRepository.findById(anyLong())).thenReturn(Optional.of(article))
+
+        val article = articleService.findArticleById(1L)
+
+        assertThat(article.title, `is`("Progração orientada a objeto"))
+        assertThat(article.subtitle, `is`("Aprenda a programar em Java"))
+        assertThat(article.content, `is`("Content"))
+        assertThat(article.publicationDate, `is`("11/01/2022"))
+        assertThat(article.authorName, `is`("Jeremias"))
+        assertThat(article.quizzes, `is`(emptyList()))
     }
 
     // endregion

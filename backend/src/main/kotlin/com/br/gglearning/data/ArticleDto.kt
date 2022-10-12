@@ -15,25 +15,25 @@ import javax.validation.constraints.NotEmpty
  * @property authorName O nome do autor publicador do artigo.
  */
 data class ArticleDto(
-    val id: Long?,
+    var id: Long?,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
-    val title: String,
+    var title: String,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
-    val subtitle: String,
+    var subtitle: String,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
-    val content: String,
+    var content: String,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
-    val publicationDate: String,
+    var publicationDate: String,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
-    val authorName: String,
+    var authorName: String,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
-    val quizzes: List<QuizDto>?
+    var quizzes: List<QuizDto>?
 ) : Serializable {
     constructor(article: Article) : this(
         article.id,
@@ -42,6 +42,16 @@ data class ArticleDto(
         article.content,
         article.publicationDate.toString(),
         article.authorName,
+        null
+    )
+
+    constructor() : this(
+        null,
+        "",
+        "",
+        "",
+        "",
+        "",
         null
     )
 }

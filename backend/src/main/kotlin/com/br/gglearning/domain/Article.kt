@@ -40,7 +40,7 @@ class Article(
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    var user: User,
+    var user: User?,
 
     @OneToMany(
         mappedBy = "article",

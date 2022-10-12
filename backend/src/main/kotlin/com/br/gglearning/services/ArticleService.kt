@@ -31,7 +31,6 @@ class ArticleService(
      * Insere um novo artigo no sistema.
      *
      * @param articleDto O Dto que representando o artigo.
-     * @param email o E-mail do usuário autenticado
      *
      * @throws ObjectNotFoundException Caso não seja encontrado um usuário com o e-mail recebido.
      */
@@ -118,6 +117,8 @@ class ArticleService(
     fun findArticleById(articleId: Long): ArticleDto {
         val article = articleRepository.findById(articleId).get()
 
-        return ModelMapper().map(article, ArticleDto::class.java)
+        val articleDto = ModelMapper().map(article, ArticleDto::class.java)
+        articleDto.publicationDate = SimpleDateFormat("dd/MM/yyyy").format(article.publicationDate)
+        return articleDto
     }
 }

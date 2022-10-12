@@ -14,7 +14,7 @@ data class QuizDto(
     var name: String,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
-    val questions: List<QuestionDto>?
+    var questions: List<QuestionDto>?
 ) : Serializable {
     constructor() : this(
         "",
