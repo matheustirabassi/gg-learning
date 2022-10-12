@@ -43,7 +43,7 @@ class UserController(
     }
 
     @GetMapping("/myUser")
-    fun getMyUserData() : ResponseEntity<UserDto> {
+    fun getMyUserData(): ResponseEntity<UserDto> {
         return ResponseEntity.ok(userService.getMyUser())
     }
 }
