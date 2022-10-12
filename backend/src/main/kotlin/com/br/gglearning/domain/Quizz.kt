@@ -23,12 +23,12 @@ class Quizz(
 
     @ManyToOne
     @JoinColumn(name = "article_id")
-    var article: Article,
+    var article: Article? = null,
 
     @OneToMany(
         mappedBy = "quizz",
         orphanRemoval = true,
         cascade = [CascadeType.ALL]
     )
-    var questions: List<Question>
+    var questions: MutableList<Question>? = null
 ) : BaseEntity()

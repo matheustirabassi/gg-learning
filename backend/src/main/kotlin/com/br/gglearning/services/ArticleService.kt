@@ -83,7 +83,7 @@ class ArticleService(
             run {
                 val quizMapped = modelMapper.map(quiz, Quizz::class.java)
                 quizMapped.article = article
-                quizMapped.questions.map { question -> question.quizz = quizMapped }
+                quizMapped.questions?.map { question -> question.quizz = quizMapped }
                 return@map quizMapped
             }
         } as MutableList<Quizz>

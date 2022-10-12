@@ -6,6 +6,7 @@ import com.br.gglearning.data.ArticleDto
 import com.br.gglearning.data.QuestionDto
 import com.br.gglearning.data.QuizDto
 import com.br.gglearning.domain.Article
+import com.br.gglearning.domain.Question
 import com.br.gglearning.domain.Quizz
 import com.br.gglearning.domain.User
 import com.br.gglearning.services.exceptions.ObjectNotFoundException
@@ -56,6 +57,19 @@ internal class ArticleServiceTest {
             "Jeremias, o autor",
             null
         )
+        val question = Question(
+            "Pergunta 01",
+            mutableListOf("a", "b", "c"),
+            "c"
+        )
+
+        val quizz = Quizz(
+            "Perguntas",
+            null,
+            mutableListOf(question)
+        )
+
+        question.quizz = quizz
 
         article = Article(
             "Progração orientada a objeto",
@@ -64,8 +78,9 @@ internal class ArticleServiceTest {
             SimpleDateFormat("dd/mm/yyyy").parse("11/10/2022"),
             "Jeremias",
             null,
-            emptyList<Quizz>().toMutableList()
+            listOf(quizz) as MutableList<Quizz>
         )
+        quizz.article = article
     }
 
     // region insert tests
@@ -117,7 +132,7 @@ internal class ArticleServiceTest {
             "<html> </html>",
             "17/09/2022",
             "Jeremias",
-            listOf(quizDto)
+            mutableListOf(quizDto)
         )
 
         articleService.insert(
@@ -126,7 +141,7 @@ internal class ArticleServiceTest {
 
         val article = user.articles[0]
         val quiz = article.quizzes[0]
-        val question = quiz.questions[0]
+        val question = quiz.questions?.get(0)
 
         assertAll(
             { assertEquals(articleDto.title, article.title) },
@@ -149,11 +164,11 @@ internal class ArticleServiceTest {
             {
                 assertEquals(
                     questionDto.answer,
-                    question.answer
+                    question!!.answer
                 )
             },
             {
-                assertEquals(questionDto.alternatives, question.alternatives)
+                assertEquals(questionDto.alternatives, question!!.alternatives)
             }
         )
     }
@@ -172,7 +187,14 @@ internal class ArticleServiceTest {
         assertThat(article.content, `is`("Content"))
         assertThat(article.publicationDate, `is`("11/01/2022"))
         assertThat(article.authorName, `is`("Jeremias"))
-        assertThat(article.quizzes, `is`(emptyList()))
+
+        val quizDto = article.quizzes!![0]
+        assertThat(quizDto.name, `is`("Perguntas"))
+
+        val questionDto = quizDto.questions!![0]
+        assertThat(questionDto.text, `is`("Pergunta 01"))
+        assertThat(questionDto.alternatives, `is`(listOf("a", "b", "c")))
+        assertThat(questionDto.answer, `is`("c"))
     }
 
     // endregion
