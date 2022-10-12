@@ -7,28 +7,33 @@ import { ArticleDTO } from "data/dto/ArticleDTO"
 import { ROUTES } from "Routes"
 import { QuizzContentView } from "../QuizzPage/QuizzContentView"
 import { ArticleAPI } from "presentation/api/ArticleAPI"
+import { useDebounce } from 'hooks/UseDebounce';
 
 export const ArticleContentView = () => {
     const { id } = useParams<'id'>()
     const [isLoading, setIsLoading] = useState(false)
-    const [article, setArticle] = useState<ArticleDTO>(new ArticleDTO('','','','','',[]))
+    const [article, setArticle] = useState<ArticleDTO>(new ArticleDTO('', '', '', '', '', []))
     const navigate = useNavigate()
+    const { debounce } = useDebounce(5000)
 
     useEffect(() => {
         setIsLoading(true)
-        ArticleAPI.getById(Number(id))
-            .then((result) => {
-                setIsLoading(false)
-
-                if (result instanceof Error) {
-                    alert(result.message)
-                    navigate(ROUTES.HOME)
-                } else {
-                    console.log(result)
-                    setArticle(result)
+        debounce(() => {
+            ArticleAPI.getById(Number(id))
+                .then((result) => {
                     setIsLoading(false)
-                }
-            })
+
+                    if (result instanceof Error) {
+                        alert(result.message)
+                        navigate(ROUTES.HOME)
+                    } else {
+                        console.log(result)
+                        setArticle(result)
+                        setIsLoading(false)
+                    }
+                })
+        })
+
 
     }, [id])
 
@@ -58,14 +63,14 @@ export const ArticleContentView = () => {
                 </Box>
 
                 <Box display="flex" flexDirection="column" justifyContent="center" marginY={2}>
-                    <Typography 
+                    <Typography
                         variant={"h1"}
                         color="secondary"
                         my="15px"
                         padding="20px">
                         Quizz
                     </Typography>
-                    <QuizzContentView id={Number(id)} />
+                    {/* <QuizzContentView id={Number(id)} /> */}
                 </Box>
             </Box>
         </PageBaseLayout>

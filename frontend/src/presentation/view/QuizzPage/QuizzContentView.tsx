@@ -33,22 +33,22 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
         resolver: yupResolver(quizzSchema)
     })
 
-    // useEffect(() => {
-    //     setIsLoading(true)
-    //     ArticleAPI.getById(Number(id))
-    //         .then((result) => {
-    //             setIsLoading(false)
+    useEffect(() => {
+        setIsLoading(true)
+        ArticleAPI.getById(Number(id))
+            .then((result) => {
+                setIsLoading(false)
 
-    //             if (result instanceof Error) {
-    //                 alert(result.message)
-    //                 navigate(ROUTES.HOME)
-    //             } else {
-    //                 setArticle(result)
-    //                 setIsLoading(false)
-    //             }
-    //         })
+                if (result instanceof Error) {
+                    alert(result.message)
+                    navigate(ROUTES.HOME)
+                } else {
+                    setArticle(result)
+                    setIsLoading(false)
+                }
+            })
 
-    // }, [id])
+    }, [id])
 
     const onSendQuizz: SubmitHandler<IQuizzAlternatives> = (data) => {
         let count = 0

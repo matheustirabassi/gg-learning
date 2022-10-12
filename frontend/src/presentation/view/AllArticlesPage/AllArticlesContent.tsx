@@ -1,6 +1,7 @@
 import { ArrowForwardIos, ArrowBackIos, Search } from '@mui/icons-material';
 import { Grid, IconButton, Box, TextField, InputAdornment } from "@mui/material";
 import { ArticleDTO } from 'data/dto/ArticleDTO';
+import { useDebounce } from 'hooks/UseDebounce';
 import { ArticleAPI } from 'presentation/api/ArticleAPI';
 import { ArticleCard } from 'presentation/components/Card/ArticleCard';
 import { PageBaseLayout } from 'presentation/components/PageBaseLayout/PageBaseLayout';
@@ -8,18 +9,21 @@ import { useEffect, useState } from 'react';
 
 export const AllArticlesContent = () => {
     const [articles, setArticle] = useState<ArticleDTO[]>([])
-
-    useEffect(() =>{
-        ArticleAPI.getAll()
-        .then((result) =>{
-            if (result instanceof Error) {
-                alert(result.message)
-            } else {
-                console.log(result)
-                setArticle(result)
-            }
-        })
-    })
+    const { debounce } = useDebounce(5000)
+    
+    useEffect(() => {
+		debounce(() => {
+			ArticleAPI.getAll()
+				.then((result) => {
+					if (result instanceof Error) {
+						alert(result.message)
+					} else {
+						console.log(result)
+						setArticle(result)
+					}
+				})
+		})
+	})
 
     return (
         <PageBaseLayout showSideFooter>

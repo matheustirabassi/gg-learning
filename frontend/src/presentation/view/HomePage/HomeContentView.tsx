@@ -1,5 +1,6 @@
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { ArticleDTO } from "data/dto/ArticleDTO"
+import { useDebounce } from "hooks/UseDebounce"
 import { ArticleAPI } from "presentation/api/ArticleAPI"
 import { ArticleCard } from "presentation/components/Card/ArticleCard"
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
@@ -11,18 +12,22 @@ export const HomeContentView = () => {
 	const theme = useTheme()
 	const lgDown = useMediaQuery(theme.breakpoints.down("lg"))
 	const [articles, setArticle] = useState<ArticleDTO[]>([])
+	const { debounce } = useDebounce(5000)
 
-    useEffect(() =>{
-        ArticleAPI.getAll()
-        .then((result) =>{
-            if (result instanceof Error) {
-                alert(result.message)
-            } else {
-                console.log(result)
-                setArticle(result)
-            }
-        })
-    })
+	useEffect(() => {
+		debounce(() => {
+			ArticleAPI.getAll()
+				.then((result) => {
+					if (result instanceof Error) {
+						alert(result.message)
+					} else {
+						console.log(result)
+						setArticle(result)
+					}
+				})
+		})
+	})
+
 	return (
 		<PageBaseLayout showSideFooter>
 			<Box display="flex" flexDirection="column" marginX={25}>
@@ -64,21 +69,21 @@ export const HomeContentView = () => {
 				</Box>
 				<Box display='flex' justifyItems="center" alignItems="center" >
 					<Grid container spacing={2} justifyContent="space-evenly" >
-					{
-                            articles.map((article, index) => {
-                                return (
-                                    <Grid key={index} item xs={12} sm={6} lg={4} xl={4} marginBottom={2}>
-                                        <ArticleCard
-                                            bgColor='primary'
-                                            linkImage={"imgs/python.svg"}
-                                            title={article.title}
-                                            description={article.subtitle}
-                                            id={article.id}
-                                        />
-                                    </Grid>
-                                )
-                            })
-                        }
+						{
+							articles.map((article, index) => {
+								return (
+									<Grid key={index} item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
+										<ArticleCard
+											bgColor='primary'
+											linkImage={"imgs/python.svg"}
+											title={article.title}
+											description={article.subtitle}
+											id={article.id}
+										/>
+									</Grid>
+								)
+							})
+						}
 					</Grid>
 				</Box>
 			</Box>
