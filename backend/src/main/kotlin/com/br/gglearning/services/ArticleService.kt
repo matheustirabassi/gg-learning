@@ -114,6 +114,7 @@ class ArticleService(
      * @param articleId O identificador do artigo.
      * @return O artigo buscado.
      */
+    @Transactional(readOnly = true)
     fun findArticleById(articleId: Long): ArticleDto {
         val article = articleRepository.findById(articleId).get()
 
