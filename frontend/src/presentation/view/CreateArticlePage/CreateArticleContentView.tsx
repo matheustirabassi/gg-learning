@@ -32,16 +32,11 @@ export const CreateArticleContentView = () => {
     const { debounce } = useDebounce(1500, false)
     const navigate = useNavigate()
     //Article
-    const { control: controlArticle, handleSubmit: handleSubmitArticle, getValues } = useForm<ArticleDTO>({
+    const { control: controlArticle, getValues } = useForm<ArticleDTO>({
         resolver: yupResolver(createArticleSchema)
     })
 
     const [isLoading, setIsLoading] = useState(false)
-
-    const onSubmit: SubmitHandler<ArticleDTO> = (data) => {
-        setIsLoading(true)
-
-    }
 
     //Quizz
     const { handleSubmit: handleSubmitQuizz, control: controlQuizz, reset: resetQuizz } = useForm<QuestionDTO>({
@@ -78,11 +73,13 @@ export const CreateArticleContentView = () => {
     }
 
     const onSubmitQuizz = () => {
+        setIsLoading(true)
         let quizz = new QuizzDTO(getValues("title"), question)
         let finalArticle = new ArticleDTO(getValues("title"), getValues("content"), getValues("subtitle"), "", "", [quizz])
         setOpenSnackQuizz(true)
         debounce(() => {
             ArticleAPI.create(finalArticle)
+            setIsLoading(false)
             navigate("/")
         })
     }

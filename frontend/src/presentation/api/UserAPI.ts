@@ -12,7 +12,7 @@ const create = async (user: UserDTO): Promise<string | Error> => {
         "password": user.password
     })
     console.log(data)
-    if(data.status == 201){
+    if(data.status === 201){
         console.log("N de erro")
         return "Usuario cadastrado com sucesso!"
     }

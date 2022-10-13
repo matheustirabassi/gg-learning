@@ -1,5 +1,5 @@
-import { ArrowForwardIos, ArrowBackIos, Search } from '@mui/icons-material';
-import { Grid, IconButton, Box, TextField, InputAdornment } from "@mui/material";
+import { Search } from '@mui/icons-material';
+import { Grid, Box, TextField, InputAdornment } from "@mui/material";
 import { ArticleDTO } from 'data/dto/ArticleDTO';
 import { useDebounce } from 'hooks/UseDebounce';
 import { ArticleAPI } from 'presentation/api/ArticleAPI';

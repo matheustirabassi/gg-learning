@@ -18,7 +18,7 @@ export const ArticleContentView = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        debounce(() => {
+        debounce(() => (
             ArticleAPI.getById(Number(id))
                 .then((result) => {
                     setIsLoading(false)
@@ -32,10 +32,8 @@ export const ArticleContentView = () => {
                         setIsLoading(false)
                     }
                 })
-        })
-
-
-    }, [id])
+        ))
+    }, [id, debounce, navigate])
 
     return (
         <PageBaseLayout showSideFooter>
@@ -48,7 +46,12 @@ export const ArticleContentView = () => {
                         my="15px"
                         padding="20px"
                     >
-                        {article ? article.title : 'Titulo'}
+                        {
+                            isLoading && (
+                                article ? article.title : 'Titulo'
+                            )
+                        }
+                        
                     </Typography>
                 </Box>
 
@@ -70,7 +73,8 @@ export const ArticleContentView = () => {
                         padding="20px">
                         Quizz
                     </Typography>
-                    {/* <QuizzContentView id={Number(id)} /> */}
+
+                    <QuizzContentView id={Number(id)} />
                 </Box>
             </Box>
         </PageBaseLayout>
