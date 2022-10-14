@@ -75,7 +75,7 @@ export const HomeContentView = () => {
 									<Grid key={index} item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
 										<ArticleCard
 											bgColor='primary'
-											linkImage={"imgs/python.svg"}
+											linkImage={"imgs/article.svg"}
 											title={article.title}
 											description={article.subtitle}
 											id={article.id}

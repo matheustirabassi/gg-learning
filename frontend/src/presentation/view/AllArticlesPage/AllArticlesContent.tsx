@@ -10,26 +10,26 @@ import { useEffect, useState } from 'react';
 export const AllArticlesContent = () => {
     const [articles, setArticle] = useState<ArticleDTO[]>([])
     const { debounce } = useDebounce(5000)
-    
+
     useEffect(() => {
-		debounce(() => {
-			ArticleAPI.getAll()
-				.then((result) => {
-					if (result instanceof Error) {
-						alert(result.message)
-					} else {
-						console.log(result)
-						setArticle(result)
-					}
-				})
-		})
-	})
+        debounce(() => {
+            ArticleAPI.getAll()
+                .then((result) => {
+                    if (result instanceof Error) {
+                        alert(result.message)
+                    } else {
+                        console.log(result)
+                        setArticle(result)
+                    }
+                })
+        })
+    })
 
     return (
         <PageBaseLayout showSideFooter>
             <Box display="flex" flexDirection="row" alignItems="center" marginX={10} marginTop={2} justifyContent="center">
                 <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                    <Box marginBottom={2} width="70%" padding={1} display="flex" alignItems="center" justifyContent="center" flexDirection="row">
+                    <Box marginBottom={2} width="100%" padding={1} display="flex" alignItems="center" justifyContent="center" flexDirection="row">
                         <TextField
                             fullWidth
                             sx={{
@@ -53,35 +53,31 @@ export const AllArticlesContent = () => {
                             InputProps={{
                                 startAdornment: (
                                     <InputAdornment position='start'>
-                                        <Search color='secondary'/>
+                                        <Search color='secondary' />
                                     </InputAdornment>
                                 ),
                             }}
                         />
                     </Box>
-                    <Grid
-                        container
-                        direction="row"
-                        alignItems="center"
-                        spacing={1}
-                    >
-                        {
-                            articles.map((article, index) => {
-                                return (
-                                    <Grid key={index} item xs={12} sm={6} lg={4} xl={4} marginBottom={2}>
-                                        <ArticleCard
-                                            bgColor='primary'
-                                            linkImage={"imgs/python.svg"}
-                                            title={article.title}
-                                            description={article.subtitle}
-                                            id={article.id}
-                                        />
-                                    </Grid>
-                                )
-                            })
-                        }
-
-                    </Grid>
+                    <Box marginBottom={2} width="auto" padding={1} display="flex" alignItems="center" justifyContent="center" flexDirection="row">
+                        <Grid container spacing={1} justifyContent="space-around" paddingLeft={10}>
+                            {
+                                articles.map((article, index) => {
+                                    return (
+                                        <Grid key={index} item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
+                                            <ArticleCard
+                                                bgColor='primary'
+                                                linkImage={"imgs/article.svg"}
+                                                title={article.title}
+                                                description={article.subtitle}
+                                                id={article.id}
+                                            />
+                                        </Grid>
+                                    )
+                                })
+                            }
+                        </Grid>
+                    </Box>
                 </Box>
             </Box>
         </PageBaseLayout>
