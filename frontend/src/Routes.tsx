@@ -10,7 +10,7 @@ import CreateArticleView from "presentation/view/CreateArticlePage/CreateArticle
 export const ROUTES = {
 	HOME: "/",
 	ALLARTICLES: "/all_articles",
-	ARTICLE:"/article",
+	ARTICLE:"/article/:id",
 	QUIZZ:"/quizz",
 	COMPILADOR:"/compiler",
 	CREATE_ACCOUNT:"/register",

@@ -24,7 +24,7 @@ export const Question = ({num, question, alternatives }: QuestionProps) => {
 
                 {alternatives?.map((alternative, i) => {
                     return (
-                        <FormControlLabel value={i} control={<Radio sx={{color:"primary.main"}}/>} sx={{color:"secondary.main"}} label={alternative}></FormControlLabel>
+                        <FormControlLabel key={i} value={i} control={<Radio sx={{color:"primary.main"}}/>} sx={{color:"secondary.main"}} label={alternative}></FormControlLabel>
                     )
                 })}
             </RadioGroup>

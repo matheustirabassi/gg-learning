@@ -18,6 +18,6 @@ object Url {
     }
 
     fun decoreParam(param: String?): String {
-        return URLDecoder.decode(param, StandardCharsets.UTF_8)
+        return URLDecoder.decode(param, StandardCharsets.UTF_8.toString())
     }
 }

@@ -1,9 +1,9 @@
 package com.br.gglearning.domain
 
+import javax.persistence.CascadeType
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.Table
@@ -23,9 +23,12 @@ class Quizz(
 
     @ManyToOne
     @JoinColumn(name = "article_id")
-    var article: Article,
+    var article: Article? = null,
 
-    @OneToMany
-    @JoinTable(name = "quizz_questions")
-    var questions: List<Question>
+    @OneToMany(
+        mappedBy = "quizz",
+        orphanRemoval = true,
+        cascade = [CascadeType.ALL]
+    )
+    var questions: MutableList<Question>? = null
 ) : BaseEntity()
