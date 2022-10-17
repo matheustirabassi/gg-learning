@@ -13,8 +13,15 @@ const createAccountSchema = yup.object().shape({
     password: yup.string().required().min(3),
 })
 
-const createUser = (user: UserDTO) => {
-    UserAPI.create(user)
+const createUser = async (user: UserDTO): Promise<string | Error> => {
+    const data = await UserAPI.create(user)
+
+    if(data instanceof Error){
+        console.log("Deu erro")
+        return new Error(data.message)
+    }else{
+        return "Usuário cadastrado com sucesso"
+    }
 }
 
 export const CreateAccountViewModel = {

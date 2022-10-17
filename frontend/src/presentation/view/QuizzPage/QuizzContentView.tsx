@@ -1,36 +1,101 @@
-import { Button, Box, FormControl, Grid, Typography } from "@mui/material"
+import { Button, Box, FormControl, Grid, Typography, Snackbar, Alert } from "@mui/material"
+import { ArticleAPI } from "presentation/api/ArticleAPI"
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
-import { Question } from "presentation/components/Question/Question"
+import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
+import { ROUTES } from "Routes"
+import { yupResolver } from '@hookform/resolvers/yup'
+import * as yup from "yup"
+import "../../../assets/yup/TraducoesYup"
+import { SubmitHandler, useForm } from "react-hook-form"
+import { RHRadioButton } from "presentation/components/FormComponents/RHRadioButton"
+import { useDebounce } from "hooks/UseDebounce"
+import { QuestionDTO } from "data/dto/QuestionDTO"
 
+interface IQuizzProps {
+    id: number
+}
 
-export const QuizzContentView = () => {
+const quizzSchema = yup.object().shape({
+    alternatives: yup.array().of(yup.string().required()),
+})
+
+interface IQuizzAlternatives {
+    alternatives: string[]
+}
+
+export const QuizzContentView = ({ id }: IQuizzProps) => {
+    const [isLoading, setIsLoading] = useState(false)
+    const [quizz, setQuizz] = useState<QuestionDTO[]>([])
+    const [openSnack, setOpenSnack] = useState(false)
+    const [count, setCount] = useState(0)
+    const [total, setTotal] = useState(0)
+    const navigate = useNavigate()
+    const { debounce } = useDebounce(5000)
+    const { control, handleSubmit, reset } = useForm<IQuizzAlternatives>({
+        resolver: yupResolver(quizzSchema)
+    })
+
+    useEffect(() => {
+        setIsLoading(true)
+        debounce(() =>
+            ArticleAPI.getById(Number(id))
+                .then((result) => {
+                    setIsLoading(false)
+
+                    if (result instanceof Error) {
+                        alert(result.message)
+                        navigate(ROUTES.HOME)
+                    } else {
+                        setIsLoading(false)
+                        console.log(result.quizzes[0].questions)
+                        setQuizz(oldArray => result.quizzes[0].questions)
+                        console.log(quizz)
+                    }
+                })
+        )
+    }, [id, quizz, debounce, navigate])
+
+    const onSendQuizz: SubmitHandler<IQuizzAlternatives> = (data) => {
+        setCount(0)
+        setTotal(0)
+        data.alternatives.forEach((ans, i) => {
+            setTotal(oldValue => oldValue+1)
+
+            if (ans === quizz[i].answer) {
+                setCount(oldValue => oldValue+1)
+            }
+        })
+        setOpenSnack(true)
+        reset()
+    }
+
+    const handleCloseSnack = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnack(false);
+    };
+
     return (
-
-        <PageBaseLayout showSideFooter>
+        <PageBaseLayout>
             <Box display="flex" justifyContent="center" >
                 <FormControl sx={{ marginTop: "20px" }}>
                     <Grid container spacing={2} direction="column">
-                        <Grid item >
-                            <Question
-                                num={1}
-                                question="O python é fortemente tipado?"
-                                alternatives={["Sim", "Não"]}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <Question
-                                num={2}
-                                question="Qual o comando para receber o valor de uma variável como entrada?"
-                                alternatives={["input()", "scanf()", "gets()", "read()"]}
-                            />
-                        </Grid>
-                        <Grid item>
-                            <Question
-                                num={3}
-                                question="Qual o comando para realizar um comentário em python?"
-                                alternatives={["<!-- Comentário -->", "--Comentário", "//Comentário", "#Comentário"]}
-                            />
-                        </Grid>
+                        {quizz.map((question, index) => {
+                            return (
+                                <Grid item key={index}>
+                                    <RHRadioButton
+                                        control={control}
+                                        name={`alternatives[${index}]`}
+                                        label={question.text}
+                                        options={question.alternatives}
+                                        disabled={isLoading}
+                                    />
+                                </Grid>
+                            )
+                        })}
                     </Grid>
 
                     <Box display="flex" flexDirection="row" justifyContent="center" marginY={2}>
@@ -41,17 +106,21 @@ export const QuizzContentView = () => {
                                 marginTop: "35px",
                                 marginBottom: "20px"
                             }}
+                            onClick={handleSubmit(onSendQuizz)}
                         >
                             <Typography variant="h3">
                                 Enviar Quizz
                             </Typography>
                         </Button>
+                        <Snackbar open={openSnack} onClose={handleCloseSnack} autoHideDuration={3000}>
+                            <Alert severity='success'>
+                                Você acertou {count}/{total}
+                            </Alert>
+                        </Snackbar>
                     </Box>
 
                 </FormControl>
             </Box>
-
         </PageBaseLayout>
-
     )
 }

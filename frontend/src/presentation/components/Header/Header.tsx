@@ -17,7 +17,6 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 	type Pages = [string, string]
 	const pages: Pages[] = [
 		["Artigos", ROUTES.ALLARTICLES],
-		["Compilador", ROUTES.COMPILADOR]
 	]
 
 	/** Observa o elemento ancorado */

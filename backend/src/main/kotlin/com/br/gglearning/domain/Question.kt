@@ -24,12 +24,12 @@ class Question(
 
     @ElementCollection
     @CollectionTable(name = "question_alternatives")
-    var alternatives: List<String>,
+    var alternatives: MutableList<String>,
 
     @Column(name = "answer")
     var answer: String,
 
     @ManyToOne
     @JoinColumn(name = "quizz_id")
-    var quizz: Quizz
+    var quizz: Quizz? = null
 ) : BaseEntity()

@@ -1,5 +1,6 @@
 package com.br.gglearning.data
 
+import java.io.Serializable
 import javax.validation.constraints.NotEmpty
 
 /**
@@ -14,8 +15,14 @@ data class QuestionDto(
     var text: String,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
-    var alternatives: List<String>,
+    var alternatives: List<String>?,
 
     @field:NotEmpty(message = "Preenchimento obrigatório")
     var answer: String
-)
+) : Serializable {
+    constructor() : this(
+        "",
+        null,
+        ""
+    )
+}

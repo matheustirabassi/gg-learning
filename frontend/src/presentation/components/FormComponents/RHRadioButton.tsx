@@ -1,4 +1,4 @@
-import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio } from "@mui/material"
+import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Typography } from "@mui/material"
 import { Controller } from "react-hook-form"
 
 interface IRHRadioButtonProps {
@@ -12,17 +12,25 @@ interface IRHRadioButtonProps {
 export const RHRadioButton = ({ name, control, label, disabled, options }: IRHRadioButtonProps) => {
     const generateRadioOptions = () => {
         return options.map((labelOpt, index) => (
-          <FormControlLabel
-            key={index}
-            value={index}
-            label={labelOpt}
-            control={<Radio />}
-          />
+            <FormControlLabel
+                key={index}
+                value={index}
+                label={labelOpt}
+                control={<Radio sx={{ color: "primary.main" }} />}
+                sx={{ color: "secondary.main" }}
+            />
         ));
-      };
+    };
     return (
         <FormControl component="fieldset">
-            <FormLabel component="legend">{label}</FormLabel>
+            <FormLabel component="legend">
+                <Typography
+                    id="question"
+                    color="secondary"
+                    variant="h4">
+                    {label}
+                </Typography>
+            </FormLabel>
             <Controller
                 name={name}
                 control={control}

@@ -1,6 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import "../../../assets/yup/TraducoesYup"
-import { Box, Button, Card, CardActions, CardContent, CircularProgress, Skeleton, Typography } from "@mui/material"
+import { Alert, Box, Button, Card, CardActions, CardContent, CircularProgress, Skeleton, Snackbar, Typography } from "@mui/material"
 import { RHTextField } from "presentation/components/FormComponents/RHTextField"
 import { ReactComponent as LogoIcn } from "assets/icons/logo.svg";
 import { Fragment, useState } from "react"
@@ -10,6 +10,8 @@ import { RHSelectTextfield } from "presentation/components/FormComponents/RHSele
 import { RHMaskTextField } from "presentation/components/FormComponents/RHMaskTextField"
 import { CreateAccountViewModel } from "./CreateAccountContentViewModel"
 import { UserDTO } from 'data/dto/UserDTO';
+import { useNavigate } from 'react-router-dom';
+import { useDebounce } from 'hooks/UseDebounce';
 
 export const CreateAccountContentView = () => {
     const { logout } = useAuthContext()
@@ -17,7 +19,9 @@ export const CreateAccountContentView = () => {
         resolver: yupResolver(CreateAccountViewModel.createAccountSchema)
     })
     const [isLoadingFields, setIsLoadingFields] = useState(false)
-
+    const navigate = useNavigate()
+    const [openSnack, setOpenSnack] = useState(false)
+    const { debounce } = useDebounce(1500, false)
     type UserType = { label: string, value: string }
     const options: UserType[] = [
         {
@@ -32,13 +36,25 @@ export const CreateAccountContentView = () => {
 
     const [isLoading, setIsLoading] = useState(false)
 
+    const handleCloseSnack = (event?: React.SyntheticEvent | Event, reason?: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        setOpenSnack(false);
+    };
+
     const onSubmit: SubmitHandler<UserDTO> = (data) => {
         setIsLoading(false)
         setIsLoadingFields(false)
         console.log(data)
-        CreateAccountViewModel.createUser(data)
-        reset()
-        logout()
+        setOpenSnack(true)
+        debounce(() => {
+            CreateAccountViewModel.createUser(data)
+            reset()
+            navigate("/")
+            logout()
+        })
     }
 
     return (
@@ -149,6 +165,11 @@ export const CreateAccountContentView = () => {
                             >
                                 Registrar
                             </Button>
+                            <Snackbar open={openSnack} onClose={handleCloseSnack} autoHideDuration={1500}>
+                                <Alert severity='success'>
+                                    Usuário cadastrado com sucesso
+                                </Alert>
+                            </Snackbar>
                         </Box>
                     </CardActions>
                 </Card>
