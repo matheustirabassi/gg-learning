@@ -2,12 +2,12 @@ import { Api } from "config/axios/AxiosConfig"
 import { ArticleDTO } from "data/dto/ArticleDTO"
 import { parseDateToString } from "helper/DateHelper"
 
-const create = async (article: ArticleDTO) => {
+const create = async (article: ArticleDTO, token: string) => {
     let currentDate = parseDateToString(new Date())
     article.publicationDate = `${currentDate}`
-    article.authorName = "Miguel Sbrissa"
+    article.authorName = "Admin"
     console.log(article)
-    const data = await Api.post('/articles', article)
+    const data = await Api.post('/articles', article, {headers: {Authorization: token}})
     console.log(data)
 }
 

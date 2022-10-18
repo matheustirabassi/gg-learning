@@ -13,6 +13,7 @@ import { RHRadioButton } from "presentation/components/FormComponents/RHRadioBut
 import { useNavigate } from "react-router-dom";
 import { useDebounce } from "hooks/UseDebounce";
 import { ArticleAPI } from "data/api/ArticleAPI";
+import { useAuthContext } from "contexts/AuthContext";
 
 const createArticleSchema = yup.object().shape({
     title: yup.string().required(),
@@ -31,6 +32,7 @@ export const CreateArticleContentView = () => {
     const [openSnackQuizz, setOpenSnackQuizz] = useState(false)
     const { debounce } = useDebounce(1500, false)
     const navigate = useNavigate()
+    const { token } = useAuthContext()
     //Article
     const { control: controlArticle, getValues } = useForm<ArticleDTO>({
         resolver: yupResolver(createArticleSchema)
@@ -78,7 +80,7 @@ export const CreateArticleContentView = () => {
         let finalArticle = new ArticleDTO(getValues("title"), getValues("content"), getValues("subtitle"), "", "", [quizz])
         setOpenSnackQuizz(true)
         debounce(() => {
-            ArticleAPI.create(finalArticle)
+            ArticleAPI.create(finalArticle, token)
             setIsLoading(false)
             navigate("/")
         })

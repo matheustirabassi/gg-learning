@@ -10,7 +10,7 @@ const create = async (user: UserDTO): Promise<string | Error> => {
         "userName": user.userName,
         "birthDate": user.birthDate,
         "password": user.password
-    })
+    }, {headers: {Authorization: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBlbWFpbC5jb20iLCJleHAiOjE2NzUzMDcxNjV9.qACNWl9jN9g94TGkbzMYyJnR4YC_cBW_eUUBIlB07RafkpMBNR4bsQyPnZsgqJm_JTzdXNnCTh6IxcAWkEX4Kw"}})
     console.log(data)
     if(data.status === 201){
         console.log("N de erro")
