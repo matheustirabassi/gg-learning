@@ -24,7 +24,6 @@ export const ArticleContentView = () => {
             ArticleAPI.getById(Number(id), token)
                 .then((result) => {
                     setIsLoading(false)
-
                     if (result instanceof Error) {
                         alert(result.message)
                         navigate(ROUTES.HOME)
@@ -35,7 +34,7 @@ export const ArticleContentView = () => {
                     }
                 })
         ))
-    }, [id, debounce, navigate])
+    }, [id, debounce, navigate, token])
 
     return (
         <PageBaseLayout showSideFooter>
@@ -49,7 +48,7 @@ export const ArticleContentView = () => {
                         padding="20px"
                     >
                         {
-                            article ? article.title : 'Titulo'
+                            article ? article.title : 'Erro ao carregar artigo'
 
                         }
                     </Typography>
@@ -73,7 +72,11 @@ export const ArticleContentView = () => {
                         padding="20px">
                         Quizz
                     </Typography>
-
+                    {
+                        isLoading && (
+                            <></>
+                        )
+                    }
                     <QuizzContentView id={Number(id)} />
                 </Box>
             </Box>

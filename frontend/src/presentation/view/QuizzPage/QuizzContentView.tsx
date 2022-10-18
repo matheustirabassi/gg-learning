@@ -57,7 +57,7 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
                     }
                 })
         )
-    }, [id, quizz, debounce, navigate])
+    }, [id, quizz, debounce, navigate, token])
 
     const onSendQuizz: SubmitHandler<IQuizzAlternatives> = (data) => {
         setCount(0)
