@@ -68,7 +68,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
 		 * Registra o token no local storage.
 		 */
     const handleRegister = useCallback(() => {
-		token = "a"
+		token = "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbkBlbWFpbC5jb20iLCJleHAiOjE2NzUzMDcxNjV9.qACNWl9jN9g94TGkbzMYyJnR4YC_cBW_eUUBIlB07RafkpMBNR4bsQyPnZsgqJm_JTzdXNnCTh6IxcAWkEX4Kw"
         localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify(token))
         setAccessToken(token)
     }, [])
