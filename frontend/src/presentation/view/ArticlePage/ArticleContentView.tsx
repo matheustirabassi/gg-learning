@@ -6,8 +6,8 @@ import { useEffect, useState } from 'react'
 import { ArticleDTO } from "data/dto/ArticleDTO"
 import { ROUTES } from "Routes"
 import { QuizzContentView } from "../QuizzPage/QuizzContentView"
-import { ArticleAPI } from "presentation/api/ArticleAPI"
 import { useDebounce } from 'hooks/UseDebounce';
+import { ArticleAPI } from "data/api/ArticleAPI"
 
 export const ArticleContentView = () => {
     const { id } = useParams<'id'>()

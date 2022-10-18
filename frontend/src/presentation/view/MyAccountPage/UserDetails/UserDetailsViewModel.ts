@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useAuthContext } from 'contexts/AuthContext';
 import { UserAPI } from "data/api/UserAPI";
 import infoUser from 'data/json/info.json';
 import { useState } from "react";
@@ -10,6 +11,7 @@ export default function UserDetailsViewModel() {
 	const [user, setUser] = useState<IInfoAccountInput>(infoUser)
 	const [isLoadingFields, setIsLoadingFields] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
+	const { token } = useAuthContext() 
 
 	interface IInfoAccountInput {
     name: string
@@ -43,7 +45,7 @@ const onSubmit: SubmitHandler<IInfoAccountInput> = (data) => {
 }
 
 function getMyAccountData() {
-	UserAPI.getMyAccountData()
+	UserAPI.getMyAccountData(token)
 }
 
 function initializeData() {

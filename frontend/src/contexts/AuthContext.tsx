@@ -68,6 +68,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
 		 * Registra o token no local storage.
 		 */
     const handleRegister = useCallback(() => {
+		token = "a"
         localStorage.setItem(LOCAL_STORAGE_KEY__ACCESS_TOKEN, JSON.stringify(token))
         setAccessToken(token)
     }, [])
@@ -78,7 +79,7 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
 			<AuthContext.Provider
 				value={{
 					isAuthenticated,
-					token,
+					token: accessToken!!,
 					login: handleLogin,
 					logout: handleLogout,
 					register: handleRegister,

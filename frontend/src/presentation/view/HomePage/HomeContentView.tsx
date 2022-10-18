@@ -1,7 +1,8 @@
 import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { useAuthContext } from "contexts/AuthContext"
+import { ArticleAPI } from "data/api/ArticleAPI"
 import { ArticleDTO } from "data/dto/ArticleDTO"
 import { useDebounce } from "hooks/UseDebounce"
-import { ArticleAPI } from "presentation/api/ArticleAPI"
 import { ArticleCard } from "presentation/components/Card/ArticleCard"
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
 import { useState, useEffect } from "react"
@@ -13,10 +14,11 @@ export const HomeContentView = () => {
 	const lgDown = useMediaQuery(theme.breakpoints.down("lg"))
 	const [articles, setArticle] = useState<ArticleDTO[]>([])
 	const { debounce } = useDebounce(5000)
+	const { token } = useAuthContext() 
 
 	useEffect(() => {
 		debounce(() => {
-			ArticleAPI.getAll()
+			ArticleAPI.getAll(token)
 				.then((result) => {
 					if (result instanceof Error) {
 						alert(result.message)

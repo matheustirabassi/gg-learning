@@ -1,6 +1,6 @@
+import { Api } from "config/axios/AxiosConfig"
 import { ArticleDTO } from "data/dto/ArticleDTO"
 import { parseDateToString } from "helper/DateHelper"
-import { Api } from "presentation/axios/AxiosConfig"
 
 const create = async (article: ArticleDTO) => {
     let currentDate = parseDateToString(new Date())
@@ -11,9 +11,9 @@ const create = async (article: ArticleDTO) => {
     console.log(data)
 }
 
-const getAll = async (): Promise<ArticleDTO[] | Error> => {
-    const data = await Api.get('/articles')
-
+const getAll = async (token: string): Promise<ArticleDTO[] | Error> => {
+    const data = await Api.get('/articles', {headers: {Authorization: token}})
+    console.log(token)
     if (data) {
         return data.data.content
     } else {

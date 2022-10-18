@@ -9,6 +9,7 @@ function useViewModel() {
 }
 
 export const UserDetails = () => {
+	
 	const viewModel = useViewModel()
 
 	viewModel.initializeData()

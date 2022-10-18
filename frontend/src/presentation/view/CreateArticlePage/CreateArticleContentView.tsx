@@ -4,7 +4,6 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup"
 import "../../../assets/yup/TraducoesYup"
 import { ArticleDTO } from "data/dto/ArticleDTO";
-import { ArticleAPI } from "presentation/api/ArticleAPI";
 import { RHTextArea } from "presentation/components/FormComponents/RHTextArea";
 import { RHTextField } from "presentation/components/FormComponents/RHTextField";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -13,6 +12,7 @@ import { QuizzDTO } from "data/dto/QuizzDTO";
 import { RHRadioButton } from "presentation/components/FormComponents/RHRadioButton";
 import { useNavigate } from "react-router-dom";
 import { useDebounce } from "hooks/UseDebounce";
+import { ArticleAPI } from "data/api/ArticleAPI";
 
 const createArticleSchema = yup.object().shape({
     title: yup.string().required(),

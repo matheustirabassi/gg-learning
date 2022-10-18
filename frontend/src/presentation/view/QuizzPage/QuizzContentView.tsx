@@ -1,5 +1,5 @@
 import { Button, Box, FormControl, Grid, Typography, Snackbar, Alert } from "@mui/material"
-import { ArticleAPI } from "presentation/api/ArticleAPI"
+
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
@@ -11,6 +11,7 @@ import { SubmitHandler, useForm } from "react-hook-form"
 import { RHRadioButton } from "presentation/components/FormComponents/RHRadioButton"
 import { useDebounce } from "hooks/UseDebounce"
 import { QuestionDTO } from "data/dto/QuestionDTO"
+import { ArticleAPI } from "data/api/ArticleAPI"
 
 interface IQuizzProps {
     id: number

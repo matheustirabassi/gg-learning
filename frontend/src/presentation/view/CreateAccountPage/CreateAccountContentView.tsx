@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDebounce } from 'hooks/UseDebounce';
 
 export const CreateAccountContentView = () => {
-    const { logout } = useAuthContext()
+    let { logout } = useAuthContext()
     const { handleSubmit, reset, control } = useForm<UserDTO>({
         resolver: yupResolver(CreateAccountViewModel.createAccountSchema)
     })
