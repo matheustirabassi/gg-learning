@@ -21,9 +21,9 @@ const getAll = async (token: string): Promise<ArticleDTO[] | Error> => {
     }
 }
 
-const getById = async (id: number): Promise<ArticleDTO | Error> => {
+const getById = async (id: number, token: string): Promise<ArticleDTO | Error> => {
     try {
-        const data = await Api.get(`/articles/${id}`)
+        const data = await Api.get(`/articles/${id}`, {headers: {Authorization: token}})
 
         if (data) {
             return data.data

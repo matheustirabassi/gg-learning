@@ -154,6 +154,7 @@ export const CreateArticleContentView = () => {
                                 label="Escolha qual alternativa será a correta"
                                 disabled={isLoading}
                                 options={altCor}
+                                fontWhite={false}
                             />
                         </Box>
                     </CardContent>

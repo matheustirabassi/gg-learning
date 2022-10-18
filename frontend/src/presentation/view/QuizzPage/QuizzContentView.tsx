@@ -12,6 +12,7 @@ import { RHRadioButton } from "presentation/components/FormComponents/RHRadioBut
 import { useDebounce } from "hooks/UseDebounce"
 import { QuestionDTO } from "data/dto/QuestionDTO"
 import { ArticleAPI } from "data/api/ArticleAPI"
+import { useAuthContext } from "contexts/AuthContext"
 
 interface IQuizzProps {
     id: number
@@ -36,11 +37,12 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
     const { control, handleSubmit, reset } = useForm<IQuizzAlternatives>({
         resolver: yupResolver(quizzSchema)
     })
+    const { token } = useAuthContext() 
 
     useEffect(() => {
         setIsLoading(true)
         debounce(() =>
-            ArticleAPI.getById(Number(id))
+            ArticleAPI.getById(Number(id), token)
                 .then((result) => {
                     setIsLoading(false)
 
@@ -93,6 +95,7 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
                                         label={question.text}
                                         options={question.alternatives}
                                         disabled={isLoading}
+                                        fontWhite={true}
                                     />
                                 </Grid>
                             )

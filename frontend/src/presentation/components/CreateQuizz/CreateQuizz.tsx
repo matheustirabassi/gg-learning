@@ -72,6 +72,7 @@ export const CreateQuizz = () => {
                             label="Escolha qual alternativa será a correta"
                             disabled={isLoading}
                             options={altCor}
+                            fontWhite={true}
                         />
                     </Box>
                 </CardContent>

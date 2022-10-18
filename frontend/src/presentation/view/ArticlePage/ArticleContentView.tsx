@@ -8,6 +8,7 @@ import { ROUTES } from "Routes"
 import { QuizzContentView } from "../QuizzPage/QuizzContentView"
 import { useDebounce } from 'hooks/UseDebounce';
 import { ArticleAPI } from "data/api/ArticleAPI"
+import { useAuthContext } from "contexts/AuthContext"
 
 export const ArticleContentView = () => {
     const { id } = useParams<'id'>()
@@ -15,11 +16,12 @@ export const ArticleContentView = () => {
     const [article, setArticle] = useState<ArticleDTO>(new ArticleDTO('', '', '', '', '', []))
     const navigate = useNavigate()
     const { debounce } = useDebounce(5000)
+    const { token } = useAuthContext()
 
     useEffect(() => {
         setIsLoading(true)
         debounce(() => (
-            ArticleAPI.getById(Number(id))
+            ArticleAPI.getById(Number(id), token)
                 .then((result) => {
                     setIsLoading(false)
 
@@ -47,11 +49,9 @@ export const ArticleContentView = () => {
                         padding="20px"
                     >
                         {
-                            isLoading && (
-                                article ? article.title : 'Titulo'
-                            )
+                            article ? article.title : 'Titulo'
+
                         }
-                        
                     </Typography>
                 </Box>
 
