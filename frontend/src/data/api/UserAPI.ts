@@ -20,15 +20,19 @@ const create = async (user: UserDTO): Promise<string | Error> => {
     return new Error(data.data.msg)
 }
 
-async function getMyAccountData(token: string) {
+const getMyAccountData = async(token: string): Promise<UserDTO | Error> => {
+    try{
+        const data = await Api.get('/users/myUser', {headers: {Authorization: token}})
 
-    await Api.get('/users/myUser', {headers: {Authorization: token}})
-        .then((res) => {
-            console.info(res.data as UserDTO)
-            return res
-        }).catch((error) => {
-            console.error(error)
-        })
+        if (data) {
+            return data.data as UserDTO
+        }
+
+        return new Error('Erro ao consultar registros.')
+    }catch (error) {
+        console.error(error)
+        return new Error((error as { message: string }).message || 'Erro ao consultar registros.')
+    }
 }
 
 export const UserAPI = {

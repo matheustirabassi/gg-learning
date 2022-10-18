@@ -38,7 +38,6 @@ export const UserDetails = () => {
 										<Skeleton variant="rectangular" animation="wave" height={56} />
 										<Skeleton variant="rectangular" animation="wave" height={56} />
 										<Skeleton variant="rectangular" animation="wave" height={56} />
-										<Skeleton variant="rectangular" animation="wave" height={56} />
 									</Fragment>
 								)}
 
@@ -81,14 +80,6 @@ export const UserDetails = () => {
 											control={viewModel.control}
 											label="Usuário"
 											type="text"
-											disabled={viewModel.isLoading}
-										/>
-
-										<RHTextField
-											name="password"
-											control={viewModel.control}
-											label="Senha"
-											type="password"
 											disabled={viewModel.isLoading}
 										/>
 									</Fragment>

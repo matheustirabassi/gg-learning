@@ -1,9 +1,13 @@
 import { Article, Person } from "@mui/icons-material"
 import { Box, Button, List, ListItemButton, ListItemIcon, ListItemText, Typography, useTheme } from "@mui/material"
 import { UserDetails } from "presentation/view/MyAccountPage/UserDetails/UserDetails"
-
 import { Fragment, useCallback, useState } from "react"
 import { ROUTES } from "Routes"
+import UserDetailsViewModel from "./UserDetails/UserDetailsViewModel"
+
+function useViewModel() {
+    return UserDetailsViewModel()
+}
 
 export const MyAccountPageContentView = () => {
     const theme = useTheme()
@@ -14,6 +18,13 @@ export const MyAccountPageContentView = () => {
         setMyInfo(oldmMyInfo => !oldmMyInfo)
         setMyArticles(oldMyArticles => !oldMyArticles)
     }, [])
+
+    const viewModel = useViewModel()
+
+    viewModel.initializeData()
+
+    const userType = viewModel.user.typeUser
+
     return (
         <Box display='flex' flexDirection='row' height='100vh'>
             <Box width={theme.spacing(28)} display='flex' flexDirection='column' bgcolor={theme.palette.primary.main}>
@@ -25,12 +36,18 @@ export const MyAccountPageContentView = () => {
                             </ListItemIcon>
                             <ListItemText primary={"Minha informações"} sx={{ color: "secondary.contrastText" }} />
                         </ListItemButton>
-                        <ListItemButton onClick={toggleMenu}>
-                            <ListItemIcon>
-                                <Article />
-                            </ListItemIcon>
-                            <ListItemText primary={"Meus artigos"} sx={{ color: "secondary.contrastText" }} />
-                        </ListItemButton>
+                        {
+                            userType === "PUBLISHER" && (
+                                <>
+                                    <ListItemButton onClick={toggleMenu}>
+                                        <ListItemIcon>
+                                            <Article />
+                                        </ListItemIcon>
+                                        <ListItemText primary={"Criar artigo"} sx={{ color: "secondary.contrastText" }} />
+                                    </ListItemButton>
+                                </>
+                            )
+                        }
                     </List>
                 </Box>
             </Box>
@@ -42,7 +59,7 @@ export const MyAccountPageContentView = () => {
                 }
 
                 {
-                    myArticles && (
+                    (myArticles && userType === "PUBLISHER") && (
                         <Fragment>
                             <Box display="flex" flexDirection="column" alignItems="center" marginTop={2}>
                                 <Button
@@ -53,10 +70,7 @@ export const MyAccountPageContentView = () => {
                                         color="secondary.contrastText"
                                     >Crie um artigo</Typography>
                                 </Button>
-
-                                <Typography color="secondary.main">Meus artigos</Typography>
                             </Box>
-
                         </Fragment>
                     )
                 }
