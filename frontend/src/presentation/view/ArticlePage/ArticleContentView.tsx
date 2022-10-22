@@ -6,8 +6,9 @@ import { useEffect, useState } from 'react'
 import { ArticleDTO } from "data/dto/ArticleDTO"
 import { ROUTES } from "Routes"
 import { QuizzContentView } from "../QuizzPage/QuizzContentView"
-import { ArticleAPI } from "presentation/api/ArticleAPI"
 import { useDebounce } from 'hooks/UseDebounce';
+import { ArticleAPI } from "data/api/ArticleAPI"
+import { useAuthContext } from "contexts/AuthContext"
 
 export const ArticleContentView = () => {
     const { id } = useParams<'id'>()
@@ -15,14 +16,14 @@ export const ArticleContentView = () => {
     const [article, setArticle] = useState<ArticleDTO>(new ArticleDTO('', '', '', '', '', []))
     const navigate = useNavigate()
     const { debounce } = useDebounce(5000)
+    const { token } = useAuthContext()
 
     useEffect(() => {
         setIsLoading(true)
         debounce(() => (
-            ArticleAPI.getById(Number(id))
+            ArticleAPI.getById(Number(id), token)
                 .then((result) => {
                     setIsLoading(false)
-
                     if (result instanceof Error) {
                         alert(result.message)
                         navigate(ROUTES.HOME)
@@ -33,7 +34,7 @@ export const ArticleContentView = () => {
                     }
                 })
         ))
-    }, [id, debounce, navigate])
+    }, [id, debounce, navigate, token])
 
     return (
         <PageBaseLayout showSideFooter>
@@ -47,11 +48,9 @@ export const ArticleContentView = () => {
                         padding="20px"
                     >
                         {
-                            isLoading && (
-                                article ? article.title : 'Titulo'
-                            )
+                            article ? article.title : 'Erro ao carregar artigo'
+
                         }
-                        
                     </Typography>
                 </Box>
 
@@ -73,7 +72,11 @@ export const ArticleContentView = () => {
                         padding="20px">
                         Quizz
                     </Typography>
-
+                    {
+                        isLoading && (
+                            <></>
+                        )
+                    }
                     <QuizzContentView id={Number(id)} />
                 </Box>
             </Box>

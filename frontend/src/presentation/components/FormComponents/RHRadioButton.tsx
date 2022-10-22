@@ -7,20 +7,33 @@ interface IRHRadioButtonProps {
     label: string
     disabled: boolean
     options: string[]
+    fontWhite: boolean
 }
 
-export const RHRadioButton = ({ name, control, label, disabled, options }: IRHRadioButtonProps) => {
-    const generateRadioOptions = () => {
+export const RHRadioButton = ({ name, control, label, disabled, options, fontWhite }: IRHRadioButtonProps) => {
+    const generateRadioWhiteOptions = () => {
         return options.map((labelOpt, index) => (
-            <FormControlLabel
-                key={index}
-                value={index}
-                label={labelOpt}
-                control={<Radio sx={{ color: "primary.main" }} />}
-                sx={{ color: "secondary.main" }}
-            />
+                <FormControlLabel
+                    key={index}
+                    value={index}
+                    label={labelOpt}
+                    control={<Radio sx={{ color: "primary.main" }} />}
+                    sx={{ color: "secondary.main" }}
+                />
         ));
     };
+
+    const generateRadioBlackOptions = () => {
+        return options.map((labelOpt, index) => (
+                <FormControlLabel
+                    key={index}
+                    value={index}
+                    label={labelOpt}
+                    control={<Radio/>}
+                />
+        ));
+    };
+
     return (
         <FormControl component="fieldset">
             <FormLabel component="legend">
@@ -40,7 +53,7 @@ export const RHRadioButton = ({ name, control, label, disabled, options }: IRHRa
                     formState,
                 }) => (
                     <RadioGroup value={value || ''} onChange={onChange}>
-                        {generateRadioOptions()}
+                        {fontWhite? generateRadioWhiteOptions() : generateRadioBlackOptions()}
                     </RadioGroup>
                 )}
             />

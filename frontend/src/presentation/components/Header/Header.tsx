@@ -3,7 +3,7 @@ import { ReactComponent as LogoIcn } from "assets/icons/logo.svg";
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from "react"
 import { ROUTES } from 'Routes';
-import { useAuthContext } from "presentation/contexts/AuthContext";
+import { useAuthContext } from "contexts/AuthContext";
 
 interface IHeaderProps {
 	children: React.ReactNode

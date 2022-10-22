@@ -45,7 +45,7 @@ data class UserDto(
     var birthDate: String?,
 
     @field:NotNull(message = "Preenchimento obrigatório")
-    var typeUser: TypeUserEnum
+    var typeUser: TypeUserEnum?
 ) : Serializable {
 
     constructor(user: User) : this(
@@ -56,5 +56,15 @@ data class UserDto(
         user.email,
         if (user.birthDate != null) SimpleDateFormat("dd/MM/yyyy").format(user.birthDate) else null,
         user.typeUser
+    )
+
+    constructor() : this(
+        "",
+        "",
+        "",
+        "",
+        "",
+        null,
+        null
     )
 }

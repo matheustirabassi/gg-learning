@@ -5,7 +5,7 @@ import { RHTextField } from "presentation/components/FormComponents/RHTextField"
 import { ReactComponent as LogoIcn } from "assets/icons/logo.svg";
 import { Fragment, useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
-import { useAuthContext } from "presentation/contexts/AuthContext"
+import { useAuthContext } from "contexts/AuthContext"
 import { RHSelectTextfield } from "presentation/components/FormComponents/RHSelectTextField"
 import { RHMaskTextField } from "presentation/components/FormComponents/RHMaskTextField"
 import { CreateAccountViewModel } from "./CreateAccountContentViewModel"
@@ -14,7 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDebounce } from 'hooks/UseDebounce';
 
 export const CreateAccountContentView = () => {
-    const { logout } = useAuthContext()
+    let { logout } = useAuthContext()
     const { handleSubmit, reset, control } = useForm<UserDTO>({
         resolver: yupResolver(CreateAccountViewModel.createAccountSchema)
     })

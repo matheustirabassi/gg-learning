@@ -6,8 +6,9 @@ import { useState } from "react"
 import { useForm, SubmitHandler } from "react-hook-form"
 import { RHTextField } from "../FormComponents/RHTextField"
 import { RHTextArea } from "../FormComponents/RHTextArea"
-import { ArticleAPI } from "presentation/api/ArticleAPI"
+import { ArticleAPI } from "data/api/ArticleAPI"
 import { ArticleDTO } from "data/dto/ArticleDTO"
+import { useAuthContext } from "contexts/AuthContext"
 
 const createArticleSchema = yup.object().shape({
     title: yup.string().required(),
@@ -16,6 +17,7 @@ const createArticleSchema = yup.object().shape({
 })
 
 export const CreateArticle = () => {
+    const { token } = useAuthContext()
     const { control, handleSubmit } = useForm<ArticleDTO>({
         resolver: yupResolver(createArticleSchema)
     })
@@ -24,7 +26,7 @@ export const CreateArticle = () => {
 
     const onSubmit: SubmitHandler<ArticleDTO> = (data) => {
         setIsLoading(true)
-        ArticleAPI.create(data)
+        ArticleAPI.create(data, token)
     }
     return (
         <Box width='100%' height='100%' display='flex' alignItems='center' justifyContent='center' sx={{ background: "background.default" }}>

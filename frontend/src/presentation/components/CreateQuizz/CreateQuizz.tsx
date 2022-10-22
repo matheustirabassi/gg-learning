@@ -3,7 +3,7 @@ import * as yup from "yup"
 import "../../../assets/yup/TraducoesYup"
 import { Box, Button, Card, CardActions, CardContent, CircularProgress } from "@mui/material"
 import { QuestionDTO } from 'data/dto/QuestionDTO'
-import { QuizzAPI } from 'presentation/api/QuestionAPI'
+import { QuizzAPI } from 'data/api/QuestionAPI'
 import { useState } from "react"
 import { SubmitHandler, useForm } from "react-hook-form"
 import { RHRadioButton } from '../FormComponents/RHRadioButton'
@@ -72,6 +72,7 @@ export const CreateQuizz = () => {
                             label="Escolha qual alternativa será a correta"
                             disabled={isLoading}
                             options={altCor}
+                            fontWhite={true}
                         />
                     </Box>
                 </CardContent>

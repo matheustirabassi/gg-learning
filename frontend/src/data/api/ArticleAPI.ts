@@ -1,19 +1,19 @@
+import { Api } from "config/axios/AxiosConfig"
 import { ArticleDTO } from "data/dto/ArticleDTO"
 import { parseDateToString } from "helper/DateHelper"
-import { Api } from "presentation/axios/AxiosConfig"
 
-const create = async (article: ArticleDTO) => {
+const create = async (article: ArticleDTO, token: string) => {
     let currentDate = parseDateToString(new Date())
     article.publicationDate = `${currentDate}`
-    article.authorName = "Miguel Sbrissa"
+    article.authorName = "Admin"
     console.log(article)
-    const data = await Api.post('/articles', article)
+    const data = await Api.post('/articles', article, {headers: {Authorization: token}})
     console.log(data)
 }
 
-const getAll = async (): Promise<ArticleDTO[] | Error> => {
-    const data = await Api.get('/articles')
-
+const getAll = async (token: string): Promise<ArticleDTO[] | Error> => {
+    const data = await Api.get('/articles', {headers: {Authorization: token}})
+    console.log(token)
     if (data) {
         return data.data.content
     } else {
@@ -21,9 +21,9 @@ const getAll = async (): Promise<ArticleDTO[] | Error> => {
     }
 }
 
-const getById = async (id: number): Promise<ArticleDTO | Error> => {
+const getById = async (id: number, token: string): Promise<ArticleDTO | Error> => {
     try {
-        const data = await Api.get(`/articles/${id}`)
+        const data = await Api.get(`/articles/${id}`, {headers: {Authorization: token}})
 
         if (data) {
             return data.data

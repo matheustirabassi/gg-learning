@@ -1,5 +1,5 @@
 import { UserDTO } from "data/dto/UserDTO"
-import { UserAPI } from "presentation/api/UserAPI"
+import { UserAPI } from "data/api/UserAPI"
 import * as yup from "yup"
 import "../../../assets/yup/TraducoesYup"
 

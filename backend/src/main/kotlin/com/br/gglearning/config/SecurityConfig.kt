@@ -34,6 +34,10 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
             "/articles/*"
         )
 
+    private val PUBLIC_MATCHERS_POST = arrayOf(
+        "/users/**"
+    )
+
     @Autowired
     private lateinit var environment: Environment
 
@@ -52,17 +56,15 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         http.cors().and().csrf().disable()
 
         http.authorizeRequests()
-            .antMatchers(HttpMethod.POST, "/users/create").permitAll()
-            .antMatchers(HttpMethod.GET, "/users").permitAll()
+            .antMatchers(HttpMethod.POST, * PUBLIC_MATCHERS_POST).permitAll()
             .antMatchers(* PUBLIC_MATCHERS)
             .permitAll().anyRequest().authenticated()
 
-        http.addFilterBefore(
+        http.addFilter(
             JwtAuthenticationFilter(
                 authenticationManager(),
                 jwtUtil
-            ),
-            JwtAuthenticationFilter::class.java
+            )
         )
 
         http.addFilter(

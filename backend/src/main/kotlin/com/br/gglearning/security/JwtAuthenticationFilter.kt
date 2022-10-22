@@ -60,6 +60,7 @@ class JwtAuthenticationFilter(
         val username: String = (auth.principal as UserDetailsImpl).username
         val token: String = jwtUtil.generateToken(username)
         response.addHeader("Authorization", "Bearer $token")
+        response.addHeader("access-control-expose-headers", "Authorization")
     }
 
     private class JWTAuthenticationFailureHandler : AuthenticationFailureHandler {
