@@ -29,7 +29,7 @@ class Article(
     @Column(name = "subtitle")
     var subtitle: String = "",
 
-    @Column(name = "content")
+    @Column(name = "content", length = 99999)
     var content: String = "",
 
     @Column(name = "publicationDate")
