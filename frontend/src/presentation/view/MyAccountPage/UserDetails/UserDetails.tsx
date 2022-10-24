@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CircularProgress, Skeleton, Typography } from "@mui/material"
+import { Box, Card, CardContent, Skeleton, Typography } from "@mui/material"
 import { Fragment } from "react"
 import "../../../../assets/yup/TraducoesYup"
 import { RHTextField } from "../../../components/FormComponents/RHTextField"
@@ -86,22 +86,6 @@ export const UserDetails = () => {
 								)}
 							</Box>
 						</CardContent>
-						<CardActions>
-							<Box width="100%" display="flex" justifyContent="center" marginBottom={1}>
-								<Button
-									variant="contained"
-									disabled={viewModel.isLoading}
-									onClick={viewModel.handleSubmit(viewModel.onSubmit)}
-									endIcon={
-										viewModel.isLoading ? (
-											<CircularProgress variant="indeterminate" color="inherit" size={20} />
-										) : undefined
-									}
-								>
-									Atualizar
-								</Button>
-							</Box>
-						</CardActions>
 					</Card>
 				</Box>
 			</Box>

@@ -1,5 +1,4 @@
-import { Search } from '@mui/icons-material';
-import { Grid, Box, TextField, InputAdornment } from "@mui/material";
+import { Grid, Box} from "@mui/material";
 import { useAuthContext } from 'contexts/AuthContext';
 import { ArticleAPI } from 'data/api/ArticleAPI';
 import { ArticleDTO } from 'data/dto/ArticleDTO';
@@ -31,36 +30,6 @@ export const AllArticlesContent = () => {
         <PageBaseLayout showSideFooter>
             <Box display="flex" flexDirection="row" alignItems="center" marginX={10} marginTop={2} justifyContent="center">
                 <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center">
-                    <Box marginBottom={2} width="100%" padding={1} display="flex" alignItems="center" justifyContent="center" flexDirection="row">
-                        <TextField
-                            fullWidth
-                            sx={{
-                                '& .MuiOutlinedInput-root': {
-                                    color: "secondary.main",
-                                    '& fieldset': {
-                                        borderColor: 'secondary.main',
-                                        borderWidth: 2
-                                    },
-                                    '&:hover fieldset': {
-                                        borderColor: 'secondary.main',
-                                        borderWidth: 2
-                                    },
-                                    '&.Mui-focused fieldset': {
-                                        borderColor: 'primary.main',
-                                        borderWidth: 2
-                                    },
-                                },
-                            }}
-                            placeholder="Pesquisar artigos"
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position='start'>
-                                        <Search color='secondary' />
-                                    </InputAdornment>
-                                ),
-                            }}
-                        />
-                    </Box>
                     <Box marginBottom={2} width="auto" padding={1} display="flex" alignItems="center" justifyContent="center" flexDirection="row">
                         <Grid container spacing={1} justifyContent="space-around" paddingLeft={10}>
                             {

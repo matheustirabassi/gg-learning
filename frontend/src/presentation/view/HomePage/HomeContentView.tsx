@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { useAuthContext } from "contexts/AuthContext"
 import { ArticleAPI } from "data/api/ArticleAPI"
 import { ArticleDTO } from "data/dto/ArticleDTO"
@@ -6,7 +6,6 @@ import { useDebounce } from "hooks/UseDebounce"
 import { ArticleCard } from "presentation/components/Card/ArticleCard"
 import { PageBaseLayout } from "presentation/components/PageBaseLayout/PageBaseLayout"
 import { useState, useEffect } from "react"
-import { ROUTES } from "Routes"
 import Imagem from "../../../assets/imgs/img.jpg"
 
 export const HomeContentView = () => {
@@ -41,16 +40,6 @@ export const HomeContentView = () => {
 							color="secondary.contrastText"
 							padding={2}
 						>GGLearning a melhor ferramenta para começar a programar</Typography>
-						<Box>
-							<Button
-								variant="contained"
-								href={ROUTES.CREATE_ACCOUNT}>
-								<Typography
-									variant="h3"
-									color="secondary.contrastText"
-								>Crie uma conta</Typography>
-							</Button>
-						</Box>
 					</Box>
 					<Box
 						hidden={lgDown}
@@ -72,7 +61,7 @@ export const HomeContentView = () => {
 				<Box display='flex' justifyItems="center" alignItems="center" >
 					<Grid container spacing={2} justifyContent="space-evenly" >
 						{
-							articles.map((article, index) => {
+							articles.slice(0, 4).map((article, index) => {
 								return (
 									<Grid key={index} item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
 										<ArticleCard
