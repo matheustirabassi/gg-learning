@@ -81,7 +81,7 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
         setOpenSnack(false);
     };
     
-    if(quizz.length == 0){
+    if(quizz.length === 0){
         return(
             <></>
         )
