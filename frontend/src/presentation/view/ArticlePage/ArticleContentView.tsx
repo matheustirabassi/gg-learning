@@ -63,15 +63,7 @@ export const ArticleContentView = () => {
                     > {article ? article.content : 'Erro ao carregar artigo'}
                     </Typography>
                 </Box>
-
                 <Box display="flex" flexDirection="column" justifyContent="center" marginY={2}>
-                    <Typography
-                        variant={"h1"}
-                        color="secondary"
-                        my="15px"
-                        padding="20px">
-                        Quizz
-                    </Typography>
                     {
                         isLoading && (
                             <></>
