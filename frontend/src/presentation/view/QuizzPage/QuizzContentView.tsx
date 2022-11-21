@@ -37,7 +37,7 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
     const { control, handleSubmit, reset } = useForm<IQuizzAlternatives>({
         resolver: yupResolver(quizzSchema)
     })
-    const { token } = useAuthContext() 
+    const { token } = useAuthContext()
 
     useEffect(() => {
         setIsLoading(true)
@@ -63,10 +63,10 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
         setCount(0)
         setTotal(0)
         data.alternatives.forEach((ans, i) => {
-            setTotal(oldValue => oldValue+1)
+            setTotal(oldValue => oldValue + 1)
 
             if (ans === quizz[i].answer) {
-                setCount(oldValue => oldValue+1)
+                setCount(oldValue => oldValue + 1)
             }
         })
         setOpenSnack(true)
@@ -80,10 +80,24 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
 
         setOpenSnack(false);
     };
+    
+    if(quizz.length === 0){
+        return(
+            <></>
+        )
+    }
 
     return (
         <PageBaseLayout>
+            <Typography
+                variant={"h1"}
+                color="secondary"
+                my="15px"
+                padding="20px">
+                Quizz
+            </Typography>
             <Box display="flex" justifyContent="center" >
+
                 <FormControl sx={{ marginTop: "20px" }}>
                     <Grid container spacing={2} direction="column">
                         {quizz.map((question, index) => {
