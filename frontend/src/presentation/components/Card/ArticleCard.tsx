@@ -41,7 +41,7 @@ export const ArticleCard = ({ linkImage, title, description, bgColor, id }: Card
 					<Typography
 						gutterBottom
 						variant="h4"
-						color="secondary.contrastText"
+						color="background.default"
 						fontWeight="700"
 						height="70px"
 					>
@@ -49,7 +49,7 @@ export const ArticleCard = ({ linkImage, title, description, bgColor, id }: Card
 					</Typography>
 					<Typography
 						variant="h5"
-						color="secondary.contrastText"
+						color="background.default"
 						whiteSpace='nowrap'
 						overflow='hidden'
 						textOverflow='ellipsis'
@@ -59,7 +59,7 @@ export const ArticleCard = ({ linkImage, title, description, bgColor, id }: Card
 				</CardContent>
 				<CardActions>
 					<Button size="small" onClick = {() => navigate(`/article/${id}`)}>
-						<Typography color="secondary.contrastText" variant="h4" fontWeight="700"
+						<Typography color="background.default" variant="h4" fontWeight="700"
 							sx={{
 								'&:hover': {
 									color: 'background.default',

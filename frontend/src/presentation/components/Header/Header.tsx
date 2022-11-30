@@ -57,7 +57,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 									mr: 2,
 									display: { xs: 'none', md: 'flex' },
 									fontWeight: 700,
-									color: 'secondary.contrastText',
+									color: 'background.default',
 									textDecoration: 'none',
 								}}
 							>
@@ -118,7 +118,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 									display: { xs: 'flex', md: 'none' },
 									flexGrow: 1,
 									fontWeight: 700,
-									color: 'secondary.contrastText',
+									color: 'background.default',
 									textDecoration: 'none',
 								}}
 							>
@@ -130,7 +130,7 @@ export const Header: React.FC<IHeaderProps> = ({ children }) => {
 										key={page[0]}
 										onClick={handleCloseMenu}
 										href={page[1]}
-										sx={{ my: 2, color: 'secondary.contrastText', display: 'block', fontWeight: 400, fontSize: "16px" }}>
+										sx={{ my: 2, color: 'background.default', display: 'block', fontWeight: 400, fontSize: "16px" }}>
 										{page[0]}
 									</Button>
 								))}
