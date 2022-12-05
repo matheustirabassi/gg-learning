@@ -39,7 +39,7 @@ export const HomeContentView = () => {
 							variant="h1"
 							color="secondary.contrastText"
 							padding={2}
-						>GGLearning a melhor ferramenta para começar a programar</Typography>
+						>GGLearning: O caminho moderno para atingir a programação </Typography>
 					</Box>
 					<Box
 						hidden={lgDown}
