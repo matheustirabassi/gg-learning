@@ -30,7 +30,7 @@ export const HomeContentView = () => {
 					}
 				})
 		})
-	})
+	},[debounce, token])
 
 	return (
 		<PageBaseLayout showSideFooter>

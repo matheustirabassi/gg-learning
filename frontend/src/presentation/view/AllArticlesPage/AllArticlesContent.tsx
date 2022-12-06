@@ -27,7 +27,7 @@ export const AllArticlesContent = () => {
                     }
                 })
         })
-    })
+    }, [debounce, token])
 
     return (
         <PageBaseLayout showSideFooter>
