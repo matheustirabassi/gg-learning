@@ -34,7 +34,7 @@ export const MyAccountPageContentView = () => {
                             <ListItemIcon>
                                 <Person />
                             </ListItemIcon>
-                            <ListItemText primary={"Minha informações"} sx={{ color: "secondary.contrastText" }} />
+                            <ListItemText primary={"Minha informações"} sx={{ color: "background.default" }} />
                         </ListItemButton>
                         {
                             userType === "PUBLISHER" && (
@@ -43,7 +43,7 @@ export const MyAccountPageContentView = () => {
                                         <ListItemIcon>
                                             <Article />
                                         </ListItemIcon>
-                                        <ListItemText primary={"Criar artigo"} sx={{ color: "secondary.contrastText" }} />
+                                        <ListItemText primary={"Criar artigo"} sx={{ color: "background.default" }} />
                                     </ListItemButton>
                                 </>
                             )
