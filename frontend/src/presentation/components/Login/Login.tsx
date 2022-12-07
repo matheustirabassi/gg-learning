@@ -94,19 +94,19 @@ export const Login: React.FC<ILoginProps> = ({ children }) => {
                             >
                                 <Typography
                                     variant="h5"
-
+                                    color="background.default"
                                 >Esqueceu sua senha?</Typography>
                             </Link>
                             <Link
                                 href={ROUTES.CREATE_ACCOUNT}
                                 onClick={register}
                                 underline="none"
-                                color="secondary.contrastText"
+                                color="background.default"
                             >
                                 <Typography
                                     variant="h4"
                                     align="center"
-                                    color="primary.main"
+                                    color="background.default"
                                 >Crie sua conta</Typography>
                             </Link>
                         </Box>
