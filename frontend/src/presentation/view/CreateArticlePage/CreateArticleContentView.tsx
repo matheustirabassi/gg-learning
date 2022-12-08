@@ -30,6 +30,7 @@ const createQuizzSchema = yup.object().shape({
 export const CreateArticleContentView = () => {
     const [openSnackQuestion, setOpenSnackQuestion] = useState(false)
     const [openSnackQuizz, setOpenSnackQuizz] = useState(false)
+    const [empArt, setEmpArt] = useState(false)
     const { debounce } = useDebounce(1500, false)
     const navigate = useNavigate()
     const { token } = useAuthContext()
@@ -78,12 +79,24 @@ export const CreateArticleContentView = () => {
         setIsLoading(true)
         let quizz = new QuizzDTO(getValues("title"), question)
         let finalArticle = new ArticleDTO(getValues("title"), getValues("content"), getValues("subtitle"), "", "", [quizz])
-        setOpenSnackQuizz(true)
-        debounce(() => {
-            ArticleAPI.create(finalArticle, token)
+        console.log(finalArticle.title)
+        console.log(finalArticle.content)
+        console.log(finalArticle.subtitle)
+
+        if (typeof finalArticle.title === "undefined" || typeof finalArticle.content === "undefined" || typeof finalArticle.subtitle === "undefined") {
+            setEmpArt(true)
+            setOpenSnackQuizz(true)
             setIsLoading(false)
-            navigate("/")
-        })
+        } else {
+            setEmpArt(false)
+            setOpenSnackQuizz(true)
+            debounce(() => {
+                ArticleAPI.create(finalArticle, token)
+                setIsLoading(false)
+                navigate("/")
+            })
+        }
+
     }
 
     return (
@@ -190,6 +203,18 @@ export const CreateArticleContentView = () => {
                                     Artigo criado com sucesso
                                 </Alert>
                             </Snackbar>
+
+                            {
+                                empArt && (
+                                    <>
+                                        <Snackbar open={openSnackQuizz} onClose={handleCloseSnackQuizz} autoHideDuration={1500}>
+                                            <Alert severity='error'>
+                                                Por favor preencha os dados do artigo para cria-lo
+                                            </Alert>
+                                        </Snackbar>
+                                    </>
+                                )
+                            }
                         </Box>
                     </CardActions>
                 </Card>

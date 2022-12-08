@@ -19,7 +19,7 @@ interface IQuizzProps {
 }
 
 const quizzSchema = yup.object().shape({
-    alternatives: yup.array().of(yup.string().required()),
+    alternatives: yup.array().of(yup.string()),
 })
 
 interface IQuizzAlternatives {
@@ -32,8 +32,9 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
     const [openSnack, setOpenSnack] = useState(false)
     const [count, setCount] = useState(0)
     const [total, setTotal] = useState(0)
+    const [emptAns, setEmptAns] = useState(0)
     const navigate = useNavigate()
-    const { debounce } = useDebounce(5000)
+    const { debounce } = useDebounce(20000)
     const { control, handleSubmit, reset } = useForm<IQuizzAlternatives>({
         resolver: yupResolver(quizzSchema)
     })
@@ -62,13 +63,17 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
     const onSendQuizz: SubmitHandler<IQuizzAlternatives> = (data) => {
         setCount(0)
         setTotal(0)
+        setEmptAns(0)
         data.alternatives.forEach((ans, i) => {
             setTotal(oldValue => oldValue + 1)
-
             if (ans === quizz[i].answer) {
                 setCount(oldValue => oldValue + 1)
+
+            } else if (typeof ans === "undefined") {
+                setEmptAns(oldValue => oldValue + 1)
             }
         })
+
         setOpenSnack(true)
         reset()
     }
@@ -80,9 +85,9 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
 
         setOpenSnack(false);
     };
-    
-    if(quizz.length === 0){
-        return(
+
+    if (quizz.length === 0) {
+        return (
             <></>
         )
     }
@@ -130,11 +135,23 @@ export const QuizzContentView = ({ id }: IQuizzProps) => {
                                 Enviar Quizz
                             </Typography>
                         </Button>
-                        <Snackbar open={openSnack} onClose={handleCloseSnack} autoHideDuration={3000}>
+                        <Snackbar open={openSnack} onClose={handleCloseSnack} autoHideDuration={4000}>
                             <Alert severity='success'>
                                 Você acertou {count}/{total}
                             </Alert>
                         </Snackbar>
+                        {
+                            emptAns > 0 && (
+                                <>
+                                    <Snackbar open={openSnack} onClose={handleCloseSnack} autoHideDuration={2500}>
+                                        <Alert severity='error'>
+                                            Selecione a(s) alternativa(s)
+                                        </Alert>
+                                    </Snackbar>
+                                </>
+                            )
+                        }
+
                     </Box>
 
                 </FormControl>

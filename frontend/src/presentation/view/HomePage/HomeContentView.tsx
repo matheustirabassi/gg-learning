@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material"
+import { Box, Grid, Skeleton, Typography, useMediaQuery, useTheme } from "@mui/material"
 import { useAuthContext } from "contexts/AuthContext"
 import { ArticleAPI } from "data/api/ArticleAPI"
 import { ArticleDTO } from "data/dto/ArticleDTO"
@@ -13,12 +13,15 @@ export const HomeContentView = () => {
 	const lgDown = useMediaQuery(theme.breakpoints.down("lg"))
 	const [articles, setArticle] = useState<ArticleDTO[]>([])
 	const { debounce } = useDebounce(5000)
-	const { token } = useAuthContext() 
+	const { token } = useAuthContext()
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
+		setIsLoading(true)
 		debounce(() => {
 			ArticleAPI.getAll(token)
 				.then((result) => {
+					setIsLoading(false)
 					if (result instanceof Error) {
 						alert(result.message)
 					} else {
@@ -27,7 +30,7 @@ export const HomeContentView = () => {
 					}
 				})
 		})
-	})
+	},[debounce, token])
 
 	return (
 		<PageBaseLayout showSideFooter>
@@ -74,6 +77,25 @@ export const HomeContentView = () => {
 									</Grid>
 								)
 							})
+						}
+
+						{
+							isLoading && (
+								<>
+									<Grid item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
+										<Skeleton variant="rectangular" height={"400px"} width="300px" />
+									</Grid>
+									<Grid item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
+										<Skeleton variant="rectangular" height={"400px"} width="300px" />
+									</Grid>
+									<Grid item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
+										<Skeleton variant="rectangular" height={"400px"} width="300px" />
+									</Grid>
+									<Grid item xs={12} sm={6} lg={4} xl={3} marginBottom={2}>
+										<Skeleton variant="rectangular" height={"400px"} width="300px" />
+									</Grid>
+								</>
+							)
 						}
 					</Grid>
 				</Box>
